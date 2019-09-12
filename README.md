@@ -1,10 +1,11 @@
 <h1 align="center">Fazer Työturvallisuuspeli - Frontend</h1>
-<div align="center">
-  [![Netlify Status](https://api.netlify.com/api/v1/badges/face891f-a44e-4400-b734-69aa79c7109d/deploy-status)](https://app.netlify.com/sites/fazer-frontend/deploys)
-</div>
 <p align="center">
   <a href="https://fazer-frontend.veikko.dev">View live site</a>
 </p>
+
+<img alt="Netlify" src="https://img.shields.io/netlify/face891f-a44e-4400-b734-69aa79c7109d?style=for-the-badge">
+<img alt="David" src="https://img.shields.io/david/Fazer-Turvallisuuspeli/fazer-frontend?style=for-the-badge">
+<img alt="GitHub" src="https://img.shields.io/github/license/Fazer-Turvallisuuspeli/fazer-frontend?style=for-the-badge">
 
 ## Table of Contents
 
