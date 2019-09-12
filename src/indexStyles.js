@@ -14,4 +14,4 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
     color: #fff;
   }
-`
+`;

@@ -9,6 +9,6 @@ export const StyledGameContainer = styled.div`
   background-size: contain;
   background-repeat: no-repeat, no-repeat;
   background-position: top center;
-  background-color: #15256B;
+  background-color: #15256b;
   text-align: center;
 `;

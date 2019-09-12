@@ -3,9 +3,7 @@ import React from 'react';
 import GameContainer from './GameContainer';
 
 const App = () => {
-  return (
-    <GameContainer />
-  );
+  return <GameContainer />;
 };
 
 export default App;

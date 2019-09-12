@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
 import { StyledLanding, Title, Main } from './LandingStyles';
 import Login from '../components/Login';
 import Footer from '../components/Footer';
@@ -11,10 +9,10 @@ const Landing = () => {
     <StyledLanding>
       <Main>
         <Title>Työturvallisuuspeli</Title>
-        <Login></Login>
+        <Login />
       </Main>
 
-      <Footer></Footer>
+      <Footer />
     </StyledLanding>
   );
 };
