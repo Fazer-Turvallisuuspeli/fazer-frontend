@@ -15,5 +15,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "setup": "npm ci"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fazer-Turvallisuuspeli/fazer-frontend"
   }
 }
