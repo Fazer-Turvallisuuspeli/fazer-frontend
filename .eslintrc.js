@@ -2,11 +2,13 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    jest: true,
   },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
     'airbnb',
+    'plugin:jest/recommended',
     'plugin:prettier/recommended',
     'prettier/react',
   ],
