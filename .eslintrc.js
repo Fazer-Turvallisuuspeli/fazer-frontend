@@ -30,5 +30,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'import/prefer-default-export': 0,
     'react/jsx-fragments': 0,
+    'no-alert': 0,
   },
 };
