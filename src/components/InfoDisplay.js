@@ -3,16 +3,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const InfoDisplay = ({ data }) => {
+  const formatBody = body => {
+    const parsedBody = body.split('\n');
+    const filteredBody = parsedBody.filter(Boolean);
+    return filteredBody;
+  };
+
   return (
     <div>
       {data &&
         data.map(item => (
           <div key={item.title}>
             <h2>{item.title}</h2>
-            <p>{item.body}</p>
+            {formatBody(item.body).map(paragraph => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         ))}
-      /
     </div>
   );
 };
