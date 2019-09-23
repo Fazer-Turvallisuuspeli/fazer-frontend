@@ -1,0 +1,80 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "johndoe@test.dev",
+      "passwordHash": "sr5yEGRErh%&(h4srgfh35g365uKI5@g87o7ddfg",
+      "unitName": "Lahti",
+      "unitId": 1,
+      "scorePercentage": 100,
+      "scorePerCategory": [
+        {
+          "categoryId": 1,
+          "points": 4
+        },
+        {
+          "categoryId": 2,
+          "points": 4
+        },
+        {
+          "categoryId": 3,
+          "points": 4
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "Liikkuminen",
+      "shortName": "liikkuminen",
+      "id": 1,
+      "instructions": [
+        {
+          "title": "Työmatkat ja piha-alueella kulkeminen",
+          "body": "Työhön tullessasi ja työstä lähtiessäsi, ja aina muutenkin ylittäessäsi suojatietä, katso molempiin suuntiin, onko autoja tulossa. Ylitä suojatie suoraan ja ripeästi. Älä puhu tai tuijota kännykkään suojatietä ylittäessäsi, sillä se vie huomiosi muualle. Suojateitä ja jalankulkuväyliä on käytettävä aina liikuttaessa tuotantoalueella. Siten minimoidaan tapaturmariski. Muista: Asunnon ja työpaikan välisellä matkalla sattunut tapaturma kuuluu työnantajan tapaturmavakuutuksen piiriin. Vakavat työmatkatapaturmat selvitetään, mitä on tapahtunut ja missä."
+        },
+        {
+          "title": "Portaissa kulkeminen",
+          "body": "Pidä aina kaiteesta kiinni tai ota tukea seinästä liikkuessasi portaissa. Muista, että puhelimen käyttö liikkuessasi voi heikentää havaintokykyäsi. Portaissa kävellessäsi älä puhu puhelimeen. Työpaikalla ei saa juosta. Juokseminen lisää tapaturmariskiä huomattavasti. Kaatumisesta johtuneita tapaturmia on leipomoilla tapahtunut vuosittain useita."
+        },
+        {
+          "title": "Liikennemerkit ja liikenteen apuvälineet",
+          "body": "Trukeilla ja BT-vaunuilla ajettaessa näkyvyys ja muun liikenteen havainnointi on haasteellista. Ne eivät välttämättä pysähdy stop-merkin kohdalla, joten jalankulkijan on käytettävä merkittyjä kulkuväyliä ja suojateitä sekä oltava erityisen varovainen liikkuessaan. Kulkuväylät on pidettävä aina vapaina, eikä niille saa laittaa mitään esteitä tai tavaraa. Hyödynnä sisäisen liikenteen apuvälineet; peilit, lähestymismerkkivalot ja -summerit sekä liikenteen varoituskilvet."
+        },
+        {
+          "title": "Työympäristön turvallisuus",
+          "body": "Muista liikkua aina rauhallisesti tilanteesta riippumatta. Kuljettimen alitse mentäessä tapaturmariski kasvaa. Pää tai keho voi osua kuljettimeen. Käytä turvallisia kulkureittejä, ylikulkurappusia tai siltoja. Tuotantoalueella ei saa koskaan juosta. Mikäli havaitset vaaratekijän kulkureitillä, niin poista se mahdollisuuksien mukaan, kerro esimiehellesi ja työtovereillesi, sekä tee turvallisuushavainto."
+        },
+        {
+          "title": "Työnopastus ja liikkuminen toisella osastolla",
+          "body": "Esimies tai työnopastaja opastaa sinut turvalliseen työhön. He käyvät läpi mm. työpaikan olosuhteet, työ- ja tuotantomenetelmät, työssä käytettävät työvälineet ja niiden oikean käytön, sekä turvalliset työtavat."
+        }
+      ],
+      "questionIds": [1]
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "question": "Piha-alueilla kulkeminen",
+      "categoryId": 1,
+      "isSingleChoice": true,
+      "isMultipleChoice": false,
+      "choices": [
+        {
+          "option": "Voin kävellä suojatiellä välittämättä muusta liikenteestä",
+          "isCorrect": false
+        },
+        {
+          "option": "Voin puhua tai tuijottaa kännykkään suojatiellä kävellessäni, koska autoilijat osaavat varoa",
+          "isCorrect": false
+        },
+        {
+          "option": "Minun tulee seurata liikennettä liikkuessani piha-alueella, koska vastaan itse liikkumisestani",
+          "isCorrect": true
+        }
+      ]
+    }
+  ]
+}
