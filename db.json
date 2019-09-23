@@ -76,5 +76,27 @@
         }
       ]
     }
+  ],
+  "units": [
+    {
+      "id": 1,
+      "name": "Lahti"
+    },
+    {
+      "id": 2,
+      "name": "Lappeenranta"
+    },
+    {
+      "id": 3,
+      "name": "Vantaa"
+    },
+    {
+      "id": 4,
+      "name": "Fazer makeiset"
+    },
+    {
+      "id": 5,
+      "name": "Myymäläleipomot"
+    }
   ]
 }
