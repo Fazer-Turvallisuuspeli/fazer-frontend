@@ -98,5 +98,13 @@
       "id": 5,
       "name": "Myymäläleipomot"
     }
-  ]
+  ],
+  "game": {
+    "welcomeMessage": [
+      {
+        "title": "Tervetuloa töihin Fazerille!",
+        "body": "Työ- ja elintarviketurvallisuus ovat toimintamme perusta, joista emme tingi missään vaiheessa.\nMeille on tärkeää, että jokainen työntekijämme ja yhteistyökumppanimme voi tulla ja lähteä töistä turvallisin mielin joka päivä.\n\nHyvä työ- ja elintarviketurvallisuus koostuu monesta tekijästä ja haluamme varmistaa, että tuotteemme ja palvelumme ovat aina korkealaatuisia. Turvallisuus tulee meillä aina ensin. Siksi olemme laatineet ohjeistukset, joita jokaisen tulee noudattaa, niin Fazerin työntekijän kuin yhteistyökumppanin.\n\nTurvallisuuspeli opastaa sinut Fazerin turvallisuuden perussääntöihin. Mikäli sinulla on kysymyksiä, ota yhteyttä yhteyshenkilöösi!"
+      }
+    ]
+  }
 }
