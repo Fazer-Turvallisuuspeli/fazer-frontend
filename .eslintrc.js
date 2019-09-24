@@ -32,5 +32,6 @@ module.exports = {
     'react/jsx-fragments': 0,
     'no-alert': 0,
     'no-shadow': 0,
+    'react/require-default-props': 0,
   },
 };

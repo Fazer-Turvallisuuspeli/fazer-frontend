@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,24 +7,7 @@ import { push } from 'connected-react-router';
 
 import { setUser } from '../reducers/userReducer';
 
-const LoginForm = ({ setUser, push }) => {
-  const [units, setUnits] = useState([]);
-
-  const fetchUnits = async () => {
-    try {
-      const response = await fetch('/api/v1/game/info');
-      const data = await response.json();
-
-      setUnits(data.units);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchUnits();
-  }, []);
-
+const LoginForm = ({ game = null, setUser, push }) => {
   const handleLogin = (user, { setSubmitting }) => {
     setUser(user);
     setSubmitting(false);
@@ -61,7 +44,7 @@ const LoginForm = ({ setUser, push }) => {
 
           <Field component="select" name="unitName">
             <option value="">Valitse toimipiste</option>
-            {units.map(unit => (
+            {game.units.map(unit => (
               <option key={unit.id} value={unit.name}>
                 {unit.name}
               </option>
@@ -79,6 +62,7 @@ const LoginForm = ({ setUser, push }) => {
 };
 
 LoginForm.propTypes = {
+  game: PropTypes.objectOf(PropTypes.array),
   setUser: PropTypes.func.isRequired,
   push: PropTypes.func.isRequired,
 };
@@ -86,6 +70,7 @@ LoginForm.propTypes = {
 const mapStateToProps = state => {
   return {
     user: state.user,
+    game: state.game,
   };
 };
 

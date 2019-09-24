@@ -1,33 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import InfoDisplay from '../components/InfoDisplay';
 
-const GameMenuScreen = () => {
-  const [instructions, setInstructions] = useState([]);
+const GameMenuScreen = ({ game }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
-
-  const fetchData = async () => {
-    const response = await fetch('/api/v1/game/info');
-    const data = await response.json();
-
-    setInstructions(data.instructions);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
 
+  // @TODO: Fetch and persist categories
+
   return (
     <div>
       <h1>Valitse kategoria</h1>
 
-      {isModalOpen && <InfoDisplay data={instructions} />}
+      {game.instructions && isModalOpen && (
+        <InfoDisplay data={game.instructions} />
+      )}
+
+      {/* @TODO: Loop over categories */}
 
       <Link to="/gameMenu">
         <button type="button" onClick={handleModalClose}>
@@ -42,4 +38,17 @@ const GameMenuScreen = () => {
   );
 };
 
-export default GameMenuScreen;
+GameMenuScreen.propTypes = {
+  game: PropTypes.objectOf(PropTypes.array),
+};
+
+const mapStateToProps = state => {
+  return {
+    game: state.game,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(GameMenuScreen);

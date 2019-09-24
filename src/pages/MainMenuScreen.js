@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,33 +7,16 @@ import { Link } from 'react-router-dom';
 import InfoDisplay from '../components/InfoDisplay';
 import { removeUser } from '../reducers/userReducer';
 
-const MainMenuScreen = ({ removeUser }) => {
-  const [welcomeMessage, setWelcomeMessage] = useState([]);
-
-  const fetchInfo = async () => {
-    try {
-      const response = await fetch('/api/v1/game/info');
-      const data = await response.json();
-
-      setWelcomeMessage(data.welcomeMessage);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchInfo();
-  }, []);
-
+const MainMenuScreen = ({ user, game, removeUser }) => {
   const handleLogout = () => {
     removeUser();
   };
 
   return (
     <div>
-      <h1>Tervetuloa, SUKUNIMI_TÄHÄN</h1>
+      {user && <h1>Tervetuloa, {user.lastName}</h1>}
 
-      <InfoDisplay data={welcomeMessage} />
+      {game.welcomeMessage && <InfoDisplay data={game.welcomeMessage} />}
 
       <Link to="/gameMenu">
         <button type="button">Siirry peliin</button>
@@ -49,7 +32,16 @@ const MainMenuScreen = ({ removeUser }) => {
 };
 
 MainMenuScreen.propTypes = {
+  game: PropTypes.objectOf(PropTypes.array),
   removeUser: PropTypes.func.isRequired,
+  user: PropTypes.objectOf(PropTypes.string),
+};
+
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    game: state.game,
+  };
 };
 
 const mapDispatchToProps = {
@@ -57,6 +49,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(MainMenuScreen);

@@ -2,7 +2,9 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-const InfoDisplay = ({ data }) => {
+const initialData = [{ title: 'Error', body: 'Error fetching data' }];
+
+const InfoDisplay = ({ data = initialData }) => {
   const formatBody = body => {
     const parsedBody = body.split('\n');
     const filteredBody = parsedBody.filter(Boolean);
@@ -31,10 +33,6 @@ InfoDisplay.propTypes = {
       body: PropTypes.string,
     })
   ),
-};
-
-InfoDisplay.defaultProps = {
-  data: [{ title: 'Error', body: 'Error fetching data' }],
 };
 
 export default InfoDisplay;
