@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-import InfoDisplay from '../components/InfoDisplay';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const MainMenuScreen = () => {
+import InfoDisplay from '../components/InfoDisplay';
+import { removeUser } from '../reducers/userReducer';
+
+const MainMenuScreen = ({ removeUser }) => {
   const [welcomeMessage, setWelcomeMessage] = useState([]);
 
   const fetchInfo = async () => {
@@ -20,13 +25,38 @@ const MainMenuScreen = () => {
     fetchInfo();
   }, []);
 
+  const handleLogout = () => {
+    removeUser();
+  };
+
   return (
     <div>
       <h1>Tervetuloa, SUKUNIMI_TÄHÄN</h1>
 
       <InfoDisplay data={welcomeMessage} />
+
+      <Link to="/gameMenu">
+        <button type="button">Siirry peliin</button>
+      </Link>
+
+      <Link to="/">
+        <button type="button" onClick={handleLogout}>
+          Kirjaudu ulos
+        </button>
+      </Link>
     </div>
   );
 };
 
-export default MainMenuScreen;
+MainMenuScreen.propTypes = {
+  removeUser: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = {
+  removeUser,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(MainMenuScreen);

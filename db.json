@@ -27,6 +27,12 @@
         "id": 5,
         "name": "Myymäläleipomot"
       }
+    ],
+    "instructions": [
+      {
+        "title": "Ohjeet",
+        "body": "Voit pelata kategoriat läpi haluamassasi järjestyksessä. Ennen kuin pääset suorittamaan tehtäviä, sinun tulee lukea tietopankki kyseisestä aiheesta. Jos haluat palata tietopankkiin tehtävien suorittamisen aikana, pääset sinne 'Tietopankki'-painikkeesta.\n\nValitse tehtävissä oikeat väittämät.\n\nSuoritettuasi yhden kategorian loppuun, voit siirtyä suoraan seuraavaan valitsemalla 'Seuraava'.\n\nVastattuasi kyseessä olen alueen vaihtoehtoihin, loppuun tulee aina yhteenveto, joka kattaa koko alueen oikean vastauksen.\n\nVaraa pelin suorittamiseen aikaa noin 30 minuuttia. Suoritettuasi pelin loppuun, tulokset lähetetään automaattisesti yksikkösi vastaavalle henkilölle.\n\nHuomio! Sivun päivittäminen tai sivulta poistuminen saattaa johtaa tietojen menettämiseen!"
+      }
     ]
   },
   "users": [
