@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
+import { history } from '../redux/store';
 import LoginScreen from '../pages/LoginScreen';
 import MainMenuScreen from '../pages/MainMenuScreen';
 import GameMenuScreen from '../pages/GameMenuScreen';
@@ -9,7 +11,7 @@ import GameCategoryScreen from '../pages/GameCategoryScreen';
 
 const App = () => {
   return (
-    <Router>
+    <ConnectedRouter history={history}>
       <Switch>
         <Route path="/mainMenu" component={MainMenuScreen} />
         <Route path="/gameMenu" component={GameMenuScreen} />
@@ -19,7 +21,7 @@ const App = () => {
         />
         <Route component={LoginScreen} />
       </Switch>
-    </Router>
+    </ConnectedRouter>
   );
 };
 

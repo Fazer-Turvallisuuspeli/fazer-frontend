@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { push } from 'connected-react-router';
 
-const LoginForm = () => {
+import { setUser } from '../reducers/userReducer';
+
+const LoginForm = ({ setUser, push }) => {
   const [units, setUnits] = useState([]);
 
   const fetchUnits = async () => {
@@ -19,6 +24,12 @@ const LoginForm = () => {
   useEffect(() => {
     fetchUnits();
   }, []);
+
+  const handleLogin = (user, { setSubmitting }) => {
+    setUser(user);
+    setSubmitting(false);
+    push('/mainMenu');
+  };
 
   return (
     <Formik
@@ -38,11 +49,7 @@ const LoginForm = () => {
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) =>
-        setTimeout(() => {
-          console.log('TODO redux login reducer');
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400)
+        handleLogin(values, { setSubmitting })
       }>
       {({ isSubmitting }) => (
         <Form>
@@ -71,4 +78,23 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+LoginForm.propTypes = {
+  setUser: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+  };
+};
+
+const mapDispatchToProps = {
+  setUser,
+  push,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginForm);

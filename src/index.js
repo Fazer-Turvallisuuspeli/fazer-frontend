@@ -1,13 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Provider } from 'react-redux';
+
+import store from './redux/store';
 import { GlobalStyle } from './indexStyles';
 import App from './components/App';
 
+console.log(store.getState());
+store.subscribe(() => console.log(store.getState()));
+
 ReactDOM.render(
-  <Fragment>
+  <Provider store={store}>
     <GlobalStyle />
     <App />
-  </Fragment>,
+  </Provider>,
   document.getElementById('root')
 );
