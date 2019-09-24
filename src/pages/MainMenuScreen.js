@@ -7,7 +7,7 @@ const MainMenuScreen = () => {
 
   const fetchInfo = async () => {
     try {
-      const response = await fetch('http://localhost:8080/game');
+      const response = await fetch('/api/v1/game/info');
       const data = await response.json();
 
       setWelcomeMessage(data.welcomeMessage);

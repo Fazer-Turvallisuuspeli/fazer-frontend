@@ -1,27 +1,60 @@
 {
+  "info": {
+    "welcomeMessage": [
+      {
+        "title": "Tervetuloa töihin Fazerille!",
+        "body": "Työ- ja elintarviketurvallisuus ovat toimintamme perusta, joista emme tingi missään vaiheessa.\nMeille on tärkeää, että jokainen työntekijämme ja yhteistyökumppanimme voi tulla ja lähteä töistä turvallisin mielin joka päivä.\n\nHyvä työ- ja elintarviketurvallisuus koostuu monesta tekijästä ja haluamme varmistaa, että tuotteemme ja palvelumme ovat aina korkealaatuisia. Turvallisuus tulee meillä aina ensin. Siksi olemme laatineet ohjeistukset, joita jokaisen tulee noudattaa, niin Fazerin työntekijän kuin yhteistyökumppanin.\n\nTurvallisuuspeli opastaa sinut Fazerin turvallisuuden perussääntöihin. Mikäli sinulla on kysymyksiä, ota yhteyttä yhteyshenkilöösi!"
+      }
+    ],
+    "units": [
+      {
+        "id": 1,
+        "name": "Lahti"
+      },
+      {
+        "id": 2,
+        "name": "Lappeenranta"
+      },
+      {
+        "id": 3,
+        "name": "Vantaa"
+      },
+      {
+        "id": 4,
+        "name": "Fazer makeiset"
+      },
+      {
+        "id": 5,
+        "name": "Myymäläleipomot"
+      }
+    ]
+  },
   "users": [
     {
       "id": 1,
       "name": "John Doe",
       "email": "johndoe@test.dev",
-      "passwordHash": "sr5yEGRErh%&(h4srgfh35g365uKI5@g87o7ddfg",
-      "unitName": "Lahti",
-      "unitId": 1,
-      "scorePercentage": 100,
-      "scorePerCategory": [
-        {
-          "categoryId": 1,
-          "points": 4
-        },
-        {
-          "categoryId": 2,
-          "points": 4
-        },
-        {
-          "categoryId": 3,
-          "points": 4
-        }
-      ]
+      "unit": {
+        "id": 1,
+        "name": "Lahti"
+      },
+      "score": {
+        "overall": 100,
+        "perCategory": [
+          {
+            "categoryId": 1,
+            "points": 4
+          },
+          {
+            "categoryId": 2,
+            "points": 4
+          },
+          {
+            "categoryId": 3,
+            "points": 4
+          }
+        ]
+      }
     }
   ],
   "categories": [
@@ -50,61 +83,55 @@
           "title": "Työnopastus ja liikkuminen toisella osastolla",
           "body": "Esimies tai työnopastaja opastaa sinut turvalliseen työhön. He käyvät läpi mm. työpaikan olosuhteet, työ- ja tuotantomenetelmät, työssä käytettävät työvälineet ja niiden oikean käytön, sekä turvalliset työtavat."
         }
-      ],
-      "questionIds": [1]
+      ]
     }
   ],
   "questions": [
     {
       "id": 1,
       "question": "Piha-alueilla kulkeminen",
-      "categoryId": 1,
       "isSingleChoice": true,
       "isMultipleChoice": false,
       "choices": [
         {
+          "id": 1,
           "option": "Voin kävellä suojatiellä välittämättä muusta liikenteestä",
           "isCorrect": false
         },
         {
+          "id": 2,
           "option": "Voin puhua tai tuijottaa kännykkään suojatiellä kävellessäni, koska autoilijat osaavat varoa",
           "isCorrect": false
         },
         {
+          "id": 3,
+          "option": "Minun tulee seurata liikennettä liikkuessani piha-alueella, koska vastaan itse liikkumisestani",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Piha-alueilla kulkeminen",
+      "isSingleChoice": true,
+      "isMultipleChoice": false,
+      "choices": [
+        {
+          "id": 1,
+          "option": "Voin kävellä suojatiellä välittämättä muusta liikenteestä",
+          "isCorrect": false
+        },
+        {
+          "id": 2,
+          "option": "Voin puhua tai tuijottaa kännykkään suojatiellä kävellessäni, koska autoilijat osaavat varoa",
+          "isCorrect": false
+        },
+        {
+          "id": 3,
           "option": "Minun tulee seurata liikennettä liikkuessani piha-alueella, koska vastaan itse liikkumisestani",
           "isCorrect": true
         }
       ]
     }
-  ],
-  "units": [
-    {
-      "id": 1,
-      "name": "Lahti"
-    },
-    {
-      "id": 2,
-      "name": "Lappeenranta"
-    },
-    {
-      "id": 3,
-      "name": "Vantaa"
-    },
-    {
-      "id": 4,
-      "name": "Fazer makeiset"
-    },
-    {
-      "id": 5,
-      "name": "Myymäläleipomot"
-    }
-  ],
-  "game": {
-    "welcomeMessage": [
-      {
-        "title": "Tervetuloa töihin Fazerille!",
-        "body": "Työ- ja elintarviketurvallisuus ovat toimintamme perusta, joista emme tingi missään vaiheessa.\nMeille on tärkeää, että jokainen työntekijämme ja yhteistyökumppanimme voi tulla ja lähteä töistä turvallisin mielin joka päivä.\n\nHyvä työ- ja elintarviketurvallisuus koostuu monesta tekijästä ja haluamme varmistaa, että tuotteemme ja palvelumme ovat aina korkealaatuisia. Turvallisuus tulee meillä aina ensin. Siksi olemme laatineet ohjeistukset, joita jokaisen tulee noudattaa, niin Fazerin työntekijän kuin yhteistyökumppanin.\n\nTurvallisuuspeli opastaa sinut Fazerin turvallisuuden perussääntöihin. Mikäli sinulla on kysymyksiä, ota yhteyttä yhteyshenkilöösi!"
-      }
-    ]
-  }
+  ]
 }

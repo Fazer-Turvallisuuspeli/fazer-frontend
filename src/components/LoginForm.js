@@ -8,10 +8,10 @@ const LoginForm = ({ handleLogin }) => {
 
   const fetchUnits = async () => {
     try {
-      const response = await fetch('http://localhost:8080/units');
+      const response = await fetch('/api/v1/game/info');
       const data = await response.json();
 
-      setUnits(data);
+      setUnits(data.units);
     } catch (error) {
       console.error(error);
     }
