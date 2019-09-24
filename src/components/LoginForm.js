@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import PropTypes from 'prop-types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-const LoginForm = ({ handleLogin }) => {
+const LoginForm = () => {
   const [units, setUnits] = useState([]);
 
   const fetchUnits = async () => {
@@ -39,7 +38,11 @@ const LoginForm = ({ handleLogin }) => {
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) =>
-        handleLogin(values, { setSubmitting })
+        setTimeout(() => {
+          console.log('TODO redux login reducer');
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400)
       }>
       {({ isSubmitting }) => (
         <Form>
@@ -66,10 +69,6 @@ const LoginForm = ({ handleLogin }) => {
       )}
     </Formik>
   );
-};
-
-LoginForm.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
 };
 
 export default LoginForm;
