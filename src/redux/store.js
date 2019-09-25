@@ -7,6 +7,8 @@ import userReducer from '../reducers/userReducer';
 import infoReducer from '../reducers/infoReducer';
 import categoryReducer from '../reducers/categoryReducer';
 import selectedCategoryReducer from '../reducers/selectedCategoryReducer';
+import questionReducer from '../reducers/questionReducer';
+import currentQuestionReducer from '../reducers/currentQuestionReducer';
 
 export const history = createBrowserHistory();
 
@@ -17,6 +19,8 @@ const createRootReducer = history =>
     info: infoReducer,
     categories: categoryReducer,
     selectedCategory: selectedCategoryReducer,
+    questions: questionReducer,
+    currentQuestion: currentQuestionReducer,
   });
 
 export default createStore(

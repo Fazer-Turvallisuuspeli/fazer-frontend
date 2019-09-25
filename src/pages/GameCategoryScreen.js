@@ -1,18 +1,43 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const GameCategoryScreen = ({ selectedCategory }) => {
+import { setQuestions } from '../reducers/questionReducer';
+import { setCurrentQuestion } from '../reducers/currentQuestionReducer';
+import QuestionContainer from '../components/QuestionContainer';
+
+const GameCategoryScreen = ({
+  selectedCategory,
+  setQuestions,
+  setCurrentQuestion,
+}) => {
+  const memoizedFetchData = useCallback(async () => {
+    const response = await fetch(
+      `/api/v1/game/categories/${selectedCategory.id}/questions`
+    );
+    const data = await response.json();
+
+    setQuestions(data);
+    setCurrentQuestion(data[0]);
+  }, [selectedCategory, setQuestions, setCurrentQuestion]);
+
+  useEffect(() => {
+    if (!selectedCategory) return;
+
+    memoizedFetchData();
+  }, [selectedCategory, memoizedFetchData]);
+
+  if (!selectedCategory) return null;
+
   return (
     <div>
-      <h2>{selectedCategory && selectedCategory.name}</h2>
+      <h2>{selectedCategory.name}</h2>
+
+      <QuestionContainer />
+
+      <button type="button">Tarkista vastaukset</button>
     </div>
   );
-};
-
-GameCategoryScreen.propTypes = {
-  selectedCategory: PropTypes.objectOf(PropTypes.object),
 };
 
 const mapStateToProps = state => {
@@ -21,7 +46,12 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = {
+  setQuestions,
+  setCurrentQuestion,
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(GameCategoryScreen);
