@@ -11,17 +11,13 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export const setUser = data => {
-  return {
-    type: 'SET_USER',
-    data,
-  };
-};
-
-export const removeUser = () => {
-  return {
-    type: 'REMOVE_USER',
-  };
-};
-
 export default userReducer;
+
+export const setUser = args => {
+  return async dispatch => {
+    dispatch({
+      type: 'SET_USER',
+      data: args,
+    });
+  };
+};

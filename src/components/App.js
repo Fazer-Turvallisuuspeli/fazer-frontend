@@ -4,22 +4,17 @@ import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
 import { history } from '../redux/store';
-import LoginScreen from '../pages/LoginScreen';
-import MainMenuScreen from '../pages/MainMenuScreen';
-import GameMenuScreen from '../pages/GameMenuScreen';
-import GameCategoryScreen from '../pages/GameCategoryScreen';
+import LoginContainer from '../pages/LoginContainer';
+import MainMenuContainer from '../pages/MainMenuContainer';
+import GameMenuContainer from '../pages/GameMenuContainer';
 
 const App = () => {
   return (
     <ConnectedRouter history={history}>
       <Switch>
-        <Route path="/mainMenu" component={MainMenuScreen} />
-        <Route path="/gameMenu" component={GameMenuScreen} />
-        <Route
-          path="/gameCategory/:categoryId"
-          component={GameCategoryScreen}
-        />
-        <Route component={LoginScreen} />
+        <Route path="/login" component={LoginContainer} />
+        <Route path="/game-menu" component={GameMenuContainer} />
+        <Route path="/" component={MainMenuContainer} />
       </Switch>
     </ConnectedRouter>
   );

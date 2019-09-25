@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { StyledFooter } from './FooterStyles';
-
 const Footer = () => {
   return (
-    <StyledFooter>
-      <p>© Fazer, Lahden ammattikorkeakoulu LAMK</p>
-    </StyledFooter>
+    <footer>
+      <p>Footer text goes here</p>
+    </footer>
   );
 };
 

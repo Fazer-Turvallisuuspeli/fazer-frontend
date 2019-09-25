@@ -1,85 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { push } from 'connected-react-router';
 
-import { setUser } from '../reducers/userReducer';
+import { setUser } from '../reducers/loginReducer/userReducer';
+import { setIsAuthenticated } from '../reducers/loginReducer/isAuthenticatedReducer';
 
-const LoginForm = ({ info, setUser, push }) => {
-  const handleLogin = (user, { setSubmitting }) => {
-    setUser(user);
-    setSubmitting(false);
-    push('/mainMenu');
+const LoginForm = props => {
+  const [inputs, setInputs] = useState({
+    fazerId: '',
+    lastName: '',
+    unitName: '',
+  });
+
+  const handleInputChange = ({ target }) => {
+    setInputs({ ...inputs, [target.name]: target.value });
+  };
+
+  const handleLogin = async event => {
+    event.preventDefault();
+
+    props.setUser(inputs);
+    props.setIsAuthenticated(true);
   };
 
   return (
-    <Formik
-      initialValues={{ fazerId: '', lastName: '', unitName: '' }}
-      validate={values => {
-        // eslint-disable-next-line prefer-const
-        let errors = {};
-        if (!values.fazerId) {
-          errors.fazerId = 'Required';
-        }
-        if (!values.lastName) {
-          errors.lastName = 'Required';
-        }
-        if (!values.unitName) {
-          errors.unitName = 'Required';
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) =>
-        handleLogin(values, { setSubmitting })
-      }>
-      {({ isSubmitting }) => (
-        <Form>
-          <Field type="text" name="fazerId" placeholder="Fazerin ID-numero" />
-          <ErrorMessage name="fazerId" component="div" />
+    <div>
+      <form onSubmit={handleLogin}>
+        <div>
+          <label htmlFor="fazer-id">
+            Fazer ID
+            <input
+              value={inputs.fazerId}
+              onChange={handleInputChange}
+              name="fazerId"
+              id="fazerId"
+              type="text"
+            />
+          </label>
+        </div>
 
-          <Field type="text" name="lastName" placeholder="Sukunimi" />
-          <ErrorMessage name="lastName" component="div" />
+        <div>
+          <label htmlFor="last-name">
+            Sukunimi
+            <input
+              value={inputs.lastName}
+              onChange={handleInputChange}
+              name="lastName"
+              id="lastName"
+              type="text"
+            />
+          </label>
+        </div>
 
-          <Field component="select" name="unitName">
-            <option value="">Valitse toimipiste</option>
-            {info.units.map(unit => (
-              <option key={unit.id} value={unit.name}>
-                {unit.name}
-              </option>
-            ))}
-          </Field>
-          <ErrorMessage name="unitName" component="div" />
+        <div>
+          <label htmlFor="unit-name">
+            Toimipiste
+            <input
+              value={inputs.unitName}
+              onChange={handleInputChange}
+              name="unitName"
+              id="unitName"
+              type="text"
+            />
+          </label>
+        </div>
 
-          <button type="submit" disabled={isSubmitting}>
-            Kirjaudu sisään
-          </button>
-        </Form>
-      )}
-    </Formik>
+        <button type="submit">Kirjaudu sisään</button>
+      </form>
+    </div>
   );
-};
-
-LoginForm.propTypes = {
-  info: PropTypes.objectOf(PropTypes.array),
-  setUser: PropTypes.func.isRequired,
-  push: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-    info: state.info,
-  };
 };
 
 const mapDispatchToProps = {
   setUser,
-  push,
+  setIsAuthenticated,
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(LoginForm);
