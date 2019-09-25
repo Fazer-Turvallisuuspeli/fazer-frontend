@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import InfoDisplay from '../components/InfoDisplay';
+import { setCategories } from '../reducers/categoryReducer';
+import CategoryList from '../components/CategoryList';
 
-const GameMenuScreen = ({ info }) => {
+const GameMenuScreen = ({ info, setCategories, categories }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
 
-  // @TODO: Fetch and persist categories
+  const memoizedFetchData = useCallback(async () => {
+    const response = await fetch('/api/v1/game/categories');
+    const data = await response.json();
+
+    setCategories(data);
+  }, [setCategories]);
+
+  useEffect(() => {
+    if (categories.length > 0) return;
+
+    memoizedFetchData();
+  }, [memoizedFetchData, categories]);
 
   return (
     <div>
@@ -23,7 +36,7 @@ const GameMenuScreen = ({ info }) => {
         <InfoDisplay data={info.instructions} />
       )}
 
-      {/* @TODO: Loop over categories */}
+      <CategoryList />
 
       <Link to="/gameMenu">
         <button type="button" onClick={handleModalClose}>
@@ -40,15 +53,22 @@ const GameMenuScreen = ({ info }) => {
 
 GameMenuScreen.propTypes = {
   info: PropTypes.objectOf(PropTypes.array),
+  setCategories: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object),
 };
 
 const mapStateToProps = state => {
   return {
     info: state.info,
+    categories: state.categories,
   };
+};
+
+const mapDispatchToProps = {
+  setCategories,
 };
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(GameMenuScreen);

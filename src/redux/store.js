@@ -5,6 +5,8 @@ import thunk from 'redux-thunk';
 
 import userReducer from '../reducers/userReducer';
 import infoReducer from '../reducers/infoReducer';
+import categoryReducer from '../reducers/categoryReducer';
+import selectedCategoryReducer from '../reducers/selectedCategoryReducer';
 
 export const history = createBrowserHistory();
 
@@ -13,6 +15,8 @@ const createRootReducer = history =>
     router: connectRouter(history),
     user: userReducer,
     info: infoReducer,
+    categories: categoryReducer,
+    selectedCategory: selectedCategoryReducer,
   });
 
 export default createStore(

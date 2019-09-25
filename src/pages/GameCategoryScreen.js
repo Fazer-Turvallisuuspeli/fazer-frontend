@@ -1,11 +1,27 @@
 import React from 'react';
 
-const GameCategoryScreen = () => {
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+const GameCategoryScreen = ({ selectedCategory }) => {
   return (
     <div>
-      <h1>Category</h1>
+      <h2>{selectedCategory && selectedCategory.name}</h2>
     </div>
   );
 };
 
-export default GameCategoryScreen;
+GameCategoryScreen.propTypes = {
+  selectedCategory: PropTypes.objectOf(PropTypes.object),
+};
+
+const mapStateToProps = state => {
+  return {
+    selectedCategory: state.selectedCategory,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(GameCategoryScreen);
