@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import InfoDisplay from '../components/InfoDisplay';
 import { removeUser } from '../reducers/userReducer';
 
-const MainMenuScreen = ({ user, game, removeUser }) => {
+const MainMenuScreen = ({ user, info, removeUser }) => {
   const handleLogout = () => {
     removeUser();
   };
@@ -16,7 +16,7 @@ const MainMenuScreen = ({ user, game, removeUser }) => {
     <div>
       {user && <h1>Tervetuloa, {user.lastName}</h1>}
 
-      {game.welcomeMessage && <InfoDisplay data={game.welcomeMessage} />}
+      {info.welcomeMessage && <InfoDisplay data={info.welcomeMessage} />}
 
       <Link to="/gameMenu">
         <button type="button">Siirry peliin</button>
@@ -32,7 +32,7 @@ const MainMenuScreen = ({ user, game, removeUser }) => {
 };
 
 MainMenuScreen.propTypes = {
-  game: PropTypes.objectOf(PropTypes.array),
+  info: PropTypes.objectOf(PropTypes.array),
   removeUser: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.string),
 };
@@ -40,7 +40,7 @@ MainMenuScreen.propTypes = {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    game: state.game,
+    info: state.info,
   };
 };
 

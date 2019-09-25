@@ -1,6 +1,6 @@
 const initialState = {};
 
-const gameReducer = (state = initialState, action) => {
+const infoReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_DATA':
       return { ...state, ...action.data };
@@ -16,4 +16,4 @@ export const setData = data => {
   };
 };
 
-export default gameReducer;
+export default infoReducer;

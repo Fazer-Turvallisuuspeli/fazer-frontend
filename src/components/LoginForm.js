@@ -7,7 +7,7 @@ import { push } from 'connected-react-router';
 
 import { setUser } from '../reducers/userReducer';
 
-const LoginForm = ({ game = null, setUser, push }) => {
+const LoginForm = ({ info, setUser, push }) => {
   const handleLogin = (user, { setSubmitting }) => {
     setUser(user);
     setSubmitting(false);
@@ -44,7 +44,7 @@ const LoginForm = ({ game = null, setUser, push }) => {
 
           <Field component="select" name="unitName">
             <option value="">Valitse toimipiste</option>
-            {game.units.map(unit => (
+            {info.units.map(unit => (
               <option key={unit.id} value={unit.name}>
                 {unit.name}
               </option>
@@ -62,7 +62,7 @@ const LoginForm = ({ game = null, setUser, push }) => {
 };
 
 LoginForm.propTypes = {
-  game: PropTypes.objectOf(PropTypes.array),
+  info: PropTypes.objectOf(PropTypes.array),
   setUser: PropTypes.func.isRequired,
   push: PropTypes.func.isRequired,
 };
@@ -70,7 +70,7 @@ LoginForm.propTypes = {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    game: state.game,
+    info: state.info,
   };
 };
 

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import LoginForm from '../components/LoginForm';
-import { setData } from '../reducers/gameReducer';
+import { setData } from '../reducers/infoReducer';
 
-const LoginScreen = ({ game, setData }) => {
+const LoginScreen = ({ info, setData }) => {
   const memoizedFetchData = useCallback(async () => {
     try {
       const response = await fetch('/api/v1/game/info');
@@ -19,28 +19,28 @@ const LoginScreen = ({ game, setData }) => {
   }, [setData]);
 
   useEffect(() => {
-    if (game.units) return;
+    if (info.units) return;
 
     memoizedFetchData();
-  }, [memoizedFetchData, game]);
+  }, [memoizedFetchData, info]);
 
   return (
     <div>
       <h1>Kirjaudu sisään.</h1>
 
-      {game.units && <LoginForm />}
+      {info.units && <LoginForm />}
     </div>
   );
 };
 
 LoginScreen.propTypes = {
-  game: PropTypes.objectOf(PropTypes.array),
+  info: PropTypes.objectOf(PropTypes.array),
   setData: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    game: state.game,
+    info: state.info,
   };
 };
 

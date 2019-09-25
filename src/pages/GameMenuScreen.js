@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import InfoDisplay from '../components/InfoDisplay';
 
-const GameMenuScreen = ({ game }) => {
+const GameMenuScreen = ({ info }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const handleModalClose = () => {
@@ -19,8 +19,8 @@ const GameMenuScreen = ({ game }) => {
     <div>
       <h1>Valitse kategoria</h1>
 
-      {game.instructions && isModalOpen && (
-        <InfoDisplay data={game.instructions} />
+      {info.instructions && isModalOpen && (
+        <InfoDisplay data={info.instructions} />
       )}
 
       {/* @TODO: Loop over categories */}
@@ -39,12 +39,12 @@ const GameMenuScreen = ({ game }) => {
 };
 
 GameMenuScreen.propTypes = {
-  game: PropTypes.objectOf(PropTypes.array),
+  info: PropTypes.objectOf(PropTypes.array),
 };
 
 const mapStateToProps = state => {
   return {
-    game: state.game,
+    info: state.info,
   };
 };
 

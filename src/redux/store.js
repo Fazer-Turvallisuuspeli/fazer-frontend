@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 import thunk from 'redux-thunk';
 
 import userReducer from '../reducers/userReducer';
-import gameReducer from '../reducers/gameReducer';
+import infoReducer from '../reducers/infoReducer';
 
 export const history = createBrowserHistory();
 
@@ -12,7 +12,7 @@ const createRootReducer = history =>
   combineReducers({
     router: connectRouter(history),
     user: userReducer,
-    game: gameReducer,
+    info: infoReducer,
   });
 
 export default createStore(
