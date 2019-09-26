@@ -4,12 +4,15 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const GameMenuContainer = ({ isAuthenticated, location }) => {
+  // Protected route
   if (isAuthenticated === false) {
     return (
       <Redirect
         to={{
           pathname: '/login',
-          state: { from: location },
+          state: {
+            from: location,
+          },
         }}
       />
     );

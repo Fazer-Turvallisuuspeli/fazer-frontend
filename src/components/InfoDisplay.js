@@ -1,13 +1,39 @@
 import React from 'react';
 
-const InfoDisplay = ({ children }) => {
+import { connect } from 'react-redux';
+
+const InfoDisplay = ({ welcomeMessage, children }) => {
+  if (welcomeMessage.error) {
+    return <p>Error fetching welcomeMessage: {welcomeMessage.error.message}</p>;
+  }
+  if (welcomeMessage.data === null) return null;
+
   return (
     <div>
-      <h1>info here</h1>
+      {welcomeMessage.data.map(({ title, body }) => (
+        <div key={title}>
+          {title && <p>{title}</p>}
+          {body
+            .split('\n')
+            .filter(Boolean)
+            .map(text => (
+              <p key={text}>{text}</p>
+            ))}
+        </div>
+      ))}
 
       {children}
     </div>
   );
 };
 
-export default InfoDisplay;
+const mapStateToProps = state => {
+  return {
+    welcomeMessage: state.info.welcomeMessage,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(InfoDisplay);

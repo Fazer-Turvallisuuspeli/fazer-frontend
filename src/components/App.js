@@ -14,7 +14,7 @@ const App = () => {
       <Switch>
         <Route path="/login" component={LoginContainer} />
         <Route path="/game-menu" component={GameMenuContainer} />
-        <Route path="/" component={MainMenuContainer} />
+        <Route exact path="/" component={MainMenuContainer} />
       </Switch>
     </ConnectedRouter>
   );
