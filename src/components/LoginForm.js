@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { setUser } from '../reducers/loginReducer/userReducer';
 import { setIsAuthenticated } from '../reducers/loginReducer/isAuthenticatedReducer';
 
-const LoginForm = props => {
+const LoginForm = ({ setUser, setIsAuthenticated, units }) => {
   const [inputs, setInputs] = useState({
     fazerId: '',
     lastName: '',
@@ -19,8 +19,8 @@ const LoginForm = props => {
   const handleLogin = async event => {
     event.preventDefault();
 
-    props.setUser(inputs);
-    props.setIsAuthenticated(true);
+    setUser(inputs);
+    setIsAuthenticated(true);
   };
 
   return (
@@ -55,13 +55,19 @@ const LoginForm = props => {
         <div>
           <label htmlFor="unit-name">
             Toimipiste
-            <input
+            <select
               value={inputs.unitName}
               onChange={handleInputChange}
               name="unitName"
-              id="unitName"
-              type="text"
-            />
+              id="unitName">
+              <option value="">-- Valitse toimipiste --</option>
+              {units.data &&
+                units.data.map(unit => (
+                  <option key={unit.id} value={unit.name}>
+                    {unit.name}
+                  </option>
+                ))}
+            </select>
           </label>
         </div>
 
@@ -71,12 +77,18 @@ const LoginForm = props => {
   );
 };
 
+const mapStateToProps = state => {
+  return {
+    units: state.info.units,
+  };
+};
+
 const mapDispatchToProps = {
   setUser,
   setIsAuthenticated,
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(LoginForm);
