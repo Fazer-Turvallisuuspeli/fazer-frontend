@@ -11,7 +11,9 @@ import { setUnits } from '../reducers/infoReducer/unitReducer';
 const LoginContainer = ({ isAuthenticated, location, units, setUnits }) => {
   // Get units
   useEffect(() => {
-    if (!units.data) setUnits();
+    if (units.data === null) {
+      setUnits();
+    }
   }, [units.data, setUnits]);
 
   // Protected route

@@ -23,7 +23,9 @@ const MainMenuContainer = ({
   useEffect(() => {
     if (isAuthenticated === false) return;
 
-    if (!welcomeMessage.data) setWelcomeMessage();
+    if (welcomeMessage.data === null) {
+      setWelcomeMessage();
+    }
   }, [isAuthenticated, setWelcomeMessage, welcomeMessage.data]);
 
   // Protected route

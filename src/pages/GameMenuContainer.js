@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 
 import SiteTitle from '../components/SiteTitle';
 import Instructions from '../components/Instructions';
+import CategoryList from '../components/CategoryList';
 import {
   toggleInstructionsVisibility,
   setInstructions,
 } from '../reducers/infoReducer/instructionReducer';
+import { setAllCategories } from '../reducers/categoryReducer/allCategoriesReducer';
 
 const GameMenuContainer = ({
   isAuthenticated,
@@ -16,13 +18,24 @@ const GameMenuContainer = ({
   toggleInstructionsVisibility,
   instructions,
   setInstructions,
+  allCategories,
+  setAllCategories,
 }) => {
-  // Get instructions
+  // Get instructions, categories
   useEffect(() => {
-    if (instructions.data) return;
+    if (instructions.data === null) {
+      setInstructions();
+    }
 
-    setInstructions();
-  }, [instructions.data, setInstructions]);
+    if (allCategories.data === null) {
+      setAllCategories();
+    }
+  }, [
+    instructions.data,
+    setInstructions,
+    allCategories.data,
+    setAllCategories,
+  ]);
 
   // Protected route
   if (isAuthenticated === false) {
@@ -48,6 +61,8 @@ const GameMenuContainer = ({
 
       <Instructions />
 
+      <CategoryList />
+
       <Link to="/">
         <button type="button">Palaa alkuun</button>
       </Link>
@@ -64,12 +79,14 @@ const mapStateToProps = state => {
     isAuthenticated: state.login.isAuthenticated,
     location: state.router.location,
     instructions: state.info.instructions,
+    allCategories: state.categories.allCategories,
   };
 };
 
 const mapDispatchToProps = {
   toggleInstructionsVisibility,
   setInstructions,
+  setAllCategories,
 };
 
 export default connect(
