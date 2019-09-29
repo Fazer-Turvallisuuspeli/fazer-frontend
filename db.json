@@ -90,53 +90,171 @@
           "body": "Esimies tai työnopastaja opastaa sinut turvalliseen työhön. He käyvät läpi mm. työpaikan olosuhteet, työ- ja tuotantomenetelmät, työssä käytettävät työvälineet ja niiden oikean käytön, sekä turvalliset työtavat."
         }
       ]
+    },
+    {
+      "name": "Suojavälineet",
+      "shortName": "suojavälineet",
+      "id": 2,
+      "instructions": [
+        {
+          "title": "Henkilösuojainten tarve",
+          "body": "Työturvallisuuslain mukaan työnantajan on poistettava vaarojen tunnistuksessa ja riskien arvioinnissa havaitut haitta- ja vaaratekijät (10§). Kaikkia riskejä ei voida poistaa eikä edes lieventää esim. teknisin toimin (ensisijaisuusperiaate). Tällöin haittoja torjutaan henkilösuojaimin. Työterveyshuollon tekemien työpaikkaselvitysten tai yksittäisen henkilön terveystarkastuksen yhteydessä voi tulla esiin seikkoja, joiden perusteella henkilön on terveydellisistä syistä käytettävä tiettyjä henkilösuojaimia."
+        },
+        {
+          "title": "Leipomotyössä käytettäviä suojaimia",
+          "body": "Henkilönsuojaimia ovat: päänsuojaimet, kuulonsuojaimet, silmien ja kasvojen suojaimet, hengityksen suojaimet, jalkojensuojaimet, putoamissuojaimet, suojavaatetus, viiltosuojakäsineet. Leipomotyössä käytettävien käsiensuojainten tulee suojata leikkuu- ja pistohaavoilta, kylmyydeltä sekä kuumuudelta. Ihottuma on leipomoissa tyypillinen ammattitauti, jota voidaan merkittävästi ehkäistä tarkoituksenmukaisilla suojakäsineillä. Muovikäsine on tähän paras."
+        },
+        {
+          "title": "Vastuu henkilösuojainten käytöstä",
+          "body": "Työturvallisuuslain mukaan työntekijän tulee huolellisesti ja ohjeiden mukaisesti käyttää työnantajan hänelle antamia henkilönsuojaimia (20§)."
+        },
+        {
+          "title": "Vastuu henkilösuojainten hoidosta",
+          "body": "Työturvallisuuslain mukaan työntekijän tulee huolellisesti ja ohjeiden mukaisesti hoitaa työnantajan hänelle antamia henkilönsuojaimia (20§)."
+        },
+        {
+          "title": "Henkilösuojainten käyttämättömyyteen puuttuminen",
+          "body": "Fazerilla on käytössä turvallisuuskeskustelumalli: -kahden henkilön välinen dialogi, jossa keskustellaan työstä ja turvallisuudesta. Toimimmeko turvallisesti vai turvattomasti? -havaitessamme turvatonta käyttäytymistä puutumme positiivisella asenteella ja välittömästi; käymme turvallisuuskeskustelun ja pyrimme välittömään muutokseen käyttäytymisessä. -turvallisuuskeskustelun voi käydä kuka tahansa! Esimies – työntekijä, työntekijä – työntekijä, jne. Puuttuminen on välittämistä"
+        }
+      ]
+    },
+    {
+      "name": "Ennakoiva turvallisuus",
+      "shortName": "ennakoiva turvallisuus",
+      "id": 3,
+      "instructions": [
+        {
+          "title": "Ennakoiva turvallisuus",
+          "body": "Turvallisuuslaki vaatii työnantajaa arvioimaan työpaikan ja työolosuhteiden riskien merkitystä työntekijöiden turvallisuudelle ja terveydelle. Myös työntekijän tulee itse havainnoida riskejä työssään. Avuksi tähän olemme tehneet turvallisen työn aloitus -oppaan, joka on apuna, kun arvioidaan, aiheuttaako työtehtävä vaaraa itselle tai toisille työntekijöille. Työntekijän on myös arvioitava, tunteeko hän työssään tarvittavat suojaimet sekä turvallisen tavan toimia. Huomioitavaa on myös se, että perehdytyksestä ja opastuksesta huolimatta tietyt työt vaativat erityisen luvan. Sellaisia ovat mm. tuli- ja säiliötyöt. Mikäli huomaat jossain turvallisuusriskin, eli vaaran, sinun tulee pyrkiä poistamaan se välittömästi. Mikäli se ei onnistu sinun pitää varoittaa muita vaarasta. Havaitessasi vaaran sinun tulee aina tehdä turvallisuushavainto. Tekemästäsi havainnosta sinulla on halutessasi oikeus saada palautetta."
+        }
+      ]
+    },
+    {
+      "name": "Ohjeet",
+      "shortName": "ohjeet",
+      "id": 4,
+      "instructions": [
+        {
+          "title": "Esimiehen on annettava työntekijälle riittävät tiedot työpaikan haitta- ja vaaratekijöistä.",
+          "body": "Esimiehen on annettava työntekijälle riittävät tiedot työpaikan haitta- ja vaaratekijöistä, sekä huolehdittava siitä, että työntekijän ammatillinen osaaminen ja työkokemus huomioon ottaen: 1) työntekijä perehdytetään riittävästi työhön, työpaikan työolosuhteisiin, työ- ja tuotantomenetelmiin, työssä käytettäviin työvälineisiin ja niiden oikeaan käyttöön sekä turvallisiin työtapoihin erityisesti ennen uuden työn tai tehtävän aloittamista tai työtehtävien muuttuessa sekä ennen uusien työvälineiden ja työ- tai tuotantomenetelmien käyttöön ottamista; 2) työntekijälle on annettava riittävä opastus ennen työn aloittamista. Opastuksessa on huomioitava koneen säätö-, puhdistus-, huolto- ja korjaustyöt, sekä häiriö- ja poikkeustilanteet. Työntekijälle annettua opetusta ja ohjausta täydennetään tarvittaessa. 3) Työntekijä ei saa poiketa annetuista ohjeista kiireeseen, häiriötilanteeseen vedoten tai helpottaakseen työtään. Työ tai työvaihde tulee aina suorittaa saatujen ohjeiden mukaisesti. Kone tai laite on pysäytettävä aina siivous- ja häiriötilanteessa, sekä työ- ja turvallisuusohjeita tulee noudattaa."
+        },
+        {
+          "title": "Työntekijän on noudatettava työnantajan antamia määräyksiä ja ohjeita.",
+          "body": "Työntekijän on noudatettava työnantajan antamia määräyksiä ja ohjeita. Työntekijän on noudatettava turvallisuuden ja terveellisyyden ylläpitämiseksi tarvittavaa järjestystä ja siisteyttä sekä huolellisuutta ja varovaisuutta. Työntekijän on huolehdittava niin omasta kuin muiden työntekijöiden turvallisuudesta ja terveydestä. Mikäli hän huomaa turvatonta toimintaa, on hänen puututtava siihen. Työntekijän on viipymättä ilmoitettava työolosuhteissa tai työmenetelmissä olevista vaaroista ja puutteista lähimmälle esimiehelle ja muille työntekijöille. Vaaroja ja puutteita voi ilmetä mm. koneissa, työvälineissä, henkilönsuojaimissa ja rakenteissa. Työntekijän on tehtävä ilmoitus turvallisuusriskistä aina, vaikka hän on poistanut tai korjannut kyseisen vian tai puutteellisuuden. Työnantajan tulee puolestaan kertoa ilmoituksen tehneelle työntekijälle ja työsuojeluvaltuutetulle, mihin toimenpiteisiin esille tulleessa asiassa on ryhdytty tai aiotaan ryhtyä. Fazerin käytäntöjä ovat mm. turvallisuushavaintojen tekeminen ja turvallisuuskeskustelut. Työntekijä ei saa poistaa tai kytkeä pois koneen tai laitteen suojalaitetta. Tahallinen suojalaitteen poistaminen on rikos."
+        },
+        {
+          "title": "Ennen työn aloittamista.",
+          "body": "Jokaisella on oikeus turvalliseen työpäivään. Ennen työn aloittamista on hyvä tarkistaa seuraavat asiat: 1. Työhön liittyvät työtehtävät, ja lupa tehdä työ. 2. Tarvittavat työohjeet ja opastus työpisteeseen/kohteeseen tai kemikaaliin 3. Työ-, apu-, ja suojavälineet, sekä suojaimet ovat kunnossa. 4. Varmistaa ennen työn aloittamista, että kone ja suojalaitteet ovat käyttökunnossa ja työ voidaan aloittaa turvallisesti. 4. Varmistaa, ettei työ aiheuta muille vaaraa. 5. Ennen työn aloittamista olen saanut riittävän opastuksen ja osaan toimia siivous- ja häiriötilanteessa."
+        }
+      ]
+    },
+    {
+      "name": "Työympäristö",
+      "shortName": "työympäristö",
+      "id": 5,
+      "instructions": [
+        {
+          "title": "Työympäristön siisteys",
+          "body": "Työpiste tulee pitää siistinä ja järjestyksessä, koska sillä on vaikutusta mm. työ- ja tuoteturvallisuuteen sekä yleiseen viihtyvyyteen. Työpisteessä tavaroilla on omat merkityt paikkansa. On kuitenkin paikkoja, joissa ei missään tapauksessa saa säilyttää tavaraa, kuten sähkökaappien, palopostien ja ensiaputarvikkeiden säilytyspisteiden edessä, sekä koneiden että laitteiden päällä. Jokaisen työntekijän vastuulla on huolehtia sekä käyttämänsä työvälineet paikalleen että oman työpisteensä yleisestä siisteydestä. Mikäli huomaat, että yleisen järjestyksen ja siisteyden puute aiheuttaa turvallisuusriskin tai vaaratilanteen, pyri poistamaan vaara ja tee turvallisuushavainto."
+        }
+      ]
     }
   ],
   "questions": [
     {
       "id": 1,
+      "categoryId": 1,
       "question": "Piha-alueilla kulkeminen",
+      "explanation": "Kulkiessasi piha-alueella sinun pitää huomioida ympäristösi ja muu liikenne.",
       "isSingleChoice": true,
-      "isMultipleChoice": false,
+      "correctChoiceId": [3],
       "choices": [
         {
           "id": 1,
-          "option": "Voin kävellä suojatiellä välittämättä muusta liikenteestä",
-          "isCorrect": false
+          "option": "Voin kävellä suojatiellä välittämättä muusta liikenteestä"
         },
         {
           "id": 2,
-          "option": "Voin puhua tai tuijottaa kännykkään suojatiellä kävellessäni, koska autoilijat osaavat varoa",
-          "isCorrect": false
+          "option": "Voin puhua tai tuijottaa kännykkään suojatiellä kävellessäni, koska autoilijat osaavat varoa"
         },
         {
           "id": 3,
-          "option": "Minun tulee seurata liikennettä liikkuessani piha-alueella, koska vastaan itse liikkumisestani",
-          "isCorrect": true
+          "option": "Minun tulee seurata liikennettä liikkuessani piha-alueella, koska vastaan itse liikkumisestani"
         }
       ]
     },
     {
       "id": 2,
-      "question": "Piha-alueilla kulkeminen",
+      "categoryId": 1,
+      "question": "Portaissa kulkeminen",
+      "explanation": "Portaissa tulee aina kulkea rauhallisesti ja pitää kaiteesta kiinni.",
       "isSingleChoice": true,
-      "isMultipleChoice": false,
+      "correctChoiceId": [2],
       "choices": [
         {
           "id": 1,
-          "option": "Voin kävellä suojatiellä välittämättä muusta liikenteestä",
-          "isCorrect": false
+          "option": "Kaiteesta ei tarvitse pitää kiinni, jos puhuu puhelimeen."
         },
         {
           "id": 2,
-          "option": "Voin puhua tai tuijottaa kännykkään suojatiellä kävellessäni, koska autoilijat osaavat varoa",
-          "isCorrect": false
+          "option": "Pidän aina kiinni kaiteesta kulkiessani portaissa."
         },
         {
           "id": 3,
-          "option": "Minun tulee seurata liikennettä liikkuessani piha-alueella, koska vastaan itse liikkumisestani",
-          "isCorrect": true
+          "option": "Voin juosta portaissa, jos on kiire."
         }
+      ]
+    },
+    {
+      "id": 3,
+      "categoryId": 2,
+      "question": "Henkilösuojainten tarve määritellään",
+      "explanation": "",
+      "isSingleChoice": false,
+      "correctChoiceId": [1,2,3],
+      "choices": [
+        {
+          "id": 1,
+          "option": "Työturvallisuuslaissa."
+        },
+        {
+          "id": 2,
+          "option": "Vaarojen kartoitusten ja riskien arviointien pohjalta."
+        },
+        {
+          "id": 3,
+          "option": "Työterveyshuollon toimesta."
+        }  
+      ]
+    },
+    {
+      "id": 4,
+      "categoryId": 2,
+      "question": "Leipomotyössä on käytettävä mm. seuraavia henkilösuojaimia",
+      "explanation": "Puuvillakäsineillä ei ole suojaluokitusta. Niitä käytetään hygienian varmistamiseksi.",
+      "isSingleChoice": false,
+      "correctChoiceId": [1,2,3,5],
+      "choices": [
+        {
+          "id": 1,
+          "option": "hengityssuojain"
+        },
+        {
+          "id": 2,
+          "option": "kuulosuojaimet"
+        },
+        {
+          "id": 3,
+          "option": "turvakengät"
+        },
+        {
+          "id": 4,
+          "option": "puuvillakäsineet"
+        },
+        {
+          "id": 5,
+          "option": "viiltosuojahanskat"
+        }  
       ]
     }
   ]
