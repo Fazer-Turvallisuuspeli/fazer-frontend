@@ -8,7 +8,7 @@ import {
   checkAnswer,
   nextQuestion,
   setCompleted,
-} from '../reducers/game/question/answersReducer';
+} from '../reducers/game/question/progressReducer';
 
 const QuestionContainer = ({
   currentQuestions,
@@ -105,12 +105,12 @@ const mapStateToProps = state => {
 
   return {
     currentQuestions: state.game.questions.currentQuestions,
-    nthQuestion: state.game.questions.answers.nthQuestion,
+    nthQuestion: state.game.questions.progress.nthQuestion,
     totalQuestionsAmount: state.game.questions.currentQuestions.data
       ? state.game.questions.currentQuestions.data.length
       : 0,
-    isAnswering: state.game.questions.answers.isAnswering,
-    isCompleted: state.game.questions.answers.isCompleted,
+    isAnswering: state.game.questions.progress.isAnswering,
+    isCompleted: state.game.questions.progress.isCompleted,
     nextCategoryId: state.game.categories.allCategories.data[
       nextCategoryIndex()
     ]

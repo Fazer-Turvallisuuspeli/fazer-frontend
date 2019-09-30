@@ -16,7 +16,7 @@ import {
   setCurrentQuestions,
   resetCurrentQuestions,
 } from '../reducers/game/question/currentQuestionsReducer';
-import { resetAnswers } from '../reducers/game/question/answersReducer';
+import { resetAnswers } from '../reducers/game/question/progressReducer';
 
 const CategoryContainer = ({
   location,

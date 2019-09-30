@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import currentQuestionsReducer from './currentQuestionsReducer';
-import answersReducer from './answersReducer';
+import progressReducer from './progressReducer';
 
 const questionReducer = combineReducers({
   currentQuestions: currentQuestionsReducer,
-  answers: answersReducer,
+  progress: progressReducer,
 });
 
 export default questionReducer;

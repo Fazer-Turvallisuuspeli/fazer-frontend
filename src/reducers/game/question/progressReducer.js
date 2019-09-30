@@ -4,7 +4,7 @@ const initialState = {
   isCompleted: false,
 };
 
-const answersReducer = (state = initialState, action) => {
+const progressReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'NEXT_QUESTION':
       return {
@@ -23,7 +23,7 @@ const answersReducer = (state = initialState, action) => {
   }
 };
 
-export default answersReducer;
+export default progressReducer;
 
 export const checkAnswer = () => {
   return async dispatch => {
