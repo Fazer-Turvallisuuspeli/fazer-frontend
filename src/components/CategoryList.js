@@ -7,11 +7,18 @@ import {
   setCurrentCategory,
   resetCurrentCategory,
 } from '../reducers/categoryReducer/currentCategoryReducer';
+import {
+  setCurrentQuestions,
+  resetCurrentQuestions,
+} from '../reducers/categoryReducer/currentQuestionsReducer';
 
 const CategoryList = ({
   allCategories,
   setCurrentCategory,
   resetCurrentCategory,
+  setCurrentQuestions,
+  resetCurrentQuestions,
+  currentCategory,
 }) => {
   if (allCategories.data === null) return null;
 
@@ -21,11 +28,21 @@ const CategoryList = ({
     );
 
     if (filteredCurrentCategory !== undefined) {
+      const isPreviousCategory = Object.is(
+        filteredCurrentCategory,
+        currentCategory.data
+      );
+
       setCurrentCategory({
         category: filteredCurrentCategory,
       });
+
+      if (isPreviousCategory === false) {
+        setCurrentQuestions({ categoryId });
+      }
     } else {
       resetCurrentCategory();
+      resetCurrentQuestions();
     }
   };
 
@@ -48,12 +65,15 @@ const CategoryList = ({
 const mapStateToProps = state => {
   return {
     allCategories: state.categories.allCategories,
+    currentCategory: state.categories.currentCategory,
   };
 };
 
 const mapDispatchToProps = {
   setCurrentCategory,
   resetCurrentCategory,
+  setCurrentQuestions,
+  resetCurrentQuestions,
 };
 
 export default connect(

@@ -3,12 +3,19 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
-// import CategoryTitle from '../components/CategoryTitle';
+import CategoryTitle from '../components/CategoryTitle';
+import Infobank from '../components/Infobank';
+import QuestionContainer from '../components/QuestionContainer';
 import {
   setCurrentCategory,
   resetCurrentCategory,
   setCurrentCategoryError,
 } from '../reducers/categoryReducer/currentCategoryReducer';
+import { toggleInfobankVisibility } from '../reducers/categoryReducer/infobankReducer';
+import {
+  setCurrentQuestions,
+  resetCurrentQuestions,
+} from '../reducers/categoryReducer/currentQuestionsReducer';
 
 const CategoryContainer = ({
   location,
@@ -18,9 +25,14 @@ const CategoryContainer = ({
   allCategories,
   resetCurrentCategory,
   setCurrentCategoryError,
+  toggleInfobankVisibility,
+  setCurrentQuestions,
+  resetCurrentQuestions,
 }) => {
   // Set current category
   useEffect(() => {
+    if (isAuthenticated === false) return;
+
     const urlParams = location.pathname.split('/');
     const categoryId = String(urlParams[urlParams.length - 1]);
 
@@ -35,18 +47,31 @@ const CategoryContainer = ({
     );
 
     if (filteredCurrentCategory !== undefined) {
+      const isPreviousCategory = Object.is(
+        filteredCurrentCategory,
+        currentCategory.data
+      );
+
       setCurrentCategory({
         category: filteredCurrentCategory,
       });
+
+      if (isPreviousCategory === false) {
+        setCurrentQuestions({ categoryId });
+      }
     } else {
       resetCurrentCategory();
+      resetCurrentQuestions();
     }
   }, [
+    isAuthenticated,
     currentCategory,
     location,
     setCurrentCategory,
     allCategories.data,
     resetCurrentCategory,
+    setCurrentQuestions,
+    resetCurrentQuestions,
   ]);
 
   // Protected route
@@ -78,13 +103,28 @@ const CategoryContainer = ({
     );
   }
 
+  const handleInfobankClick = () => {
+    toggleInfobankVisibility();
+  };
+
   return (
     <div>
-      <h2>{currentCategory.data.name}</h2>
+      <CategoryTitle />
+
+      <QuestionContainer />
+
+      <Infobank>
+        <button type="button" onClick={handleInfobankClick}>
+          Jatka peliin
+        </button>
+      </Infobank>
 
       <Link to="/game-menu">
         <button type="button">Päävalikko</button>
       </Link>
+      <button type="button" onClick={handleInfobankClick}>
+        Tietopankki
+      </button>
     </div>
   );
 };
@@ -101,6 +141,9 @@ const mapDispatchToProps = {
   setCurrentCategory,
   resetCurrentCategory,
   setCurrentCategoryError,
+  toggleInfobankVisibility,
+  setCurrentQuestions,
+  resetCurrentQuestions,
 };
 
 export default connect(

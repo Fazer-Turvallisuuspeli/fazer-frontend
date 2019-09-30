@@ -1,7 +1,20 @@
 import React from 'react';
 
-const CategoryTitle = ({ title }) => {
-  return <h2>{title}</h2>;
+import { connect } from 'react-redux';
+
+const CategoryTitle = ({ categoryTitle }) => {
+  if (categoryTitle === undefined) return null;
+
+  return <h2>{categoryTitle}</h2>;
 };
 
-export default CategoryTitle;
+const mapStateToProps = state => {
+  return {
+    categoryTitle: state.categories.currentCategory.data.name,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(CategoryTitle);
