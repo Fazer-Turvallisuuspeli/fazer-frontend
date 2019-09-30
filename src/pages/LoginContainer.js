@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import SiteTitle from '../components/SiteTitle';
 import LoginForm from '../components/LoginForm';
 import Footer from '../components/Footer';
-import { setUnits } from '../reducers/infoReducer/unitReducer';
+import { setUnits } from '../reducers/info/unitReducer';
 
 const LoginContainer = ({ isAuthenticated, location, units, setUnits }) => {
   // Get units

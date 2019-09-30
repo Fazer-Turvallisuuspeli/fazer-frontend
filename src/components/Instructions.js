@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { toggleInstructionsVisibility } from '../reducers/infoReducer/instructionReducer';
+import { toggleInstructionsVisibility } from '../reducers/info/instructionReducer';
 
 const Instructions = ({ instructions, toggleInstructionsVisibility }) => {
   if (instructions.isVisible === false || instructions.data === null)

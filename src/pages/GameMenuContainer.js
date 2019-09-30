@@ -9,8 +9,8 @@ import CategoryList from '../components/CategoryList';
 import {
   toggleInstructionsVisibility,
   setInstructions,
-} from '../reducers/infoReducer/instructionReducer';
-import { setAllCategories } from '../reducers/categoryReducer/allCategoriesReducer';
+} from '../reducers/info/instructionReducer';
+import { setAllCategories } from '../reducers/game/category/allCategoriesReducer';
 
 const GameMenuContainer = ({
   isAuthenticated,
@@ -79,7 +79,7 @@ const mapStateToProps = state => {
     isAuthenticated: state.login.isAuthenticated,
     location: state.router.location,
     instructions: state.info.instructions,
-    allCategories: state.categories.allCategories,
+    allCategories: state.game.categories.allCategories,
   };
 };
 

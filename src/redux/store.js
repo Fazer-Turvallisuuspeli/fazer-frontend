@@ -3,9 +3,9 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import thunk from 'redux-thunk';
 
-import loginReducer from '../reducers/loginReducer';
-import infoReducer from '../reducers/infoReducer';
-import categoryReducer from '../reducers/categoryReducer';
+import loginReducer from '../reducers/login';
+import infoReducer from '../reducers/info';
+import gameReducer from '../reducers/game';
 
 export const history = createBrowserHistory();
 
@@ -14,7 +14,7 @@ const rootReducer = history =>
     router: connectRouter(history),
     login: loginReducer,
     info: infoReducer,
-    categories: categoryReducer,
+    game: gameReducer,
   });
 
 export default createStore(

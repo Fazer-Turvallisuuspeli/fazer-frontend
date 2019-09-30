@@ -8,7 +8,7 @@ import {
   checkAnswer,
   nextQuestion,
   setCompleted,
-} from '../reducers/categoryReducer/currentQuestionsReducer';
+} from '../reducers/game/question/answersReducer';
 
 const QuestionContainer = ({
   currentQuestions,
@@ -97,22 +97,24 @@ const QuestionContainer = ({
 const mapStateToProps = state => {
   const nextCategoryIndex = () => {
     return (
-      state.categories.allCategories.data.indexOf(
-        state.categories.currentCategory.data
+      state.game.categories.allCategories.data.indexOf(
+        state.game.categories.currentCategory.data
       ) + 1
     );
   };
 
   return {
-    currentQuestions: state.categories.currentQuestions,
-    nthQuestion: state.categories.currentQuestions.nthQuestion,
-    totalQuestionsAmount: state.categories.currentQuestions.data
-      ? state.categories.currentQuestions.data.length
+    currentQuestions: state.game.questions.currentQuestions,
+    nthQuestion: state.game.questions.answers.nthQuestion,
+    totalQuestionsAmount: state.game.questions.currentQuestions.data
+      ? state.game.questions.currentQuestions.data.length
       : 0,
-    isAnswering: state.categories.currentQuestions.isAnswering,
-    isCompleted: state.categories.currentQuestions.isCompleted,
-    nextCategoryId: state.categories.allCategories.data[nextCategoryIndex()]
-      ? state.categories.allCategories.data[nextCategoryIndex()].id
+    isAnswering: state.game.questions.answers.isAnswering,
+    isCompleted: state.game.questions.answers.isCompleted,
+    nextCategoryId: state.game.categories.allCategories.data[
+      nextCategoryIndex()
+    ]
+      ? state.game.categories.allCategories.data[nextCategoryIndex()].id
       : 0,
   };
 };

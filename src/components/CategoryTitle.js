@@ -10,7 +10,7 @@ const CategoryTitle = ({ categoryTitle }) => {
 
 const mapStateToProps = state => {
   return {
-    categoryTitle: state.categories.currentCategory.data.name,
+    categoryTitle: state.game.categories.currentCategory.data.name,
   };
 };
 

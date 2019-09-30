@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 
-import { setUser } from '../reducers/loginReducer/userReducer';
-import { setIsAuthenticated } from '../reducers/loginReducer/isAuthenticatedReducer';
+import { setUser } from '../reducers/login/userReducer';
+import { setIsAuthenticated } from '../reducers/login/isAuthenticatedReducer';
 
 const LoginForm = ({ setUser, setIsAuthenticated, units }) => {
   const [inputs, setInputs] = useState({

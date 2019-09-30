@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 import {
   setCurrentCategory,
   resetCurrentCategory,
-} from '../reducers/categoryReducer/currentCategoryReducer';
+} from '../reducers/game/category/currentCategoryReducer';
 import {
   setCurrentQuestions,
   resetCurrentQuestions,
-} from '../reducers/categoryReducer/currentQuestionsReducer';
+} from '../reducers/game/question/currentQuestionsReducer';
+import { resetAnswers } from '../reducers/game/question/answersReducer';
 
 const CategoryList = ({
   allCategories,
@@ -19,6 +20,7 @@ const CategoryList = ({
   setCurrentQuestions,
   resetCurrentQuestions,
   currentCategory,
+  resetAnswers,
 }) => {
   if (allCategories.data === null) return null;
 
@@ -43,6 +45,7 @@ const CategoryList = ({
     } else {
       resetCurrentCategory();
       resetCurrentQuestions();
+      resetAnswers();
     }
   };
 
@@ -64,8 +67,8 @@ const CategoryList = ({
 
 const mapStateToProps = state => {
   return {
-    allCategories: state.categories.allCategories,
-    currentCategory: state.categories.currentCategory,
+    allCategories: state.game.categories.allCategories,
+    currentCategory: state.game.categories.currentCategory,
   };
 };
 
@@ -74,6 +77,7 @@ const mapDispatchToProps = {
   resetCurrentCategory,
   setCurrentQuestions,
   resetCurrentQuestions,
+  resetAnswers,
 };
 
 export default connect(

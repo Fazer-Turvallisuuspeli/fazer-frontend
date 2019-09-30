@@ -10,12 +10,13 @@ import {
   setCurrentCategory,
   resetCurrentCategory,
   setCurrentCategoryError,
-} from '../reducers/categoryReducer/currentCategoryReducer';
-import { toggleInfobankVisibility } from '../reducers/categoryReducer/infobankReducer';
+} from '../reducers/game/category/currentCategoryReducer';
+import { toggleInfobankVisibility } from '../reducers/game/infobankReducer';
 import {
   setCurrentQuestions,
   resetCurrentQuestions,
-} from '../reducers/categoryReducer/currentQuestionsReducer';
+} from '../reducers/game/question/currentQuestionsReducer';
+import { resetAnswers } from '../reducers/game/question/answersReducer';
 
 const CategoryContainer = ({
   location,
@@ -28,6 +29,7 @@ const CategoryContainer = ({
   toggleInfobankVisibility,
   setCurrentQuestions,
   resetCurrentQuestions,
+  resetAnswers,
 }) => {
   // Set current category
   useEffect(() => {
@@ -62,6 +64,7 @@ const CategoryContainer = ({
     } else {
       resetCurrentCategory();
       resetCurrentQuestions();
+      resetAnswers();
     }
   }, [
     isAuthenticated,
@@ -72,6 +75,7 @@ const CategoryContainer = ({
     resetCurrentCategory,
     setCurrentQuestions,
     resetCurrentQuestions,
+    resetAnswers,
   ]);
 
   // Protected route
@@ -131,9 +135,9 @@ const CategoryContainer = ({
 const mapStateToProps = state => {
   return {
     location: state.router.location,
-    currentCategory: state.categories.currentCategory,
+    currentCategory: state.game.categories.currentCategory,
     isAuthenticated: state.login.isAuthenticated,
-    allCategories: state.categories.allCategories,
+    allCategories: state.game.categories.allCategories,
   };
 };
 
@@ -144,6 +148,7 @@ const mapDispatchToProps = {
   toggleInfobankVisibility,
   setCurrentQuestions,
   resetCurrentQuestions,
+  resetAnswers,
 };
 
 export default connect(

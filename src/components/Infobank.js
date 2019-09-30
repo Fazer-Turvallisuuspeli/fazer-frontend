@@ -26,8 +26,8 @@ const Infobank = ({ infobankText, isInfobankVisible, children }) => {
 
 const mapStateToProps = state => {
   return {
-    infobankText: state.categories.currentCategory.data.instructions,
-    isInfobankVisible: state.categories.infobank.isVisible,
+    infobankText: state.game.categories.currentCategory.data.instructions,
+    isInfobankVisible: state.game.infobank.isVisible,
   };
 };
 

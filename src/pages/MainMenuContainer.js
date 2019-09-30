@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import SiteTitle from '../components/SiteTitle';
 import InfoDisplay from '../components/InfoDisplay';
 import Footer from '../components/Footer';
-import { setIsAuthenticated } from '../reducers/loginReducer/isAuthenticatedReducer';
-import { setUser } from '../reducers/loginReducer/userReducer';
-import { setWelcomeMessage } from '../reducers/infoReducer/welcomeMessageReducer';
+import { setIsAuthenticated } from '../reducers/login/isAuthenticatedReducer';
+import { setUser } from '../reducers/login/userReducer';
+import { setWelcomeMessage } from '../reducers/info/welcomeMessageReducer';
 
 const MainMenuContainer = ({
   isAuthenticated,
