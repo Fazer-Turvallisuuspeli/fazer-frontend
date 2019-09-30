@@ -8,7 +8,7 @@ const initialState = {
 
 const allCategoriesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCH_CATEGORIES':
+    case 'FETCH_CATEGORIES_REQUEST':
       return { ...state, isLoading: true };
     case 'FETCH_CATEGORIES_SUCCESS':
       return {
@@ -27,10 +27,16 @@ const allCategoriesReducer = (state = initialState, action) => {
 export default allCategoriesReducer;
 
 export const setAllCategories = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    // Abort if cached
+    const { game } = getState();
+    if (game.categories.allCategories.data) {
+      return;
+    }
+
     // Init loading state
     dispatch({
-      type: 'FETCH_CATEGORIES',
+      type: 'FETCH_CATEGORIES_REQUEST',
     });
 
     try {

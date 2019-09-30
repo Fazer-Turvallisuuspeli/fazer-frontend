@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import {
   checkAnswer,
   nextQuestion,
-  setCompleted,
 } from '../reducers/game/question/progressReducer';
 
 const QuestionContainer = ({
@@ -16,24 +15,11 @@ const QuestionContainer = ({
   totalQuestionsAmount,
   isAnswering,
   checkAnswer,
-  nextQuestion,
   isCompleted,
-  setCompleted,
+  nextQuestion,
   nextCategoryId,
 }) => {
-  if (currentQuestions.data === null) return null;
-
-  const handleCheckQuestionsClick = () => {
-    checkAnswer();
-  };
-
-  const handleNextQuestionClick = () => {
-    if (nthQuestion + 1 !== totalQuestionsAmount) {
-      nextQuestion();
-    } else {
-      setCompleted();
-    }
-  };
+  if (!currentQuestions.data) return null;
 
   if (isCompleted) {
     return (
@@ -82,11 +68,11 @@ const QuestionContainer = ({
       {isAnswering && <p>Oikea vastaus (x): TODO EXPLANATION HERE</p>}
 
       {isAnswering ? (
-        <button type="button" onClick={handleNextQuestionClick}>
+        <button type="button" onClick={nextQuestion}>
           Eteenpäin
         </button>
       ) : (
-        <button type="button" onClick={handleCheckQuestionsClick}>
+        <button type="button" onClick={checkAnswer}>
           Tarkista vastaukset
         </button>
       )}
@@ -122,7 +108,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   checkAnswer,
   nextQuestion,
-  setCompleted,
 };
 
 export default connect(

@@ -23,7 +23,13 @@ const welcomeMessageReducer = (state = initialState, action) => {
 export default welcomeMessageReducer;
 
 export const setWelcomeMessage = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    // Abort if cached
+    const { info } = getState();
+    if (info.welcomeMessage.data) {
+      return;
+    }
+
     // Init loading state
     dispatch({
       type: 'FETCH_WELCOME_MESSAGE',

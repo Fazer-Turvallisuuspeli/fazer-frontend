@@ -3,10 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const InfoDisplay = ({ welcomeMessage, children }) => {
-  if (welcomeMessage.error) {
-    return <p>Error fetching welcomeMessage: {welcomeMessage.error.message}</p>;
-  }
-  if (welcomeMessage.data === null) return null;
+  if (!welcomeMessage.data) return null;
 
   return (
     <div>

@@ -1,11 +1,11 @@
+import { setCurrentQuestions } from '../question/currentQuestionsReducer';
+
 const initialState = { data: null, error: null };
 
 const currentCategoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_CURRENT_CATEGORY':
-      return { ...state, data: action.category, error: null };
-    case 'SET_CURRENT_CATEGORY_FAILURE':
-      return { ...state, error: action.error };
+      return { ...state, data: action.currentCategory, error: null };
     case 'RESET_CURRENT_CATEGORY':
       return initialState;
     default:
@@ -15,21 +15,26 @@ const currentCategoryReducer = (state = initialState, action) => {
 
 export default currentCategoryReducer;
 
-export const setCurrentCategory = args => {
-  return async dispatch => {
+export const setCurrentCategory = () => {
+  return async (dispatch, getState) => {
+    // Get category id from url
+    const { router, game } = getState();
+    const pathnameArr = router.location.pathname.split('/');
+    const pathnameId = Number(pathnameArr[pathnameArr.length - 1]);
+
+    // Find category by id
+    const currentCategory = game.categories.allCategories.data.find(
+      category => category.id === pathnameId
+    );
+
+    // Set current category
     dispatch({
       type: 'SET_CURRENT_CATEGORY',
-      category: args.category,
+      currentCategory,
     });
-  };
-};
 
-export const setCurrentCategoryError = args => {
-  return async dispatch => {
-    dispatch({
-      type: 'SET_CURRENT_CATEGORY_FAILURE',
-      error: args.error,
-    });
+    // Set current questions
+    dispatch(setCurrentQuestions());
   };
 };
 

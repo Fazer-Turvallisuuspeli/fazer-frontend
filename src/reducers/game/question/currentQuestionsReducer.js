@@ -1,4 +1,5 @@
 import questionService from '../../../services/questionService';
+import { resetAnswers } from './progressReducer';
 
 const initialState = {
   data: null,
@@ -8,7 +9,7 @@ const initialState = {
 
 const currentQuestionsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCH_QUESTIONS':
+    case 'FETCH_QUESTIONS_REQUEST':
       return { ...state, isLoading: true };
     case 'FETCH_QUESTIONS_SUCCESS':
       return {
@@ -28,22 +29,27 @@ const currentQuestionsReducer = (state = initialState, action) => {
 
 export default currentQuestionsReducer;
 
-export const setCurrentQuestions = args => {
-  return async dispatch => {
+export const setCurrentQuestions = () => {
+  return async (dispatch, getState) => {
     // Init loading state
     dispatch({
-      type: 'FETCH_QUESTIONS',
+      type: 'FETCH_QUESTIONS_REQUEST',
     });
 
     try {
+      const { game } = getState();
+      const categoryId = game.categories.currentCategory.data.id;
+
       // Call API
-      const questions = await questionService.getQuestions(args.categoryId);
+      const questions = await questionService.getQuestions(categoryId);
 
       // Update data on success
       dispatch({
         type: 'FETCH_QUESTIONS_SUCCESS',
         questions,
       });
+
+      dispatch(resetAnswers());
     } catch (error) {
       // Update error on failure
       dispatch({

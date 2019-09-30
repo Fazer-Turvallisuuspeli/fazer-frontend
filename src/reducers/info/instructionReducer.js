@@ -30,7 +30,13 @@ const instructionReducer = (state = initialState, action) => {
 export default instructionReducer;
 
 export const setInstructions = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    // Abort if cached
+    const { info } = getState();
+    if (info.instructions.data) {
+      return;
+    }
+
     // Init loading state
     dispatch({
       type: 'FETCH_INSTRUCTIONS',

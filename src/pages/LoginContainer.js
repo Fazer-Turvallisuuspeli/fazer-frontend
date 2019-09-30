@@ -3,21 +3,17 @@ import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import SiteTitle from '../components/SiteTitle';
+import SiteTitle from '../shared/SiteTitle';
 import LoginForm from '../components/LoginForm';
-import Footer from '../components/Footer';
+import Footer from '../shared/Footer';
 import { setUnits } from '../reducers/info/unitReducer';
 
-const LoginContainer = ({ isAuthenticated, location, units, setUnits }) => {
-  // Get units
+const LoginContainer = ({ isAuthenticated, location, setUnits }) => {
   useEffect(() => {
-    if (units.data === null) {
-      setUnits();
-    }
-  }, [units.data, setUnits]);
+    setUnits();
+  }, [setUnits]);
 
-  // Protected route
-  if (isAuthenticated === true) {
+  if (isAuthenticated) {
     return (
       <Redirect
         to={{
@@ -41,7 +37,6 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.login.isAuthenticated,
     location: state.router.location,
-    units: state.info.units,
   };
 };
 

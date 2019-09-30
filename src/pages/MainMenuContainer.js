@@ -1,44 +1,25 @@
 import React, { useEffect } from 'react';
 
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import SiteTitle from '../components/SiteTitle';
+import SiteTitle from '../shared/SiteTitle';
 import InfoDisplay from '../components/InfoDisplay';
-import Footer from '../components/Footer';
+import Footer from '../shared/Footer';
 import { setIsAuthenticated } from '../reducers/login/isAuthenticatedReducer';
 import { setUser } from '../reducers/login/userReducer';
 import { setWelcomeMessage } from '../reducers/info/welcomeMessageReducer';
 
 const MainMenuContainer = ({
-  isAuthenticated,
-  welcomeMessage,
   setWelcomeMessage,
   setIsAuthenticated,
   setUser,
-  location,
   user,
 }) => {
   // Get welcome message
   useEffect(() => {
-    if (isAuthenticated === false) return;
-
-    if (welcomeMessage.data === null) {
-      setWelcomeMessage();
-    }
-  }, [isAuthenticated, setWelcomeMessage, welcomeMessage.data]);
-
-  // Protected route
-  if (isAuthenticated === false) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/login',
-          state: { from: location },
-        }}
-      />
-    );
-  }
+    setWelcomeMessage();
+  }, [setWelcomeMessage]);
 
   const handleLogout = () => {
     setIsAuthenticated(false);
@@ -67,8 +48,6 @@ const MainMenuContainer = ({
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.login.isAuthenticated,
-    location: state.router.location,
     user: state.login.user,
     welcomeMessage: state.info.welcomeMessage,
   };

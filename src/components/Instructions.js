@@ -4,19 +4,13 @@ import { connect } from 'react-redux';
 import { toggleInstructionsVisibility } from '../reducers/info/instructionReducer';
 
 const Instructions = ({ instructions, toggleInstructionsVisibility }) => {
-  if (instructions.isVisible === false || instructions.data === null)
-    return null;
-
-  const handleCloseClick = () => {
-    toggleInstructionsVisibility();
-  };
+  if (!instructions.isVisible || !instructions.data) return null;
 
   return (
     <div>
       {instructions.data.map(({ title, body }) => (
         <div key={title}>
           {title && <h2>{title}</h2>}
-
           {body
             .split('\n')
             .filter(Boolean)
@@ -26,7 +20,7 @@ const Instructions = ({ instructions, toggleInstructionsVisibility }) => {
         </div>
       ))}
 
-      <button onClick={handleCloseClick} type="button">
+      <button onClick={toggleInstructionsVisibility} type="button">
         Sulje
       </button>
     </div>

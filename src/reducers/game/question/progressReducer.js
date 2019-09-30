@@ -34,17 +34,22 @@ export const checkAnswer = () => {
 };
 
 export const nextQuestion = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const { game } = getState();
+    const { nthQuestion } = game.questions.progress;
+    const totalAmountOfQuestions = game.questions.currentQuestions.data.length;
+
+    // Last question has been answered
+    if (nthQuestion + 1 === totalAmountOfQuestions) {
+      dispatch({
+        type: 'QUESTIONS_COMPLETED',
+      });
+
+      return;
+    }
+
     dispatch({
       type: 'NEXT_QUESTION',
-    });
-  };
-};
-
-export const setCompleted = () => {
-  return async dispatch => {
-    dispatch({
-      type: 'QUESTIONS_COMPLETED',
     });
   };
 };

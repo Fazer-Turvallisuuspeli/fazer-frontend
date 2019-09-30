@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import SiteTitle from '../components/SiteTitle';
+import SiteTitle from '../shared/SiteTitle';
 import Instructions from '../components/Instructions';
 import CategoryList from '../components/CategoryList';
 import {
@@ -13,47 +13,14 @@ import {
 import { setAllCategories } from '../reducers/game/category/allCategoriesReducer';
 
 const GameMenuContainer = ({
-  isAuthenticated,
-  location,
   toggleInstructionsVisibility,
-  instructions,
   setInstructions,
-  allCategories,
   setAllCategories,
 }) => {
-  // Get instructions, categories
   useEffect(() => {
-    if (instructions.data === null) {
-      setInstructions();
-    }
-
-    if (allCategories.data === null) {
-      setAllCategories();
-    }
-  }, [
-    instructions.data,
-    setInstructions,
-    allCategories.data,
-    setAllCategories,
-  ]);
-
-  // Protected route
-  if (isAuthenticated === false) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/login',
-          state: {
-            from: location,
-          },
-        }}
-      />
-    );
-  }
-
-  const handleInfoClick = () => {
-    toggleInstructionsVisibility();
-  };
+    setInstructions();
+    setAllCategories();
+  }, [setInstructions, setAllCategories]);
 
   return (
     <div>
@@ -67,20 +34,11 @@ const GameMenuContainer = ({
         <button type="button">Palaa alkuun</button>
       </Link>
 
-      <button onClick={handleInfoClick} type="button">
+      <button onClick={toggleInstructionsVisibility} type="button">
         Info
       </button>
     </div>
   );
-};
-
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.login.isAuthenticated,
-    location: state.router.location,
-    instructions: state.info.instructions,
-    allCategories: state.game.categories.allCategories,
-  };
 };
 
 const mapDispatchToProps = {
@@ -90,6 +48,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(GameMenuContainer);

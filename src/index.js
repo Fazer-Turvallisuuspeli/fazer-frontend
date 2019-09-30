@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import store from './redux/store';
 import { GlobalStyle } from './indexStyles';
-import App from './components/App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 console.log(store.getState());

@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const CategoryTitle = ({ categoryTitle }) => {
-  if (categoryTitle === undefined) return null;
+  if (!categoryTitle) return null;
 
   return <h2>{categoryTitle}</h2>;
 };
