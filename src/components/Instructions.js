@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
+
 import { toggleInstructionsVisibility } from '../reducers/info/instructionReducer';
+import { formatText } from '../utils/formatText';
 
 const Instructions = ({ instructions, toggleInstructionsVisibility }) => {
   if (!instructions.isVisible || !instructions.data) return null;
@@ -11,12 +13,9 @@ const Instructions = ({ instructions, toggleInstructionsVisibility }) => {
       {instructions.data.map(({ title, body }) => (
         <div key={title}>
           {title && <h2>{title}</h2>}
-          {body
-            .split('\n')
-            .filter(Boolean)
-            .map(text => (
-              <p key={text}>{text}</p>
-            ))}
+          {formatText(body).map(text => (
+            <p key={text}>{text}</p>
+          ))}
         </div>
       ))}
 

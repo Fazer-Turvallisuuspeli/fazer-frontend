@@ -2,6 +2,8 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
+import { formatText } from '../utils/formatText';
+
 const InfoDisplay = ({ welcomeMessage, children }) => {
   if (!welcomeMessage.data) return null;
 
@@ -10,12 +12,9 @@ const InfoDisplay = ({ welcomeMessage, children }) => {
       {welcomeMessage.data.map(({ title, body }) => (
         <div key={title}>
           {title && <p>{title}</p>}
-          {body
-            .split('\n')
-            .filter(Boolean)
-            .map(text => (
-              <p key={text}>{text}</p>
-            ))}
+          {formatText(body).map(text => (
+            <p key={text}>{text}</p>
+          ))}
         </div>
       ))}
 

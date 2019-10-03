@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
+import { formatText } from '../utils/formatText';
 
 const Infobank = ({ infobankText, isInfobankVisible, children }) => {
   if (isInfobankVisible === false || infobankText === undefined) return null;
@@ -10,12 +11,9 @@ const Infobank = ({ infobankText, isInfobankVisible, children }) => {
       {infobankText.map(({ title, body }) => (
         <div key={title}>
           {title && <p>{title}</p>}
-          {body
-            .split('\n')
-            .filter(Boolean)
-            .map(text => (
-              <p key={text}>{text}</p>
-            ))}
+          {formatText(body).map(text => (
+            <p key={text}>{text}</p>
+          ))}
         </div>
       ))}
 
