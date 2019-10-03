@@ -2,6 +2,7 @@ const initialState = {
   nthQuestion: 0,
   isAnswering: false,
   isCompleted: false,
+  selectedAnswerIds: [],
 };
 
 const progressReducer = (state = initialState, action) => {
@@ -11,11 +12,32 @@ const progressReducer = (state = initialState, action) => {
         ...state,
         nthQuestion: state.nthQuestion + 1,
         isAnswering: false,
+        selectedAnswerIds: [],
+      };
+    case 'SET_ANSWER':
+      return {
+        ...state,
+        selectedAnswerIds: [
+          ...state.selectedAnswerIds,
+          ...action.payload.selectedAnswerIds,
+        ],
+      };
+    case 'REMOVE_ANSWER':
+      return {
+        ...state,
+        selectedAnswerIds: state.selectedAnswerIds.filter(
+          answerId => answerId !== action.payload.choiceId
+        ),
       };
     case 'CHECK_ANSWER':
       return { ...state, isAnswering: true };
     case 'QUESTIONS_COMPLETED':
-      return { ...state, isAnswering: false, isCompleted: true };
+      return {
+        ...state,
+        isAnswering: false,
+        isCompleted: true,
+        selectedAnswerIds: [],
+      };
     case 'RESET_ANSWERS':
       return initialState;
     default:
@@ -24,6 +46,24 @@ const progressReducer = (state = initialState, action) => {
 };
 
 export default progressReducer;
+
+export const setAnswer = choiceIdsArr => {
+  return async dispatch => {
+    dispatch({
+      type: 'SET_ANSWER',
+      payload: { selectedAnswerIds: choiceIdsArr },
+    });
+  };
+};
+
+export const removeAnswer = choiceId => {
+  return async dispatch => {
+    dispatch({
+      type: 'REMOVE_ANSWER',
+      payload: { choiceId },
+    });
+  };
+};
 
 export const checkAnswer = () => {
   return async dispatch => {
