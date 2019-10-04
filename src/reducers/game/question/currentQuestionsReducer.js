@@ -1,5 +1,5 @@
 import questionService from '../../../services/questionService';
-import { resetAnswers } from './progressReducer';
+import { resetAnswers, setQuestionsCompleted } from './progressReducer';
 
 const initialState = {
   data: null,
@@ -39,6 +39,15 @@ export const setCurrentQuestions = () => {
     try {
       const { game } = getState();
       const categoryId = game.categories.currentCategory.data.id;
+
+      // Abort early if category has been completed
+      if (
+        game.categories.completedCategories.ids.some(id => id === categoryId)
+      ) {
+        dispatch(setQuestionsCompleted());
+
+        return;
+      }
 
       // Call API
       const questions = await questionService.getQuestions(categoryId);

@@ -27,6 +27,11 @@ export const setCurrentCategory = () => {
       category => category.id === pathnameId
     );
 
+    // Abort early if same category as in cache
+    if (game.categories.currentCategory.data === currentCategory) {
+      return;
+    }
+
     // Set current category
     dispatch({
       type: 'SET_CURRENT_CATEGORY',

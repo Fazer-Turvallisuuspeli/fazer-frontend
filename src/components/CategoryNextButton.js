@@ -19,7 +19,7 @@ const getNextCategoryId = ({ game }) => {
 
   return allCategories.data[nextCategoryIndex]
     ? allCategories.data[nextCategoryIndex].id
-    : 0;
+    : allCategories.data[0].id;
 };
 
 const mapStateToProps = state => {

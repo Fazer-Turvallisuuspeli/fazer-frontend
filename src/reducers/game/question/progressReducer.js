@@ -1,3 +1,5 @@
+import { setCompletedCategory } from '../category/completedCategoriesReducer';
+
 const initialState = {
   nthQuestion: 0,
   isAnswering: false,
@@ -85,11 +87,21 @@ export const nextQuestion = () => {
         type: 'QUESTIONS_COMPLETED',
       });
 
+      dispatch(setCompletedCategory(game.categories.currentCategory.data.id));
+
       return;
     }
 
     dispatch({
       type: 'NEXT_QUESTION',
+    });
+  };
+};
+
+export const setQuestionsCompleted = () => {
+  return async dispatch => {
+    dispatch({
+      type: 'QUESTIONS_COMPLETED',
     });
   };
 };
