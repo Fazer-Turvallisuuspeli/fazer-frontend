@@ -8,6 +8,7 @@ import {
 } from '../reducers/game/question/progressReducer';
 
 const QuestionChoice = ({
+  characterPrefix,
   id,
   setAnswer,
   removeAnswer,
@@ -43,7 +44,8 @@ const QuestionChoice = ({
         id={`question-choice-${id}`}
         onChange={event => handleChoiceClick(event, id)}
       />
-      <label htmlFor={`question-choice-${id}`}>{option}</label>
+      <label
+        htmlFor={`question-choice-${id}`}>{`${characterPrefix}) ${option}`}</label>
     </div>
   );
 };

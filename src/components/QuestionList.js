@@ -7,10 +7,17 @@ import { connect } from 'react-redux';
 import QuestionChoice from './QuestionChoice';
 
 const QuestionList = ({ visibleQuestionChoices }) => {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
   return (
     <div>
-      {visibleQuestionChoices.map(({ id, option }) => (
-        <QuestionChoice key={id} id={id} option={option} />
+      {visibleQuestionChoices.map(({ id, option }, index) => (
+        <QuestionChoice
+          characterPrefix={alphabet[index]}
+          key={id}
+          id={id}
+          option={option}
+        />
       ))}
     </div>
   );
