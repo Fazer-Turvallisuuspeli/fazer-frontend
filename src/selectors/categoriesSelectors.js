@@ -7,10 +7,8 @@ export const selectCurrentCategoryId = state =>
 
 export const selectCurrentCategory = createSelector(
   [selectCategories, selectCurrentCategoryId],
-  (selectCategories, selectCurrentCategoryId) =>
-    selectCategories !== null
-      ? selectCategories.find(
-          category => category.id === selectCurrentCategoryId
-        )
+  (categories, categoryId) =>
+    categories && categoryId
+      ? categories.find(category => category.id === categoryId)
       : null
 );

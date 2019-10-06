@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectCurrentCategory } from '../selectors/categoriesSelectors';
-import { setCurrentCategory } from '../actions/categoriesActions';
+import { setCurrentCategoryId } from '../actions/categoriesActions';
+import { fetchQuestions } from '../actions/questionsActions';
+import { initProgress } from '../actions/progressActions';
 import { selectInstructionsVisibility } from '../selectors/instructionsSelectors';
 import { toggleInstructionsVisibility } from '../actions/instructionsActions';
-import Category from '../components/Category';
 import { selectIsCompleted } from '../selectors/progressSelectors';
+import Category from '../components/Category';
 
 const mapState = state => ({
   category: selectCurrentCategory(state),
@@ -15,10 +17,17 @@ const mapState = state => ({
   isCompleted: selectIsCompleted(state),
 });
 
-const mapDispatch = { setCurrentCategory, toggleInstructionsVisibility };
+const mapDispatch = {
+  setCurrentCategoryId,
+  fetchQuestions,
+  initProgress,
+  toggleInstructionsVisibility,
+};
 
 const propTypes = {
-  setCurrentCategory: PropTypes.func.isRequired,
+  setCurrentCategoryId: PropTypes.func.isRequired,
+  fetchQuestions: PropTypes.func.isRequired,
+  initProgress: PropTypes.func.isRequired,
   isCompleted: PropTypes.bool.isRequired,
   category: PropTypes.shape({}),
   isInstructionsVisible: PropTypes.bool.isRequired,
@@ -26,7 +35,9 @@ const propTypes = {
 };
 
 const CategoryContainer = ({
-  setCurrentCategory,
+  setCurrentCategoryId,
+  fetchQuestions,
+  initProgress,
   isCompleted,
   category,
   isInstructionsVisible,
@@ -35,8 +46,10 @@ const CategoryContainer = ({
   const { categoryId } = useParams();
 
   useEffect(() => {
-    setCurrentCategory(categoryId);
-  }, [setCurrentCategory, categoryId]);
+    setCurrentCategoryId(categoryId);
+    fetchQuestions();
+    initProgress();
+  }, [setCurrentCategoryId, fetchQuestions, initProgress, categoryId]);
 
   return category ? (
     <Category

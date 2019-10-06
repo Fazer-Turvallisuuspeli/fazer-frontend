@@ -2,25 +2,22 @@
 import * as types from '../constants/actionTypes';
 import { selectCategories } from '../selectors/categoriesSelectors';
 import { selectQuestions } from '../selectors/questionsSelectors';
+import { selectProgressInitializationStatus } from '../selectors/progressSelectors';
+import { fetchCategories } from './categoriesActions';
+import { fetchQuestions } from './questionsActions';
 
 export const initProgress = () => async (dispatch, getState) => {
+  // Wait until categories and questions are in state
+  await dispatch(fetchCategories());
+  await dispatch(fetchQuestions());
+
   const state = getState();
   const categories = selectCategories(state);
   const questions = selectQuestions(state);
+  const isProgressInitialized = selectProgressInitializationStatus(state);
 
-  if (!categories) return;
-
-  /* const perCategory = {
-    categoryId: {
-      isSubmitting: false,
-      isCompleted: false,
-      totalQuestions: 0,
-      currentQuestion: 0,
-      isLastQuestion: false,
-      correctAnswers: 0,
-      wrongAnswers: 0,
-    },
-  }; */
+  // Abort if already cached
+  if (isProgressInitialized) return;
 
   const perCategory = categories.reduce((categories, category) => {
     categories[category.id] = {
@@ -41,5 +38,10 @@ export const initProgress = () => async (dispatch, getState) => {
     return categories;
   }, {});
 
-  dispatch({ type: types.INIT_PROGRESS, payload: { perCategory } });
+  dispatch({
+    type: types.INIT_PROGRESS,
+    payload: {
+      perCategory,
+    },
+  });
 };

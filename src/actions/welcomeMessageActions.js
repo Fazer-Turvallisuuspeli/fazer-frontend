@@ -21,9 +21,10 @@ export const fetchWelcomeMessage = () => async (dispatch, getState) => {
   const state = getState();
   const welcomeMessage = selectWelcomeMessage(state);
 
-  // Abort early if categories are cached
+  // Abort early if already cached
   if (welcomeMessage) return;
 
+  // Init fetching request
   dispatch(fetchWelcomeMessageRequest());
 
   try {

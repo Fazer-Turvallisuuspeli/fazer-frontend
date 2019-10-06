@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/categoriesActions';
+import { fetchQuestions } from '../actions/questionsActions';
+import { initProgress } from '../actions/progressActions';
 import { selectCategories } from '../selectors/categoriesSelectors';
 import { toggleInstructionsVisibility } from '../actions/instructionsActions';
 import Categories from '../components/Categories';
@@ -18,7 +20,12 @@ const mapState = state => ({
   isCompleted: selectIsCompleted(state),
 });
 
-const mapDispatch = { fetchCategories, toggleInstructionsVisibility };
+const mapDispatch = {
+  fetchCategories,
+  fetchQuestions,
+  initProgress,
+  toggleInstructionsVisibility,
+};
 
 const propTypes = {
   categories: PropTypes.arrayOf(
@@ -34,11 +41,15 @@ const propTypes = {
     })
   ),
   fetchCategories: PropTypes.func.isRequired,
+  fetchQuestions: PropTypes.func.isRequired,
+  initProgress: PropTypes.func.isRequired,
   isCompleted: PropTypes.bool.isRequired,
 };
 
 const CategoriesContainer = ({
   fetchCategories,
+  fetchQuestions,
+  initProgress,
   isCompleted,
   categories,
   isInstructionsVisible,
@@ -47,7 +58,9 @@ const CategoriesContainer = ({
 }) => {
   useEffect(() => {
     fetchCategories();
-  }, [fetchCategories]);
+    fetchQuestions();
+    initProgress();
+  }, [fetchCategories, fetchQuestions, initProgress]);
 
   return (
     categories && (

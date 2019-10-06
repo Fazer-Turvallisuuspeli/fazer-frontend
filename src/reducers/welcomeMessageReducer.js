@@ -4,7 +4,6 @@ const initialState = {
   isFetching: false,
   error: null,
   data: null,
-  isVisible: true,
 };
 
 const welcomeMessageReducer = (state = initialState, action) => {
@@ -26,12 +25,6 @@ const welcomeMessageReducer = (state = initialState, action) => {
         isFetching: false,
         error: action.payload.error,
         data: null,
-      };
-
-    case types.TOGGLE_WELCOME_MESSAGE_VISIBILITY:
-      return {
-        ...state,
-        isVisible: !state.isVisible,
       };
 
     default:

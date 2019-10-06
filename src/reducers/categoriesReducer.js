@@ -28,7 +28,7 @@ const categoriesReducer = (state = initialState, action) => {
         data: null,
       };
 
-    case types.SET_CURRENT_CATEGORY:
+    case types.SET_CURRENT_CATEGORY_ID:
       return {
         ...state,
         currentCategoryId: action.payload.categoryId,

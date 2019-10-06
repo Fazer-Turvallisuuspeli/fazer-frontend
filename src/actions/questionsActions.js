@@ -3,22 +3,11 @@ import * as types from '../constants/actionTypes';
 import { callApi } from '../utils/apiUtils';
 import { QUESTIONS_URL } from '../constants/apiConstants';
 import { selectQuestions } from '../selectors/questionsSelectors';
-import { selectCurrentCategoryId } from '../selectors/categoriesSelectors';
 
-export const fetchQuestionsSuccess = questions => async (
-  dispatch,
-  getState
-) => {
-  const state = getState();
-  const categoryId = selectCurrentCategoryId(state);
-
-  dispatch({
-    type: types.FETCH_QUESTIONS_SUCCESS,
-    payload: { questions },
-  });
-
-  dispatch(setCurrentQuestions(categoryId));
-};
+export const fetchQuestionsSuccess = questions => ({
+  type: types.FETCH_QUESTIONS_SUCCESS,
+  payload: { questions },
+});
 
 export const fetchQuestionsError = error => ({
   type: types.FETCH_QUESTIONS_ERROR,
@@ -33,11 +22,11 @@ export const fetchQuestions = () => async (dispatch, getState) => {
   const state = getState();
   const questions = selectQuestions(state);
 
+  // Abort early if already cached
   if (questions) return;
 
+  // Init fetching request
   dispatch(fetchQuestionsRequest());
-
-  // Abort early if questions are cached
 
   try {
     const questions = await callApi(QUESTIONS_URL);
@@ -46,9 +35,4 @@ export const fetchQuestions = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch(fetchQuestionsError(error.message));
   }
-};
-
-export const setCurrentQuestions = categoryId => async dispatch => {
-  dispatch({ type: types.SET_CURRENT_QUESTIONS, payload: { categoryId } });
-  dispatch(fetchQuestions());
 };

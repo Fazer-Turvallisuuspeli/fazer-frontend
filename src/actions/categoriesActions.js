@@ -1,18 +1,15 @@
 import * as types from '../constants/actionTypes';
-import { selectCategories } from '../selectors/categoriesSelectors';
+import {
+  selectCategories,
+  selectCurrentCategoryId,
+} from '../selectors/categoriesSelectors';
 import { callApi } from '../utils/apiUtils';
 import { CATEGORIES_URL } from '../constants/apiConstants';
-import { setCurrentQuestions, fetchQuestions } from './questionsActions';
-import { initProgress } from './progressActions';
 
-export const fetchCategoriesSuccess = categories => async dispatch => {
-  await dispatch({
-    type: types.FETCH_CATEGORIES_SUCCESS,
-    payload: { categories },
-  });
-  await dispatch(fetchQuestions());
-  dispatch(initProgress());
-};
+export const fetchCategoriesSuccess = categories => ({
+  type: types.FETCH_CATEGORIES_SUCCESS,
+  payload: { categories },
+});
 
 export const fetchCategoriesError = error => ({
   type: types.FETCH_CATEGORIES_ERROR,
@@ -27,9 +24,10 @@ export const fetchCategories = () => async (dispatch, getState) => {
   const state = getState();
   const categories = selectCategories(state);
 
-  // Abort early if categories are cached
+  // Abort early if already cached
   if (categories) return;
 
+  // Init fetching request
   dispatch(fetchCategoriesRequest());
 
   try {
@@ -41,23 +39,23 @@ export const fetchCategories = () => async (dispatch, getState) => {
   }
 };
 
-export const setCurrentCategory = categoryId => async (dispatch, getState) => {
+export const setCurrentCategoryId = categoryIdStr => async (
+  dispatch,
+  getState
+) => {
   // Wait until categories are in state
   await dispatch(fetchCategories());
 
-  const {
-    categories: { currentCategoryId },
-  } = getState();
+  const state = getState();
+  const categoryIdInState = selectCurrentCategoryId(state);
 
-  const categoryIdNumber = Number(categoryId);
+  const categoryId = Number(categoryIdStr);
 
   // Abort early if same category
-  if (currentCategoryId === categoryIdNumber) return;
+  if (categoryIdInState === categoryId) return;
 
   dispatch({
-    type: types.SET_CURRENT_CATEGORY,
-    payload: { categoryId: categoryIdNumber },
+    type: types.SET_CURRENT_CATEGORY_ID,
+    payload: { categoryId },
   });
-
-  dispatch(setCurrentQuestions(categoryIdNumber));
 };

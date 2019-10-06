@@ -1,23 +1,10 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CategoriesContainer from './CategoriesContainer';
 import CategoryContainer from './CategoryContainer';
 import LandingContainer from './LandingContainer';
-import { initProgress } from '../actions/progressActions';
 
-const mapDispatch = { initProgress };
-
-const propTypes = {
-  initProgress: PropTypes.func.isRequired,
-};
-
-const RootContainer = ({ initProgress }) => {
-  useEffect(() => {
-    initProgress();
-  }, [initProgress]);
-
+const RootContainer = () => {
   return (
     <Router>
       <Switch>
@@ -33,9 +20,4 @@ const RootContainer = ({ initProgress }) => {
   );
 };
 
-RootContainer.propTypes = propTypes;
-
-export default connect(
-  null,
-  mapDispatch
-)(RootContainer);
+export default RootContainer;

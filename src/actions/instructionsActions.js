@@ -24,6 +24,7 @@ export const fetchInstructions = () => async (dispatch, getState) => {
   // Abort early if categories are cached
   if (instructions) return;
 
+  // Init fetching request
   dispatch(fetchInstructionsRequest());
 
   try {

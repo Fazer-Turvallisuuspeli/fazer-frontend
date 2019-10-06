@@ -4,7 +4,6 @@ const initialState = {
   isFetching: false,
   error: null,
   data: null,
-  currentQuestionsId: null,
   currentQuestionId: null,
 };
 
@@ -27,14 +26,6 @@ const questionsReducer = (state = initialState, action) => {
         isFetching: false,
         error: action.payload.error,
         data: null,
-      };
-
-    case types.SET_CURRENT_QUESTIONS:
-      return {
-        ...state,
-        isFetching: false,
-        error: null,
-        currentQuestionsId: action.payload.categoryId,
       };
 
     default:
