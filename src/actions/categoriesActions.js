@@ -2,11 +2,17 @@ import * as types from '../constants/actionTypes';
 import { selectCategories } from '../selectors/categoriesSelectors';
 import { callApi } from '../utils/apiUtils';
 import { CATEGORIES_URL } from '../constants/apiConstants';
+import { setCurrentQuestions, fetchQuestions } from './questionsActions';
+import { initProgress } from './progressActions';
 
-export const fetchCategoriesSuccess = categories => ({
-  type: types.FETCH_CATEGORIES_SUCCESS,
-  payload: { categories },
-});
+export const fetchCategoriesSuccess = categories => async dispatch => {
+  await dispatch({
+    type: types.FETCH_CATEGORIES_SUCCESS,
+    payload: { categories },
+  });
+  await dispatch(fetchQuestions());
+  dispatch(initProgress());
+};
 
 export const fetchCategoriesError = error => ({
   type: types.FETCH_CATEGORIES_ERROR,
@@ -52,4 +58,6 @@ export const setCurrentCategory = categoryId => async (dispatch, getState) => {
     type: types.SET_CURRENT_CATEGORY,
     payload: { categoryId: categoryIdNumber },
   });
+
+  dispatch(setCurrentQuestions(categoryIdNumber));
 };

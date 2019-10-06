@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import CategoryCompleted from './CategoryCompleted';
-import QuestionsContainer from '../containers/QuestionsContainer';
 import Instructions from './Instructions';
 import Footer from './Footer';
 
 const propTypes = {
-  isCompleted: PropTypes.bool.isRequired,
   category: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -22,26 +19,21 @@ const propTypes = {
   toggleInstructionsVisibility: PropTypes.func.isRequired,
 };
 
-const Category = ({
-  isCompleted,
+const CategoryCompleted = ({
   category,
   isInstructionsVisible,
   toggleInstructionsVisibility,
 }) => {
-  if (isCompleted)
-    return (
-      <CategoryCompleted
-        category={category}
-        isInstructionsVisible={isInstructionsVisible}
-        toggleInstructionsVisibility={toggleInstructionsVisibility}
-      />
-    );
-
   return (
     <>
       <h1>{category.name}</h1>
 
-      <QuestionsContainer />
+      <h3>Kategoria suoritettu</h3>
+
+      <p>
+        Jatka seuraavaan kategoriaan painamalla &quot;Seuraava&quot;-painiketta
+        tai palaa päävalikkoon valitakseksi toisen kategorian.
+      </p>
 
       {isInstructionsVisible && (
         <Instructions instructions={category.instructions}>
@@ -59,11 +51,16 @@ const Category = ({
         <button type="button" onClick={toggleInstructionsVisibility}>
           Tietopankki
         </button>
+
+        {/* TODO : Link to next category, or category list if last category */}
+        <Link to="/categories">
+          <button type="button">Seuraava</button>
+        </Link>
       </Footer>
     </>
   );
 };
 
-Category.propTypes = propTypes;
+CategoryCompleted.propTypes = propTypes;
 
-export default Category;
+export default CategoryCompleted;
