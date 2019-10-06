@@ -1,16 +1,14 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
 import { Provider } from 'react-redux';
-
-import store from '../redux/store';
-import App from '../App';
+import configureAppStore from '../store/configureStore';
+import RootContainer from '../containers/RootContainer';
 
 describe('App', () => {
   test('renders correctly', () => {
     render(
-      <Provider store={store}>
-        <App />
+      <Provider store={configureAppStore()}>
+        <RootContainer />
       </Provider>
     );
   });
