@@ -16,6 +16,7 @@ const propTypes = {
       })
     ).isRequired,
   }).isRequired,
+  handleOnChange: PropTypes.func.isRequired,
   handleSubmitAnswer: PropTypes.func.isRequired,
   nthQuestion: PropTypes.number.isRequired,
   amountOfQuestions: PropTypes.number.isRequired,
@@ -25,6 +26,7 @@ const propTypes = {
 
 const Question = ({
   question,
+  handleOnChange,
   handleSubmitAnswer,
   nthQuestion,
   amountOfQuestions,
@@ -45,6 +47,7 @@ const Question = ({
             <input
               type="checkbox"
               id={`question-${question.id}-choice-${choice.id}`}
+              onChange={() => handleOnChange(question.id, choice.id)}
             />
             <label htmlFor={`question-${question.id}-choice-${choice.id}`}>
               {choice.option}

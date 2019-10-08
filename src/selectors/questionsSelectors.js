@@ -10,3 +10,6 @@ export const selectCurrentQuestions = createSelector(
       ? questions.filter(question => question.categoryId === categoryId)
       : null
 );
+
+export const selectQuestionsByCategoryId = (state, categoryId) =>
+  state.questions.data.filter(question => question.categoryId === categoryId);

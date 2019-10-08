@@ -20,6 +20,7 @@ const propTypes = {
       ).isRequired,
     })
   ).isRequired,
+  handleOnChange: PropTypes.func.isRequired,
   handleSubmitAnswer: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
   isCompleted: PropTypes.bool.isRequired,
@@ -27,6 +28,7 @@ const propTypes = {
 
 const Questions = ({
   questions,
+  handleOnChange,
   handleSubmitAnswer,
   isSubmitting,
   isCompleted,
@@ -36,6 +38,7 @@ const Questions = ({
         <Question
           key={question.id}
           question={question}
+          handleOnChange={handleOnChange}
           handleSubmitAnswer={handleSubmitAnswer}
           nthQuestion={index + 1}
           amountOfQuestions={questions.length}

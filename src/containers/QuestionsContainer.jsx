@@ -6,6 +6,7 @@ import {
   selectIsSubmitting,
   selectIsCompleted,
 } from '../selectors/progressSelectors';
+import { selectQuestionChoice } from '../actions/progressActions';
 import Questions from '../components/Questions';
 
 const mapState = state => ({
@@ -14,13 +15,25 @@ const mapState = state => ({
   isCompleted: selectIsCompleted(state),
 });
 
+const mapDispatch = { selectQuestionChoice };
+
 const propTypes = {
   questions: PropTypes.arrayOf(PropTypes.shape({})),
+  selectQuestionChoice: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool,
   isCompleted: PropTypes.bool,
 };
 
-const QuestionsContainer = ({ questions, isSubmitting, isCompleted }) => {
+const QuestionsContainer = ({
+  questions,
+  selectQuestionChoice,
+  isSubmitting,
+  isCompleted,
+}) => {
+  const handleQuestionOnChange = (questionId, choiceId) => {
+    selectQuestionChoice(questionId, choiceId);
+  };
+
   const handleSubmitAnswer = event => {
     event.preventDefault();
 
@@ -30,6 +43,7 @@ const QuestionsContainer = ({ questions, isSubmitting, isCompleted }) => {
   return questions ? (
     <Questions
       questions={questions}
+      handleOnChange={handleQuestionOnChange}
       handleSubmitAnswer={handleSubmitAnswer}
       isSubmitting={isSubmitting}
       isCompleted={isCompleted}
@@ -41,5 +55,5 @@ QuestionsContainer.propTypes = propTypes;
 
 export default connect(
   mapState,
-  null
+  mapDispatch
 )(QuestionsContainer);
