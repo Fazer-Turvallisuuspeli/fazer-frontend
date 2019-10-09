@@ -1,10 +1,15 @@
 import { createSelector } from 'redux-starter-kit';
 import { selectCurrentCategoryId } from './categoriesSelectors';
 
-export const selectQuestions = state => state.questions.data;
+export const selectQuestions = state => state.questions;
+
+export const selectQuestionsData = createSelector(
+  [selectQuestions],
+  questions => questions.data
+);
 
 export const selectCurrentQuestions = createSelector(
-  [selectQuestions, selectCurrentCategoryId],
+  [selectQuestionsData, selectCurrentCategoryId],
   (questions, categoryId) =>
     questions && categoryId
       ? questions.filter(question => question.categoryId === categoryId)

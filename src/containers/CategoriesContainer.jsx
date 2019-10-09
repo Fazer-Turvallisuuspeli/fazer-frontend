@@ -4,25 +4,29 @@ import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/categoriesActions';
 import { fetchQuestions } from '../actions/questionsActions';
 import { initProgress } from '../actions/progressActions';
-import { selectCategories } from '../selectors/categoriesSelectors';
-import { toggleInstructionsVisibility } from '../actions/instructionsActions';
+import { selectCategoriesData } from '../selectors/categoriesSelectors';
+import {
+  fetchInstructions,
+  toggleInstructionsVisibility,
+} from '../actions/instructionsActions';
 import Categories from '../components/Categories';
 import {
   selectInstructionsVisibility,
-  selectInstructions,
+  selectInstructionsData,
 } from '../selectors/instructionsSelectors';
 import { selectIsCompleted } from '../selectors/progressSelectors';
 
 const mapState = state => ({
-  categories: selectCategories(state),
+  categories: selectCategoriesData(state),
   isInstructionsVisible: selectInstructionsVisibility(state),
-  instructions: selectInstructions(state),
+  instructions: selectInstructionsData(state),
   isCompleted: selectIsCompleted(state),
 });
 
 const mapDispatch = {
   fetchCategories,
   fetchQuestions,
+  fetchInstructions,
   initProgress,
   toggleInstructionsVisibility,
 };
@@ -42,6 +46,7 @@ const propTypes = {
   ),
   fetchCategories: PropTypes.func.isRequired,
   fetchQuestions: PropTypes.func.isRequired,
+  fetchInstructions: PropTypes.func.isRequired,
   initProgress: PropTypes.func.isRequired,
   isCompleted: PropTypes.bool.isRequired,
 };
@@ -49,6 +54,7 @@ const propTypes = {
 const CategoriesContainer = ({
   fetchCategories,
   fetchQuestions,
+  fetchInstructions,
   initProgress,
   isCompleted,
   categories,
@@ -59,8 +65,9 @@ const CategoriesContainer = ({
   useEffect(() => {
     fetchCategories();
     fetchQuestions();
+    fetchInstructions();
     initProgress();
-  }, [fetchCategories, fetchQuestions, initProgress]);
+  }, [fetchCategories, fetchQuestions, fetchInstructions, initProgress]);
 
   return (
     categories && (

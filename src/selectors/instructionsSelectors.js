@@ -1,4 +1,13 @@
-export const selectInstructions = state => state.instructions.data;
+import { createSelector } from 'redux-starter-kit';
 
-export const selectInstructionsVisibility = state =>
-  state.instructions.isVisible;
+export const selectInstructions = state => state.instructions;
+
+export const selectInstructionsData = createSelector(
+  [selectInstructions],
+  instructions => instructions.data
+);
+
+export const selectInstructionsVisibility = createSelector(
+  [selectInstructions],
+  instructions => instructions.isVisible
+);

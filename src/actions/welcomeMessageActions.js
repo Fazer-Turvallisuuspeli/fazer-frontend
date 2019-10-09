@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import { selectWelcomeMessage } from '../selectors/welcomeMessageSelectors';
+import { selectWelcomeMessageData } from '../selectors/welcomeMessageSelectors';
 import { callApi } from '../utils/apiUtils';
 import { WELCOME_MESSAGE_URL } from '../constants/apiConstants';
 
@@ -19,7 +19,7 @@ export const fetchWelcomeMessageRequest = () => ({
 
 export const fetchWelcomeMessage = () => async (dispatch, getState) => {
   const state = getState();
-  const welcomeMessage = selectWelcomeMessage(state);
+  const welcomeMessage = selectWelcomeMessageData(state);
 
   // Abort early if already cached
   if (welcomeMessage) return;

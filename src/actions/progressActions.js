@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import * as types from '../constants/actionTypes';
 import {
-  selectCategories,
+  selectCategoriesData,
   selectCurrentCategoryId,
 } from '../selectors/categoriesSelectors';
 import { selectQuestionsByCategoryId } from '../selectors/questionsSelectors';
@@ -20,7 +20,7 @@ export const initProgress = () => async (dispatch, getState) => {
   const isProgressInitialized = selectProgressInitializationStatus(state);
   if (isProgressInitialized) return;
 
-  const categories = selectCategories(state);
+  const categories = selectCategoriesData(state);
 
   const perCategory = categories.reduce((categories, category) => {
     const categoryQuestions = selectQuestionsByCategoryId(state, category.id);

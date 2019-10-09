@@ -7,16 +7,16 @@ import {
 } from '../actions/instructionsActions';
 import { fetchWelcomeMessage } from '../actions/welcomeMessageActions';
 import Landing from '../components/Landing';
-import { selectWelcomeMessage } from '../selectors/welcomeMessageSelectors';
+import { selectWelcomeMessageData } from '../selectors/welcomeMessageSelectors';
 import {
-  selectInstructions,
+  selectInstructionsData,
   selectInstructionsVisibility,
 } from '../selectors/instructionsSelectors';
 
 const mapState = state => ({
-  welcomeMessage: selectWelcomeMessage(state),
+  welcomeMessage: selectWelcomeMessageData(state),
   isInstructionsVisible: selectInstructionsVisibility(state),
-  instructions: selectInstructions(state),
+  instructions: selectInstructionsData(state),
 });
 
 const mapDispatch = {

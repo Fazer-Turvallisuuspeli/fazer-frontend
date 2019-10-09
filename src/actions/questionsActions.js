@@ -2,7 +2,7 @@
 import * as types from '../constants/actionTypes';
 import { callApi } from '../utils/apiUtils';
 import { QUESTIONS_URL } from '../constants/apiConstants';
-import { selectQuestions } from '../selectors/questionsSelectors';
+import { selectQuestionsData } from '../selectors/questionsSelectors';
 
 export const fetchQuestionsSuccess = questions => ({
   type: types.FETCH_QUESTIONS_SUCCESS,
@@ -20,7 +20,7 @@ export const fetchQuestionsRequest = () => ({
 
 export const fetchQuestions = () => async (dispatch, getState) => {
   const state = getState();
-  const questions = selectQuestions(state);
+  const questions = selectQuestionsData(state);
 
   // Abort early if already cached
   if (questions) return;

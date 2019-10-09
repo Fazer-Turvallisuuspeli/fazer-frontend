@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 import {
-  selectCategories,
+  selectCategoriesData,
   selectCurrentCategoryId,
 } from '../selectors/categoriesSelectors';
 import { callApi } from '../utils/apiUtils';
@@ -22,7 +22,7 @@ export const fetchCategoriesRequest = () => ({
 
 export const fetchCategories = () => async (dispatch, getState) => {
   const state = getState();
-  const categories = selectCategories(state);
+  const categories = selectCategoriesData(state);
 
   // Abort early if already cached
   if (categories) return;

@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import { selectInstructions } from '../selectors/instructionsSelectors';
+import { selectInstructionsData } from '../selectors/instructionsSelectors';
 import { callApi } from '../utils/apiUtils';
 import { INSTRUCTIONS_URL } from '../constants/apiConstants';
 
@@ -19,7 +19,7 @@ export const fetchInstructionsRequest = () => ({
 
 export const fetchInstructions = () => async (dispatch, getState) => {
   const state = getState();
-  const instructions = selectInstructions(state);
+  const instructions = selectInstructionsData(state);
 
   // Abort early if categories are cached
   if (instructions) return;
