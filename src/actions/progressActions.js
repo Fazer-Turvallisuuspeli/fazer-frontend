@@ -56,7 +56,7 @@ export const initProgress = () => async (dispatch, getState) => {
   });
 };
 
-export const selectQuestionChoice = (questionId, choiceId) => async (
+export const setQuestionChoice = (questionId, choiceId) => async (
   dispatch,
   getState
 ) => {
@@ -66,5 +66,18 @@ export const selectQuestionChoice = (questionId, choiceId) => async (
   dispatch({
     type: types.SELECT_QUESTION_CHOICE,
     payload: { categoryId, questionId, choiceId },
+  });
+};
+
+export const submitQuestionAnswer = questionId => async (
+  dispatch,
+  getState
+) => {
+  const state = getState();
+  const categoryId = selectCurrentCategoryId(state);
+
+  dispatch({
+    type: types.SUBMIT_QUESTION_ANSWER,
+    payload: { categoryId, questionId },
   });
 };

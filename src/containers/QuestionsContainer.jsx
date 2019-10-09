@@ -6,7 +6,10 @@ import {
   selectIsSubmitting,
   selectIsCompleted,
 } from '../selectors/progressSelectors';
-import { selectQuestionChoice } from '../actions/progressActions';
+import {
+  setQuestionChoice,
+  submitQuestionAnswer,
+} from '../actions/progressActions';
 import Questions from '../components/Questions';
 
 const mapState = state => ({
@@ -15,29 +18,32 @@ const mapState = state => ({
   isCompleted: selectIsCompleted(state),
 });
 
-const mapDispatch = { selectQuestionChoice };
+const mapDispatch = { setQuestionChoice, submitQuestionAnswer };
 
 const propTypes = {
   questions: PropTypes.arrayOf(PropTypes.shape({})),
-  selectQuestionChoice: PropTypes.func.isRequired,
+  setQuestionChoice: PropTypes.func.isRequired,
+  submitQuestionAnswer: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool,
   isCompleted: PropTypes.bool,
 };
 
 const QuestionsContainer = ({
   questions,
-  selectQuestionChoice,
+  setQuestionChoice,
+  submitQuestionAnswer,
   isSubmitting,
   isCompleted,
 }) => {
   const handleQuestionOnChange = (questionId, choiceId) => {
-    selectQuestionChoice(questionId, choiceId);
+    setQuestionChoice(questionId, choiceId);
   };
 
-  const handleSubmitAnswer = event => {
+  const handleSubmitAnswer = (event, questionId) => {
     event.preventDefault();
 
-    console.log('... TODO : submit answer');
+    console.log('questionId', questionId);
+    submitQuestionAnswer(questionId);
   };
 
   return questions ? (

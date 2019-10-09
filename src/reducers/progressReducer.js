@@ -43,6 +43,18 @@ const progressReducer = (state = initialState, action) => {
         },
       };
 
+    case types.SUBMIT_QUESTION_ANSWER:
+      return {
+        ...state,
+        perCategory: {
+          ...state.perCategory,
+          [action.payload.categoryId]: {
+            ...state.perCategory[action.payload.categoryId],
+            isSubmitting: true,
+          },
+        },
+      };
+
     default:
       return state;
   }

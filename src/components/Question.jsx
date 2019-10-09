@@ -41,7 +41,7 @@ const Question = ({
         (Kysymys {nthQuestion} / {amountOfQuestions})
       </h3>
 
-      <form onSubmit={handleSubmitAnswer}>
+      <form onSubmit={event => handleSubmitAnswer(event, question.id)}>
         {question.choices.map(choice => (
           <div key={choice.id}>
             <input
