@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Instructions from './Instructions';
 import Footer from './Footer';
+import { formatString } from '../utils/stringUtils';
+import CategoryLink from './CategoryLink';
 
 const propTypes = {
   categories: PropTypes.arrayOf(
@@ -30,13 +32,15 @@ const Categories = ({
 }) => {
   return (
     <>
-      <ul>
-        {categories.map(({ id, name }) => (
-          <Link key={id} to={`/categories/${id}`}>
-            <li>{name}</li>
-          </Link>
-        ))}
-      </ul>
+      <div>
+        {categories.map(({ id, name }) => {
+          const cleanName = formatString(name);
+
+          return (
+            <CategoryLink key={id} id={id} name={name} cleanName={cleanName} />
+          );
+        })}
+      </div>
 
       {isInstructionsVisible && (
         <Instructions instructions={instructions}>
