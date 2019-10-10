@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Instructions from './Instructions';
 import Footer from './Footer';
+import { StyledRoundButton } from '../styles/indexStyles';
 
 const propTypes = {
   lastName: PropTypes.string.isRequired,
@@ -49,10 +50,10 @@ const Landing = ({
 
       <Instructions instructions={welcomeMessage}>
         <Link to="/categories">
-          <button type="button">Siirry peliin</button>
+          <StyledRoundButton type="button">Siirry peliin</StyledRoundButton>
         </Link>
         <Link to="/logout">
-          <button type="button">Kirjaudu ulos</button>
+          <StyledRoundButton type="button">Kirjaudu ulos</StyledRoundButton>
         </Link>
       </Instructions>
 

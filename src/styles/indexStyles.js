@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 body {
@@ -9,4 +9,16 @@ body {
 }
 
 
+`;
+export const StyledRoundButton = styled.button`
+  background-color: #15256b;
+  color: #fff;
+  padding: 10px 35px;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 15px;
+  outline: 0;
+  cursor: pointer;
 `;
