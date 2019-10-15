@@ -14,13 +14,13 @@ import {
   selectInstructionsVisibility,
   selectInstructionsData,
 } from '../selectors/instructionsSelectors';
-import { selectIsCompleted } from '../selectors/progressSelectors';
+import { selectIsCategoryCompleted } from '../selectors/progressSelectors';
 
 const mapState = state => ({
   categories: selectCategoriesData(state),
   isInstructionsVisible: selectInstructionsVisibility(state),
   instructions: selectInstructionsData(state),
-  isCompleted: selectIsCompleted(state),
+  isCategoryCompleted: selectIsCategoryCompleted(state),
 });
 
 const mapDispatch = {
@@ -48,7 +48,7 @@ const propTypes = {
   fetchQuestions: PropTypes.func.isRequired,
   fetchInstructions: PropTypes.func.isRequired,
   initProgress: PropTypes.func.isRequired,
-  isCompleted: PropTypes.bool.isRequired,
+  isCategoryCompleted: PropTypes.bool.isRequired,
 };
 
 const CategoriesContainer = ({
@@ -56,7 +56,7 @@ const CategoriesContainer = ({
   fetchQuestions,
   fetchInstructions,
   initProgress,
-  isCompleted,
+  isCategoryCompleted,
   categories,
   isInstructionsVisible,
   instructions,
@@ -72,7 +72,7 @@ const CategoriesContainer = ({
   return (
     categories && (
       <Categories
-        isCompleted={isCompleted}
+        isCategoryCompleted={isCategoryCompleted}
         categories={categories}
         isInstructionsVisible={isInstructionsVisible}
         instructions={instructions}

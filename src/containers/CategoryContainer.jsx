@@ -4,22 +4,26 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectCurrentCategory } from '../selectors/categoriesSelectors';
 import { setCurrentCategoryId } from '../actions/categoriesActions';
-import { fetchQuestions } from '../actions/questionsActions';
+import {
+  setCurrentQuestionId,
+  fetchQuestions,
+} from '../actions/questionsActions';
 import { initProgress } from '../actions/progressActions';
 import { selectInstructionsVisibility } from '../selectors/instructionsSelectors';
 import { toggleInstructionsVisibility } from '../actions/instructionsActions';
-import { selectIsCompleted } from '../selectors/progressSelectors';
+import { selectIsCategoryCompleted } from '../selectors/progressSelectors';
 import Category from '../components/Category';
 
 const mapState = state => ({
   category: selectCurrentCategory(state),
   isInstructionsVisible: selectInstructionsVisibility(state),
-  isCompleted: selectIsCompleted(state),
+  isCategoryCompleted: selectIsCategoryCompleted(state),
 });
 
 const mapDispatch = {
   setCurrentCategoryId,
   fetchQuestions,
+  setCurrentQuestionId,
   initProgress,
   toggleInstructionsVisibility,
 };
@@ -27,8 +31,9 @@ const mapDispatch = {
 const propTypes = {
   setCurrentCategoryId: PropTypes.func.isRequired,
   fetchQuestions: PropTypes.func.isRequired,
+  setCurrentQuestionId: PropTypes.func.isRequired,
   initProgress: PropTypes.func.isRequired,
-  isCompleted: PropTypes.bool.isRequired,
+  isCategoryCompleted: PropTypes.bool.isRequired,
   category: PropTypes.shape({}),
   isInstructionsVisible: PropTypes.bool.isRequired,
   toggleInstructionsVisibility: PropTypes.func.isRequired,
@@ -37,8 +42,9 @@ const propTypes = {
 const CategoryContainer = ({
   setCurrentCategoryId,
   fetchQuestions,
+  setCurrentQuestionId,
   initProgress,
-  isCompleted,
+  isCategoryCompleted,
   category,
   isInstructionsVisible,
   toggleInstructionsVisibility,
@@ -48,12 +54,19 @@ const CategoryContainer = ({
   useEffect(() => {
     setCurrentCategoryId(categoryId);
     fetchQuestions();
+    setCurrentQuestionId();
     initProgress();
-  }, [setCurrentCategoryId, fetchQuestions, initProgress, categoryId]);
+  }, [
+    setCurrentCategoryId,
+    fetchQuestions,
+    setCurrentQuestionId,
+    initProgress,
+    categoryId,
+  ]);
 
   return category ? (
     <Category
-      isCompleted={isCompleted}
+      isCategoryCompleted={isCategoryCompleted}
       category={category}
       isInstructionsVisible={isInstructionsVisible}
       toggleInstructionsVisibility={toggleInstructionsVisibility}

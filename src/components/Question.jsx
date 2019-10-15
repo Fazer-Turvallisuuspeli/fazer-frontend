@@ -20,8 +20,12 @@ const propTypes = {
   handleSubmitAnswer: PropTypes.func.isRequired,
   nthQuestion: PropTypes.number.isRequired,
   amountOfQuestions: PropTypes.number.isRequired,
+  checkedChoices: PropTypes.arrayOf(PropTypes.number),
   isSubmitting: PropTypes.bool.isRequired,
-  isCompleted: PropTypes.bool.isRequired,
+  isCategoryCompleted: PropTypes.bool.isRequired,
+  isQuestionCompleted: PropTypes.bool.isRequired,
+  isCorrect: PropTypes.bool.isRequired,
+  setNextQuestion: PropTypes.func.isRequired,
 };
 
 const Question = ({
@@ -30,8 +34,12 @@ const Question = ({
   handleSubmitAnswer,
   nthQuestion,
   amountOfQuestions,
+  checkedChoices,
   isSubmitting,
-  isCompleted,
+  isCategoryCompleted,
+  isQuestionCompleted,
+  isCorrect,
+  setNextQuestion,
 }) => {
   return (
     <div>
@@ -41,10 +49,15 @@ const Question = ({
         (Kysymys {nthQuestion} / {amountOfQuestions})
       </h3>
 
+      <h1>{JSON.stringify(checkedChoices)}</h1>
+
       <form onSubmit={event => handleSubmitAnswer(event, question.id)}>
         {question.choices.map(choice => (
           <div key={choice.id}>
             <input
+              disabled={
+                isSubmitting || isCategoryCompleted || isQuestionCompleted
+              }
               type="checkbox"
               id={`question-${question.id}-choice-${choice.id}`}
               onChange={() => handleOnChange(question.id, choice.id)}
@@ -56,10 +69,25 @@ const Question = ({
         ))}
 
         <input
-          disabled={isSubmitting || isCompleted}
+          disabled={isSubmitting || isCategoryCompleted || isQuestionCompleted}
           type="submit"
           value="Tarkista vastaukset"
         />
+
+        {isQuestionCompleted && (
+          <>
+            {isCorrect ? <p>Oikein.</p> : <p>Väärin.</p>}
+            {question.correctChoiceId.length === 1 ? (
+              <p>Oikea vastaus: ({question.correctChoiceId[0]})</p>
+            ) : (
+              <p>Oikeat vastaukset: ({question.correctChoiceId.join(', ')})</p>
+            )}
+            {question.explanation && <p>{question.explanation}</p>}
+            <button onClick={() => setNextQuestion()} type="button">
+              Eteenpäin
+            </button>
+          </>
+        )}
       </form>
     </div>
   );

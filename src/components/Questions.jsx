@@ -23,7 +23,9 @@ const propTypes = {
   handleOnChange: PropTypes.func.isRequired,
   handleSubmitAnswer: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
-  isCompleted: PropTypes.bool.isRequired,
+  isCategoryCompleted: PropTypes.bool.isRequired,
+  isQuestionCompleted: PropTypes.bool.isRequired,
+  currentQuestionId: PropTypes.number.isRequired,
 };
 
 const Questions = ({
@@ -31,21 +33,26 @@ const Questions = ({
   handleOnChange,
   handleSubmitAnswer,
   isSubmitting,
-  isCompleted,
+  isCategoryCompleted,
+  isQuestionCompleted,
+  currentQuestionId,
 }) => {
   return questions
-    ? questions.map((question, index) => (
-        <Question
-          key={question.id}
-          question={question}
-          handleOnChange={handleOnChange}
-          handleSubmitAnswer={handleSubmitAnswer}
-          nthQuestion={index + 1}
-          amountOfQuestions={questions.length}
-          isSubmitting={isSubmitting}
-          isCompleted={isCompleted}
-        />
-      ))
+    ? questions
+        .map((question, index) => (
+          <Question
+            key={question.id}
+            question={question}
+            handleOnChange={handleOnChange}
+            handleSubmitAnswer={handleSubmitAnswer}
+            nthQuestion={index + 1}
+            amountOfQuestions={questions.length}
+            isSubmitting={isSubmitting}
+            isCategoryCompleted={isCategoryCompleted}
+            isQuestionCompleted={isQuestionCompleted}
+          />
+        ))
+        .filter(question => question.id === currentQuestionId)
     : null;
 };
 

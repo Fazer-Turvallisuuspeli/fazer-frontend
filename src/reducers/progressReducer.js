@@ -51,10 +51,46 @@ const progressReducer = (state = initialState, action) => {
           [action.payload.categoryId]: {
             ...state.perCategory[action.payload.categoryId],
             isSubmitting: true,
+            perQuestion: {
+              ...state.perCategory[action.payload.categoryId].perQuestion,
+              [action.payload.questionId]: {
+                ...state.perCategory[action.payload.categoryId].perQuestion[
+                  action.payload.questionId
+                ],
+                isCompleted: true,
+                isCorrect: action.payload.isCorrect,
+              },
+            },
           },
         },
       };
 
+    case types.SET_NEXT_QUESTION:
+      return {
+        ...state,
+        perCategory: {
+          ...state.perCategory,
+          [action.payload.categoryId]: {
+            ...state.perCategory[action.payload.categoryId],
+            isSubmitting: false,
+            nthQuestion:
+              state.perCategory[action.payload.categoryId].nthQuestion + 1,
+          },
+        },
+      };
+
+    case types.CATEGORY_COMPLETED:
+      return {
+        ...state,
+        perCategory: {
+          ...state.perCategory,
+          [action.payload.categoryId]: {
+            ...state.perCategory[action.payload.categoryId],
+            isSubmitting: false,
+            isCompleted: true,
+          },
+        },
+      };
     default:
       return state;
   }

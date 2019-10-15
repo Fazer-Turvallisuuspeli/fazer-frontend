@@ -1,11 +1,17 @@
 /* eslint-disable no-param-reassign */
+import deepEqual from 'deep-equal';
 import * as types from '../constants/actionTypes';
 import {
   selectCategoriesData,
   selectCurrentCategoryId,
 } from '../selectors/categoriesSelectors';
 import { selectQuestionsByCategoryId } from '../selectors/questionsSelectors';
-import { selectProgressInitializationStatus } from '../selectors/progressSelectors';
+import {
+  selectProgressInitializationStatus,
+  selectCorrectAnswersByQuestionId,
+  selectCheckedChoicesByQuestionId,
+  selectCurrectUncompletedQuestions,
+} from '../selectors/progressSelectors';
 import { fetchCategories } from './categoriesActions';
 import { fetchQuestions } from './questionsActions';
 
@@ -76,8 +82,64 @@ export const submitQuestionAnswer = questionId => async (
   const state = getState();
   const categoryId = selectCurrentCategoryId(state);
 
+  const checkedChoices = selectCheckedChoicesByQuestionId(
+    state,
+    categoryId,
+    questionId
+  );
+  const correctAnswers = selectCorrectAnswersByQuestionId(state, questionId);
+
+  console.log('Checked choices', checkedChoices);
+  console.log('Correct answers', correctAnswers);
+
+  let isCorrect = false;
+  if (deepEqual(checkedChoices, correctAnswers)) {
+    isCorrect = true;
+  }
+  console.log('isCorrect', isCorrect);
+
   dispatch({
     type: types.SUBMIT_QUESTION_ANSWER,
-    payload: { categoryId, questionId },
+    payload: { categoryId, questionId, isCorrect },
+  });
+};
+
+export const setNextQuestion = () => async (dispatch, getState) => {
+  const state = getState();
+  const uncompletedQuestions = selectCurrectUncompletedQuestions(state);
+
+  const uncompletedQuestionIds = uncompletedQuestions.map(question =>
+    Number(question[0])
+  );
+
+  let questionId;
+  const categoryId = selectCurrentCategoryId(state);
+
+  if (uncompletedQuestionIds.length === 0) {
+    dispatch({
+      type: types.CATEGORY_COMPLETED,
+      payload: { categoryId },
+    });
+
+    return;
+  }
+
+  if (uncompletedQuestionIds.length === 1) {
+    [questionId] = uncompletedQuestionIds;
+  } else {
+    questionId =
+      uncompletedQuestionIds[
+        Math.floor(Math.random() * uncompletedQuestionIds.length)
+      ];
+  }
+
+  dispatch({
+    type: types.SET_NEXT_QUESTION,
+    payload: { categoryId },
+  });
+
+  dispatch({
+    type: types.SET_CURRENT_QUESTION_ID,
+    payload: { questionId },
   });
 };

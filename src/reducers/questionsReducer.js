@@ -28,6 +28,12 @@ const questionsReducer = (state = initialState, action) => {
         data: null,
       };
 
+    case types.SET_CURRENT_QUESTION_ID:
+      return {
+        ...state,
+        currentQuestionId: action.payload.questionId,
+      };
+
     default:
       return state;
   }

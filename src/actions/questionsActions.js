@@ -2,7 +2,12 @@
 import * as types from '../constants/actionTypes';
 import { callApi } from '../utils/apiUtils';
 import { QUESTIONS_URL } from '../constants/apiConstants';
-import { selectQuestionsData } from '../selectors/questionsSelectors';
+import {
+  selectQuestionsData,
+  selectCurrentQuestions,
+} from '../selectors/questionsSelectors';
+import { fetchCategories } from './categoriesActions';
+import { selectCurrectUncompletedQuestions } from '../selectors/progressSelectors';
 
 export const fetchQuestionsSuccess = questions => ({
   type: types.FETCH_QUESTIONS_SUCCESS,
@@ -35,4 +40,43 @@ export const fetchQuestions = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch(fetchQuestionsError(error.message));
   }
+};
+
+export const setCurrentQuestionId = () => async (dispatch, getState) => {
+  // Wait until categories and questions are in state
+  await dispatch(fetchCategories());
+  await dispatch(fetchQuestions());
+
+  const state = getState();
+  const questions = selectCurrentQuestions(state);
+  const uncompletedQuestions = selectCurrectUncompletedQuestions(state);
+
+  const uncompletedQuestionIds = uncompletedQuestions.map(question =>
+    Number(question[0])
+  );
+
+  let questionId;
+
+  if (uncompletedQuestionIds.length === 0) {
+    console.log('questions', questions);
+    questionId = questions[Math.floor(Math.random() * questions.length)].id;
+  }
+
+  if (uncompletedQuestionIds.length === 1) {
+    [questionId] = uncompletedQuestionIds;
+  }
+
+  if (uncompletedQuestionIds.length > 1) {
+    questionId =
+      uncompletedQuestionIds[
+        Math.floor(Math.random() * uncompletedQuestionIds.length)
+      ];
+  }
+
+  dispatch({
+    type: types.SET_CURRENT_QUESTION_ID,
+    payload: {
+      questionId,
+    },
+  });
 };

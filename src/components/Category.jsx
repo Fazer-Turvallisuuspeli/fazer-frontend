@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CategoryCompleted from './CategoryCompleted';
-import QuestionsContainer from '../containers/QuestionsContainer';
+import QuestionContainer from '../containers/QuestionContainer';
 import Instructions from './Instructions';
 import Footer from './Footer';
 
 const propTypes = {
-  isCompleted: PropTypes.bool.isRequired,
+  isCategoryCompleted: PropTypes.bool.isRequired,
   category: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -23,12 +23,12 @@ const propTypes = {
 };
 
 const Category = ({
-  isCompleted,
+  isCategoryCompleted,
   category,
   isInstructionsVisible,
   toggleInstructionsVisibility,
 }) => {
-  if (isCompleted)
+  if (isCategoryCompleted)
     return (
       <CategoryCompleted
         category={category}
@@ -41,7 +41,7 @@ const Category = ({
     <>
       <h1>{category.name}</h1>
 
-      <QuestionsContainer />
+      <QuestionContainer />
 
       {isInstructionsVisible && (
         <Instructions instructions={category.instructions}>

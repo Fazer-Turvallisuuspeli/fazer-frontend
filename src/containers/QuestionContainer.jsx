@@ -1,0 +1,104 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+  selectCurrentQuestion,
+  selectCurrentQuestionId,
+} from '../selectors/questionsSelectors';
+import {
+  selectNthQuestion,
+  selectAmountOfQuestions,
+  selectIsSubmitting,
+  selectIsCategoryCompleted,
+  selectIsQuestionCompleted,
+  selectIsQuestionCorrect,
+  selectCurrentCheckedChoices,
+} from '../selectors/progressSelectors';
+import {
+  setQuestionChoice,
+  submitQuestionAnswer,
+  setNextQuestion,
+} from '../actions/progressActions';
+import Question from '../components/Question';
+
+const mapState = state => ({
+  question: selectCurrentQuestion(state),
+  nthQuestion: selectNthQuestion(state),
+  amountOfQuestions: selectAmountOfQuestions(state),
+  checkedChoices: selectCurrentCheckedChoices(state),
+  isSubmitting: selectIsSubmitting(state),
+  isCategoryCompleted: selectIsCategoryCompleted(state),
+  isQuestionCompleted: selectIsQuestionCompleted(state),
+  currentQuestionId: selectCurrentQuestionId(state),
+  isCorrect: selectIsQuestionCorrect(state),
+});
+
+const mapDispatch = {
+  setQuestionChoice,
+  submitQuestionAnswer,
+  setNextQuestion,
+};
+
+const propTypes = {
+  question: PropTypes.shape({}),
+  nthQuestion: PropTypes.number,
+  amountOfQuestions: PropTypes.number,
+  checkedChoices: PropTypes.arrayOf(PropTypes.number),
+  setQuestionChoice: PropTypes.func.isRequired,
+  submitQuestionAnswer: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool,
+  isCategoryCompleted: PropTypes.bool,
+  isQuestionCompleted: PropTypes.bool,
+  currentQuestionId: PropTypes.number,
+  isCorrect: PropTypes.bool,
+  setNextQuestion: PropTypes.func,
+};
+
+const QuestionContainer = ({
+  question,
+  nthQuestion,
+  amountOfQuestions,
+  checkedChoices,
+  setQuestionChoice,
+  submitQuestionAnswer,
+  isSubmitting,
+  isCategoryCompleted,
+  isQuestionCompleted,
+  currentQuestionId,
+  isCorrect,
+  setNextQuestion,
+}) => {
+  const handleQuestionOnChange = (questionId, choiceId) => {
+    setQuestionChoice(questionId, choiceId);
+  };
+
+  const handleSubmitAnswer = (event, questionId) => {
+    event.preventDefault();
+
+    submitQuestionAnswer(questionId);
+  };
+
+  return question ? (
+    <Question
+      question={question}
+      handleOnChange={handleQuestionOnChange}
+      handleSubmitAnswer={handleSubmitAnswer}
+      nthQuestion={nthQuestion}
+      amountOfQuestions={amountOfQuestions}
+      checkedChoices={checkedChoices}
+      isSubmitting={isSubmitting}
+      isCategoryCompleted={isCategoryCompleted}
+      isQuestionCompleted={isQuestionCompleted}
+      currentQuestionId={currentQuestionId}
+      isCorrect={isCorrect}
+      setNextQuestion={setNextQuestion}
+    />
+  ) : null;
+};
+
+QuestionContainer.propTypes = propTypes;
+
+export default connect(
+  mapState,
+  mapDispatch
+)(QuestionContainer);
