@@ -12,7 +12,6 @@ import {
   selectIsCategoryCompleted,
   selectIsQuestionCompleted,
   selectIsQuestionCorrect,
-  selectCurrentCheckedChoices,
 } from '../selectors/progressSelectors';
 import {
   setQuestionChoice,
@@ -25,7 +24,6 @@ const mapState = state => ({
   question: selectCurrentQuestion(state),
   nthQuestion: selectNthQuestion(state),
   amountOfQuestions: selectAmountOfQuestions(state),
-  checkedChoices: selectCurrentCheckedChoices(state),
   isSubmitting: selectIsSubmitting(state),
   isCategoryCompleted: selectIsCategoryCompleted(state),
   isQuestionCompleted: selectIsQuestionCompleted(state),
@@ -43,7 +41,6 @@ const propTypes = {
   question: PropTypes.shape({}),
   nthQuestion: PropTypes.number,
   amountOfQuestions: PropTypes.number,
-  checkedChoices: PropTypes.arrayOf(PropTypes.number),
   setQuestionChoice: PropTypes.func.isRequired,
   submitQuestionAnswer: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool,
@@ -58,7 +55,6 @@ const QuestionContainer = ({
   question,
   nthQuestion,
   amountOfQuestions,
-  checkedChoices,
   setQuestionChoice,
   submitQuestionAnswer,
   isSubmitting,
@@ -85,7 +81,6 @@ const QuestionContainer = ({
       handleSubmitAnswer={handleSubmitAnswer}
       nthQuestion={nthQuestion}
       amountOfQuestions={amountOfQuestions}
-      checkedChoices={checkedChoices}
       isSubmitting={isSubmitting}
       isCategoryCompleted={isCategoryCompleted}
       isQuestionCompleted={isQuestionCompleted}

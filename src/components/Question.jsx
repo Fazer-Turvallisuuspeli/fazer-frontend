@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import QuestionAnswer from './QuestionAnswer';
 
 const propTypes = {
   question: PropTypes.shape({
@@ -20,7 +21,6 @@ const propTypes = {
   handleSubmitAnswer: PropTypes.func.isRequired,
   nthQuestion: PropTypes.number.isRequired,
   amountOfQuestions: PropTypes.number.isRequired,
-  checkedChoices: PropTypes.arrayOf(PropTypes.number),
   isSubmitting: PropTypes.bool.isRequired,
   isCategoryCompleted: PropTypes.bool.isRequired,
   isQuestionCompleted: PropTypes.bool.isRequired,
@@ -34,13 +34,15 @@ const Question = ({
   handleSubmitAnswer,
   nthQuestion,
   amountOfQuestions,
-  checkedChoices,
   isSubmitting,
   isCategoryCompleted,
   isQuestionCompleted,
   isCorrect,
   setNextQuestion,
 }) => {
+  const isAnsweringDisabled =
+    isSubmitting || isCategoryCompleted || isQuestionCompleted;
+
   return (
     <div>
       <h2>{question.question}</h2>
@@ -49,15 +51,12 @@ const Question = ({
         (Kysymys {nthQuestion} / {amountOfQuestions})
       </h3>
 
-      <h1>{JSON.stringify(checkedChoices)}</h1>
-
       <form onSubmit={event => handleSubmitAnswer(event, question.id)}>
-        {question.choices.map(choice => (
+        {question.choices.map((choice, index) => (
           <div key={choice.id}>
+            {index + 1})
             <input
-              disabled={
-                isSubmitting || isCategoryCompleted || isQuestionCompleted
-              }
+              disabled={isAnsweringDisabled}
               type="checkbox"
               id={`question-${question.id}-choice-${choice.id}`}
               onChange={() => handleOnChange(question.id, choice.id)}
@@ -68,25 +67,20 @@ const Question = ({
           </div>
         ))}
 
-        <input
-          disabled={isSubmitting || isCategoryCompleted || isQuestionCompleted}
-          type="submit"
-          value="Tarkista vastaukset"
-        />
+        {!isQuestionCompleted && (
+          <input
+            disabled={isAnsweringDisabled}
+            type="submit"
+            value="Tarkista vastaukset"
+          />
+        )}
 
         {isQuestionCompleted && (
-          <>
-            {isCorrect ? <p>Oikein.</p> : <p>Väärin.</p>}
-            {question.correctChoiceId.length === 1 ? (
-              <p>Oikea vastaus: ({question.correctChoiceId[0]})</p>
-            ) : (
-              <p>Oikeat vastaukset: ({question.correctChoiceId.join(', ')})</p>
-            )}
-            {question.explanation && <p>{question.explanation}</p>}
-            <button onClick={() => setNextQuestion()} type="button">
-              Eteenpäin
-            </button>
-          </>
+          <QuestionAnswer
+            isCorrect={isCorrect}
+            question={question}
+            setNextQuestion={setNextQuestion}
+          />
         )}
       </form>
     </div>
