@@ -131,3 +131,21 @@ export const selectNextCategoryId = createSelector(
         ].id
       : categories[0].id
 );
+
+export const selectCompletedCategories = createSelector(
+  [selectProgressPerCategory],
+  perCategory =>
+    perCategory &&
+    Object.keys(perCategory)
+      .filter(categoryId => perCategory[categoryId].isCompleted)
+      .map(id => Number(id))
+);
+
+export const selectUncompletedCategories = createSelector(
+  [selectProgressPerCategory],
+  perCategory =>
+    perCategory &&
+    Object.keys(perCategory)
+      .filter(categoryId => perCategory[categoryId].isCompleted === false)
+      .map(id => Number(id))
+);

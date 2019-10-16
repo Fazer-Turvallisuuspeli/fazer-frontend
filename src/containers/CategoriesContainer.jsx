@@ -14,10 +14,14 @@ import {
   selectInstructionsVisibility,
   selectInstructionsData,
 } from '../selectors/instructionsSelectors';
-import { selectIsCategoryCompleted } from '../selectors/progressSelectors';
+import {
+  selectIsCategoryCompleted,
+  selectCompletedCategories,
+} from '../selectors/progressSelectors';
 
 const mapState = state => ({
   categories: selectCategoriesData(state),
+  completedCategories: selectCompletedCategories(state),
   isInstructionsVisible: selectInstructionsVisibility(state),
   instructions: selectInstructionsData(state),
   isCategoryCompleted: selectIsCategoryCompleted(state),
@@ -44,6 +48,7 @@ const propTypes = {
       ),
     })
   ),
+  completedCategories: PropTypes.arrayOf(PropTypes.number),
   fetchCategories: PropTypes.func.isRequired,
   fetchQuestions: PropTypes.func.isRequired,
   fetchInstructions: PropTypes.func.isRequired,
@@ -58,6 +63,7 @@ const CategoriesContainer = ({
   initProgress,
   isCategoryCompleted,
   categories,
+  completedCategories,
   isInstructionsVisible,
   instructions,
   toggleInstructionsVisibility,
@@ -74,6 +80,7 @@ const CategoriesContainer = ({
       <Categories
         isCategoryCompleted={isCategoryCompleted}
         categories={categories}
+        completedCategories={completedCategories}
         isInstructionsVisible={isInstructionsVisible}
         instructions={instructions}
         toggleInstructionsVisibility={toggleInstructionsVisibility}

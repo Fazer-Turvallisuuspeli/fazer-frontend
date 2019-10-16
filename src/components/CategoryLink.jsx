@@ -8,9 +8,21 @@ const propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   cleanName: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
 };
 
-const CategoryLink = ({ id, name, cleanName }) => {
+const CategoryLink = ({ id, name, cleanName, isDisabled }) => {
+  if (isDisabled)
+    return (
+      <>
+        <img
+          src={require(`../assets/images/categoryLogos/${cleanName}.png`)}
+          alt={cleanName}
+        />
+        <p>{name}</p>
+      </>
+    );
+
   return (
     <Link to={`/categories/${id}`}>
       <img

@@ -19,6 +19,7 @@ const propTypes = {
       ).isRequired,
     }).isRequired
   ).isRequired,
+  completedCategories: PropTypes.arrayOf(PropTypes.number).isRequired,
   isInstructionsVisible: PropTypes.bool.isRequired,
   instructions: PropTypes.arrayOf(PropTypes.shape({})),
   toggleInstructionsVisibility: PropTypes.func.isRequired,
@@ -26,6 +27,7 @@ const propTypes = {
 
 const Categories = ({
   categories = [],
+  completedCategories,
   isInstructionsVisible,
   instructions,
   toggleInstructionsVisibility,
@@ -37,7 +39,13 @@ const Categories = ({
           const cleanName = formatString(name);
 
           return (
-            <CategoryLink key={id} id={id} name={name} cleanName={cleanName} />
+            <CategoryLink
+              key={id}
+              id={id}
+              name={name}
+              cleanName={cleanName}
+              isDisabled={completedCategories.includes(id)}
+            />
           );
         })}
       </div>
