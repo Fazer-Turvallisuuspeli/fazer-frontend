@@ -1,5 +1,8 @@
 import { createSelector } from 'redux-starter-kit';
-import { selectCurrentCategoryId } from './categoriesSelectors';
+import {
+  selectCurrentCategoryId,
+  selectCategoriesData,
+} from './categoriesSelectors';
 import { selectCurrentQuestionId } from './questionsSelectors';
 
 export const selectProgress = state => state.progress;
@@ -109,4 +112,22 @@ export const selectCurrentCheckedChoices = createSelector(
     perCategory[categoryId].perQuestion[questionId].checkedChoices
       ? perCategory[categoryId].perQuestion[questionId].checkedChoices
       : []
+);
+
+export const selectNextCategoryId = createSelector(
+  [selectCategoriesData, selectCurrentCategoryId],
+  (categories, categoryId) =>
+    categories &&
+    categoryId &&
+    categories[
+      categories.indexOf(
+        categories.find(category => category.id === categoryId)
+      ) + 1
+    ]
+      ? categories[
+          categories.indexOf(
+            categories.find(category => category.id === categoryId)
+          ) + 1
+        ].id
+      : categories[0].id
 );

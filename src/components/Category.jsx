@@ -20,6 +20,7 @@ const propTypes = {
   }).isRequired,
   isInstructionsVisible: PropTypes.bool.isRequired,
   toggleInstructionsVisibility: PropTypes.func.isRequired,
+  nextCategoryId: PropTypes.number.isRequired,
 };
 
 const Category = ({
@@ -27,6 +28,7 @@ const Category = ({
   category,
   isInstructionsVisible,
   toggleInstructionsVisibility,
+  nextCategoryId,
 }) => {
   if (isCategoryCompleted)
     return (
@@ -34,6 +36,7 @@ const Category = ({
         category={category}
         isInstructionsVisible={isInstructionsVisible}
         toggleInstructionsVisibility={toggleInstructionsVisibility}
+        nextCategoryId={nextCategoryId}
       />
     );
 

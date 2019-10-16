@@ -11,13 +11,17 @@ import {
 import { initProgress } from '../actions/progressActions';
 import { selectInstructionsVisibility } from '../selectors/instructionsSelectors';
 import { toggleInstructionsVisibility } from '../actions/instructionsActions';
-import { selectIsCategoryCompleted } from '../selectors/progressSelectors';
+import {
+  selectIsCategoryCompleted,
+  selectNextCategoryId,
+} from '../selectors/progressSelectors';
 import Category from '../components/Category';
 
 const mapState = state => ({
   category: selectCurrentCategory(state),
   isInstructionsVisible: selectInstructionsVisibility(state),
   isCategoryCompleted: selectIsCategoryCompleted(state),
+  nextCategoryId: selectNextCategoryId(state),
 });
 
 const mapDispatch = {
@@ -37,6 +41,7 @@ const propTypes = {
   category: PropTypes.shape({}),
   isInstructionsVisible: PropTypes.bool.isRequired,
   toggleInstructionsVisibility: PropTypes.func.isRequired,
+  nextCategoryId: PropTypes.number,
 };
 
 const CategoryContainer = ({
@@ -48,6 +53,7 @@ const CategoryContainer = ({
   category,
   isInstructionsVisible,
   toggleInstructionsVisibility,
+  nextCategoryId,
 }) => {
   const { categoryId } = useParams();
 
@@ -70,6 +76,7 @@ const CategoryContainer = ({
       category={category}
       isInstructionsVisible={isInstructionsVisible}
       toggleInstructionsVisibility={toggleInstructionsVisibility}
+      nextCategoryId={nextCategoryId}
     />
   ) : null;
 };

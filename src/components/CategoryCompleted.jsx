@@ -17,12 +17,14 @@ const propTypes = {
   }).isRequired,
   isInstructionsVisible: PropTypes.bool.isRequired,
   toggleInstructionsVisibility: PropTypes.func.isRequired,
+  nextCategoryId: PropTypes.number.isRequired,
 };
 
 const CategoryCompleted = ({
   category,
   isInstructionsVisible,
   toggleInstructionsVisibility,
+  nextCategoryId,
 }) => {
   return (
     <>
@@ -53,7 +55,7 @@ const CategoryCompleted = ({
         </button>
 
         {/* TODO : Link to next category, or category list if last category */}
-        <Link to="/categories">
+        <Link to={`/categories/${nextCategoryId}`}>
           <button type="button">Seuraava</button>
         </Link>
       </Footer>
