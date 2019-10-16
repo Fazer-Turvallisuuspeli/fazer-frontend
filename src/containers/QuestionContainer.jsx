@@ -12,6 +12,7 @@ import {
   selectIsCategoryCompleted,
   selectIsQuestionCompleted,
   selectIsQuestionCorrect,
+  selectCurrentCheckedChoices,
 } from '../selectors/progressSelectors';
 import {
   setQuestionChoice,
@@ -22,6 +23,7 @@ import Question from '../components/Question';
 
 const mapState = state => ({
   question: selectCurrentQuestion(state),
+  checkedChoices: selectCurrentCheckedChoices(state),
   nthQuestion: selectNthQuestion(state),
   amountOfQuestions: selectAmountOfQuestions(state),
   isSubmitting: selectIsSubmitting(state),
@@ -39,6 +41,7 @@ const mapDispatch = {
 
 const propTypes = {
   question: PropTypes.shape({}),
+  checkedChoices: PropTypes.arrayOf(PropTypes.number),
   nthQuestion: PropTypes.number,
   amountOfQuestions: PropTypes.number,
   setQuestionChoice: PropTypes.func.isRequired,
@@ -53,6 +56,7 @@ const propTypes = {
 
 const QuestionContainer = ({
   question,
+  checkedChoices,
   nthQuestion,
   amountOfQuestions,
   setQuestionChoice,
@@ -77,6 +81,7 @@ const QuestionContainer = ({
   return question ? (
     <Question
       question={question}
+      checkedChoices={checkedChoices}
       handleOnChange={handleQuestionOnChange}
       handleSubmitAnswer={handleSubmitAnswer}
       nthQuestion={nthQuestion}

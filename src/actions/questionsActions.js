@@ -2,10 +2,7 @@
 import * as types from '../constants/actionTypes';
 import { callApi } from '../utils/apiUtils';
 import { QUESTIONS_URL } from '../constants/apiConstants';
-import {
-  selectQuestionsData,
-  selectCurrentQuestions,
-} from '../selectors/questionsSelectors';
+import { selectQuestionsData } from '../selectors/questionsSelectors';
 import { fetchCategories } from './categoriesActions';
 import { selectCurrectUncompletedQuestions } from '../selectors/progressSelectors';
 
@@ -48,7 +45,6 @@ export const setCurrentQuestionId = () => async (dispatch, getState) => {
   await dispatch(fetchQuestions());
 
   const state = getState();
-  const questions = selectCurrentQuestions(state);
   const uncompletedQuestions = selectCurrectUncompletedQuestions(state);
 
   const uncompletedQuestionIds = uncompletedQuestions.map(question =>
@@ -57,15 +53,17 @@ export const setCurrentQuestionId = () => async (dispatch, getState) => {
 
   let questionId;
 
+  // Abort early if all questions completed
   if (uncompletedQuestionIds.length === 0) {
-    console.log('questions', questions);
-    questionId = questions[Math.floor(Math.random() * questions.length)].id;
+    return;
   }
 
+  // Select the last remaining uncompleted question
   if (uncompletedQuestionIds.length === 1) {
     [questionId] = uncompletedQuestionIds;
   }
 
+  // Select random uncompleted question
   if (uncompletedQuestionIds.length > 1) {
     questionId =
       uncompletedQuestionIds[

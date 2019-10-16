@@ -89,14 +89,11 @@ export const submitQuestionAnswer = questionId => async (
   );
   const correctAnswers = selectCorrectAnswersByQuestionId(state, questionId);
 
-  console.log('Checked choices', checkedChoices);
-  console.log('Correct answers', correctAnswers);
-
+  // TODO: Choice order shouldn't matter, e.g. checkedChoices [1, 3, 2] should be correct when correctAnswers is [1, 2, 3]
   let isCorrect = false;
   if (deepEqual(checkedChoices, correctAnswers)) {
     isCorrect = true;
   }
-  console.log('isCorrect', isCorrect);
 
   dispatch({
     type: types.SUBMIT_QUESTION_ANSWER,

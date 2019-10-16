@@ -42,12 +42,13 @@ export const selectAmountOfQuestions = createSelector(
 );
 
 export const selectIsSubmitting = createSelector(
-  [selectProgressPerCategory, selectCurrentCategoryId],
-  (perCategory, categoryId) =>
+  [selectProgressPerCategory, selectCurrentCategoryId, selectCurrentQuestionId],
+  (perCategory, categoryId, questionId) =>
     perCategory &&
     perCategory[categoryId] &&
-    perCategory[categoryId].isSubmitting
-      ? perCategory[categoryId].isSubmitting
+    perCategory[categoryId].isSubmitting &&
+    perCategory[categoryId].perQuestion[questionId].isSubmitting
+      ? perCategory[categoryId].perQuestion[questionId].isSubmitting
       : false
 );
 

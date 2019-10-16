@@ -17,6 +17,7 @@ const propTypes = {
       })
     ).isRequired,
   }).isRequired,
+  checkedChoices: PropTypes.arrayOf(PropTypes.number).isRequired,
   handleOnChange: PropTypes.func.isRequired,
   handleSubmitAnswer: PropTypes.func.isRequired,
   nthQuestion: PropTypes.number.isRequired,
@@ -30,6 +31,7 @@ const propTypes = {
 
 const Question = ({
   question,
+  checkedChoices,
   handleOnChange,
   handleSubmitAnswer,
   nthQuestion,
@@ -56,6 +58,7 @@ const Question = ({
           <div key={choice.id}>
             {index + 1})
             <input
+              checked={checkedChoices.includes(choice.id)}
               disabled={isAnsweringDisabled}
               type="checkbox"
               id={`question-${question.id}-choice-${choice.id}`}
