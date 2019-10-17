@@ -8,13 +8,17 @@ import {
 } from '../styles/footerStyles';
 
 const propTypes = {
+  toggleInstructionsVisibility: PropTypes.func.isRequired,
   children: PropTypes.node,
 };
 
-const Footer = ({ children }) => {
+const Footer = ({ toggleInstructionsVisibility, children }) => {
   return (
     <StyledFooter>
-      <InfoImage src={require('../assets/images/info.png')} />
+      <InfoImage
+        onClick={toggleInstructionsVisibility}
+        src={require('../assets/images/info.png')}
+      />
       {children}
       <StyledCopyright>
         Copyright © Fazer {new Date().getFullYear()}
