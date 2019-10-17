@@ -9,6 +9,18 @@ import {
 const AdminContainer = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [isAddingNewCategory, setIsAddingNewCategory] = useState(false);
+
+  const [newCategoryName, setNewCategoryName] = useState('');
+  const [
+    newCategoryInstructionsTitle,
+    setNewCategoryInstructionsTitle,
+  ] = useState('');
+  const [
+    newCategoryInstructionsBody,
+    setNewCategoryInstructionsBody,
+  ] = useState('');
 
   const fetchCategories = useCallback(async () => {
     const categories = await callApi(CATEGORIES_URL);
@@ -19,44 +31,65 @@ const AdminContainer = () => {
     fetchCategories();
   }, [fetchCategories]);
 
-  const handleCategoryChange = target => {
-    const { value: categoryIdString } = target;
-    const categoryId = Number(categoryIdString);
+  const fetchQuestions = async categoryId => {
+    // Mock api returns ALL questions even though we only need the ones for a certain category ID
+    const questions = await callApi(
+      CATEGORY_QUESTIONS_URL.replace(':categoryId', categoryId)
+    );
 
-    const category = categories.find(category => category.id === categoryId);
-
-    setSelectedCategory(category);
-  };
-
-  const [questions, setQuestions] = useState([]);
-
-  const fetchQuestions = useCallback(async () => {
-    const { id: selectedCategoryId } = selectedCategory;
-
-    const categoryQuestions = await callApi(
-      CATEGORY_QUESTIONS_URL.replace(':categoryId', selectedCategoryId)
+    const categoryQuestions = questions.filter(
+      question => question.categoryId === categoryId
     );
 
     setQuestions(categoryQuestions);
-  }, [selectedCategory]);
+  };
 
-  useEffect(() => {
-    if (!selectedCategory) return;
+  const handleCategoryChange = target => {
+    const { value: categoryIdString } = target;
+    const categoryId = Number(categoryIdString);
+    if (!categoryId) {
+      setSelectedCategory(null);
+      setQuestions([]);
+      return;
+    }
 
-    fetchQuestions();
-  }, [selectedCategory, fetchQuestions]);
+    const category = categories.find(category => category.id === categoryId);
+    setSelectedCategory(category);
 
-  const [selectedQuestion, setSelectedQuestion] = useState(null);
+    fetchQuestions(category.id);
+  };
 
-  const handleQuestionChange = target => {
-    const { value: selectedQuestionIdString } = target;
-    const selectedQuestionId = Number(selectedQuestionIdString);
+  const resetNewCategory = () => {
+    setIsAddingNewCategory(false);
+    setNewCategoryName('');
+    setNewCategoryInstructionsTitle('');
+    setNewCategoryInstructionsBody('');
+  };
 
-    const selectedQuestion = questions.find(
-      question => question.id === selectedQuestionId
-    );
+  const handleNewCategorySubmit = async event => {
+    event.preventDefault();
 
-    setSelectedQuestion(selectedQuestion);
+    const newCategory = {
+      name: newCategoryName,
+      instructions: [
+        {
+          title: newCategoryInstructionsTitle,
+          body: newCategoryInstructionsBody,
+        },
+      ],
+    };
+
+    await callApi(CATEGORIES_URL, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newCategory),
+    });
+
+    fetchCategories();
+    resetNewCategory();
   };
 
   return (
@@ -78,42 +111,89 @@ const AdminContainer = () => {
               ))}
             </select>
           </label>
+
+          {!isAddingNewCategory && (
+            <button type="button" onClick={() => setIsAddingNewCategory(true)}>
+              Lisää uusi kategoria
+            </button>
+          )}
+
+          {isAddingNewCategory && (
+            <div>
+              <form onSubmit={event => handleNewCategorySubmit(event)}>
+                <div>
+                  <label htmlFor="input-category-name">
+                    Kategorian nimi
+                    <input
+                      type="text"
+                      id="input-category-name"
+                      value={newCategoryName}
+                      onChange={({ target }) =>
+                        setNewCategoryName(target.value)
+                      }
+                    />
+                  </label>
+                </div>
+
+                <div>
+                  <h3>Ohjeet</h3>
+
+                  <div>
+                    <div>
+                      <label htmlFor="input-category-instructions-title">
+                        Otsikko
+                        <input
+                          type="text"
+                          id="input-category-instructions-title"
+                          value={newCategoryInstructionsTitle}
+                          onChange={({ target }) =>
+                            setNewCategoryInstructionsTitle(target.value)
+                          }
+                        />
+                      </label>
+                    </div>
+
+                    <div>
+                      <label htmlFor="input-category-instructions-body">
+                        Leipäteksti
+                        <textarea
+                          type="text"
+                          id="input-category-instructions-body"
+                          value={newCategoryInstructionsBody}
+                          onChange={({ target }) =>
+                            setNewCategoryInstructionsBody(target.value)
+                          }
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <button type="button" onClick={resetNewCategory}>
+                    Hylkää
+                  </button>
+                  <input type="submit" value="Tallenna" />
+                </div>
+              </form>
+            </div>
+          )}
         </div>
 
         {selectedCategory && (
-          <>
-            <div>
-              <label htmlFor="question-select">
-                Kysymys:
-                <select
-                  name="question-select"
-                  onChange={({ target }) => handleQuestionChange(target)}>
-                  <option>Valitse kysymys</option>
-                  {questions.map(question => (
-                    <option key={question.id} value={question.id}>
-                      {question.question}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-
-            {selectedQuestion && (
-              <div>
-                <label htmlFor="choice-select">
-                  Vastausvaihtoehto:
-                  <select name="choice-select">
-                    <option>Valitse vastausvaihtoehto</option>
-                    {selectedQuestion.choices.map((choice, index) => (
-                      <option key={choice.id}>
-                        {index + 1}) {choice.option}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+          <div>
+            <h3>Kysymykset:</h3>
+            {questions.map(question => (
+              <div key={question.id}>
+                <h4>{question.question}</h4>
+                {question.choices.map((choice, index) => (
+                  <p key={choice.id}>
+                    {index + 1}) {choice.option}
+                  </p>
+                ))}
               </div>
-            )}
-          </>
+            ))}
+          </div>
         )}
       </div>
     </div>
