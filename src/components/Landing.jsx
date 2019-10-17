@@ -68,7 +68,7 @@ const Landing = ({
         </Instructions>
       )}
 
-      <Footer />
+      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility} />
     </>
   );
 };
