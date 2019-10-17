@@ -1,5 +1,11 @@
+/* eslint-disable global-require */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  StyledCopyright,
+  StyledFooter,
+  InfoImage,
+} from '../styles/footerStyles';
 
 const propTypes = {
   children: PropTypes.node,
@@ -7,11 +13,16 @@ const propTypes = {
 
 const Footer = ({ children }) => {
   return (
-    <footer style={{ outline: '1px solid grey' }}>
+    <StyledFooter>
+      <InfoImage src={require('../assets/images/info.png')} />
       {children}
-      <p>Copyright © Fazer {new Date().getFullYear()}</p>
-      <p>Sovelluksen on tuottanut Lahden ammattikorkeakoulu</p>
-    </footer>
+      <StyledCopyright>
+        Copyright © Fazer {new Date().getFullYear()}
+      </StyledCopyright>
+      <StyledCopyright>
+        Sovelluksen on tuottanut Lahden ammattikorkeakoulu
+      </StyledCopyright>
+    </StyledFooter>
   );
 };
 
