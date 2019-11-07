@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  StyledHeading,
+  StyledParagraph,
+  StyledDiv,
+} from '../styles/instructionsStyles';
 
 const propTypes = {
   instructions: PropTypes.arrayOf(
@@ -20,16 +25,16 @@ const defaultInstructions = [
 
 const Instructions = ({ instructions = defaultInstructions, children }) => {
   return (
-    <div>
+    <StyledDiv>
       {instructions.map(({ title, body }) => (
         <div key={body}>
-          {title && <h2>{title}</h2>}
-          <p>{body}</p>
+          {title && <StyledHeading>{title}</StyledHeading>}
+          <StyledParagraph>{body}</StyledParagraph>
         </div>
       ))}
 
       {children}
-    </div>
+    </StyledDiv>
   );
 };
 
