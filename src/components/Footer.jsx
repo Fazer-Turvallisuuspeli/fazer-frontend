@@ -14,7 +14,7 @@ const propTypes = {
 
 const Footer = ({ toggleInstructionsVisibility, children }) => {
   return (
-    <StyledFooter>
+    <StyledFooter className="footer">
       <InfoImage
         onClick={toggleInstructionsVisibility}
         src={require('../assets/images/info.png')}
