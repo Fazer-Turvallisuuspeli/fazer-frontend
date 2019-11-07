@@ -9,7 +9,7 @@ import CategoryLink from './CategoryLink';
 const propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       instructions: PropTypes.arrayOf(
         PropTypes.shape({
@@ -19,7 +19,7 @@ const propTypes = {
       ).isRequired,
     }).isRequired
   ).isRequired,
-  completedCategories: PropTypes.arrayOf(PropTypes.number).isRequired,
+  completedCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
   isInstructionsVisible: PropTypes.bool.isRequired,
   instructions: PropTypes.arrayOf(PropTypes.shape({})),
   toggleInstructionsVisibility: PropTypes.func.isRequired,
@@ -58,7 +58,7 @@ const Categories = ({
         </Instructions>
       )}
 
-      <Footer>
+      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility}>
         <Link to="/">
           <button type="button">Palaa alkuun</button>
         </Link>

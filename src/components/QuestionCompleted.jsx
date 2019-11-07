@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   question: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    categoryId: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    categoryId: PropTypes.string.isRequired,
     question: PropTypes.string.isRequired,
     explanation: PropTypes.string.isRequired,
     isSingleChoice: PropTypes.bool.isRequired,
-    correctChoiceId: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+    correctChoiceId: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     choices: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         option: PropTypes.string.isRequired,
       })
     ).isRequired,

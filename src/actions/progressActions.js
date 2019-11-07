@@ -105,9 +105,11 @@ export const setNextQuestion = () => async (dispatch, getState) => {
   const state = getState();
   const uncompletedQuestions = selectCurrectUncompletedQuestions(state);
 
-  const uncompletedQuestionIds = uncompletedQuestions.map(question =>
-    Number(question[0])
+  const uncompletedQuestionIds = uncompletedQuestions.map(
+    question => question[0]
   );
+
+  console.log('uncompletedQuestionIds PROGRESS', uncompletedQuestionIds);
 
   let questionId;
   const categoryId = selectCurrentCategoryId(state);

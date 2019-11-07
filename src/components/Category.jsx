@@ -9,7 +9,7 @@ import Footer from './Footer';
 const propTypes = {
   isCategoryCompleted: PropTypes.bool.isRequired,
   category: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     instructions: PropTypes.arrayOf(
       PropTypes.shape({
@@ -20,7 +20,7 @@ const propTypes = {
   }).isRequired,
   isInstructionsVisible: PropTypes.bool.isRequired,
   toggleInstructionsVisibility: PropTypes.func.isRequired,
-  nextCategoryId: PropTypes.number.isRequired,
+  nextCategoryId: PropTypes.string.isRequired,
 };
 
 const Category = ({
@@ -54,7 +54,7 @@ const Category = ({
         </Instructions>
       )}
 
-      <Footer>
+      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility}>
         <Link to="/categories">
           <button type="button">Päävalikko</button>
         </Link>

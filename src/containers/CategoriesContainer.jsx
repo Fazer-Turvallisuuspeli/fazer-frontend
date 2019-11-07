@@ -38,7 +38,7 @@ const mapDispatch = {
 const propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       instructions: PropTypes.arrayOf(
         PropTypes.shape({
@@ -48,12 +48,13 @@ const propTypes = {
       ),
     })
   ),
-  completedCategories: PropTypes.arrayOf(PropTypes.number),
+  completedCategories: PropTypes.arrayOf(PropTypes.string),
   fetchCategories: PropTypes.func.isRequired,
   fetchQuestions: PropTypes.func.isRequired,
   fetchInstructions: PropTypes.func.isRequired,
   initProgress: PropTypes.func.isRequired,
   isCategoryCompleted: PropTypes.bool.isRequired,
+  toggleInstructionsVisibility: PropTypes.func.isRequired,
 };
 
 const CategoriesContainer = ({

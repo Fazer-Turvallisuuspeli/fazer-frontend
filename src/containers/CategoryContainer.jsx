@@ -41,7 +41,7 @@ const propTypes = {
   category: PropTypes.shape({}),
   isInstructionsVisible: PropTypes.bool.isRequired,
   toggleInstructionsVisibility: PropTypes.func.isRequired,
-  nextCategoryId: PropTypes.number,
+  nextCategoryId: PropTypes.string,
 };
 
 const CategoryContainer = ({
@@ -56,16 +56,17 @@ const CategoryContainer = ({
   nextCategoryId,
 }) => {
   const { categoryId } = useParams();
+  console.log('categoryId', categoryId);
 
   useEffect(() => {
     setCurrentCategoryId(categoryId);
-    fetchQuestions();
     setCurrentQuestionId();
+    fetchQuestions();
     initProgress();
   }, [
     setCurrentCategoryId,
-    fetchQuestions,
     setCurrentQuestionId,
+    fetchQuestions,
     initProgress,
     categoryId,
   ]);
