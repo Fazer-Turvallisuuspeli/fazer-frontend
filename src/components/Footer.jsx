@@ -1,17 +1,32 @@
+/* eslint-disable global-require */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  StyledCopyright,
+  StyledFooter,
+  InfoImage,
+} from '../styles/footerStyles';
 
 const propTypes = {
+  toggleInstructionsVisibility: PropTypes.func.isRequired,
   children: PropTypes.node,
 };
 
-const Footer = ({ children }) => {
+const Footer = ({ toggleInstructionsVisibility, children }) => {
   return (
-    <footer style={{ outline: '1px solid grey' }}>
+    <StyledFooter>
+      <InfoImage
+        onClick={toggleInstructionsVisibility}
+        src={require('../assets/images/info.png')}
+      />
       {children}
-      <p>Copyright © Fazer {new Date().getFullYear()}</p>
-      <p>Sovelluksen on tuottanut Lahden ammattikorkeakoulu</p>
-    </footer>
+      <StyledCopyright>
+        Copyright © Fazer {new Date().getFullYear()}
+      </StyledCopyright>
+      <StyledCopyright>
+        Sovelluksen on tuottanut Lahden ammattikorkeakoulu
+      </StyledCopyright>
+    </StyledFooter>
   );
 };
 

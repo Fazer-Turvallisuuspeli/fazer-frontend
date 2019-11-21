@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Instructions from './Instructions';
 import Footer from './Footer';
 import { StyledRoundButton } from '../styles/indexStyles';
+import { StyledHeading } from '../styles/landingStyles';
 
 const propTypes = {
   lastName: PropTypes.string.isRequired,
@@ -46,7 +47,7 @@ const Landing = ({
 }) => {
   return (
     <>
-      <h1>Tervetuloa, {lastName}</h1>
+      <StyledHeading>Tervetuloa, {lastName}</StyledHeading>
 
       <Instructions instructions={welcomeMessage}>
         <Link to="/categories">
@@ -59,13 +60,15 @@ const Landing = ({
 
       {isInstructionsVisible && (
         <Instructions instructions={instructions}>
-          <button onClick={toggleInstructionsVisibility} type="button">
+          <StyledRoundButton
+            onClick={toggleInstructionsVisibility}
+            type="button">
             Sulje
-          </button>
+          </StyledRoundButton>
         </Instructions>
       )}
 
-      <Footer />
+      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility} />
     </>
   );
 };
