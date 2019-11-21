@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { ImgCategories, ImgCategories2 } from '../styles/indexStyles';
 
 const propTypes = {
   id: PropTypes.number.isRequired,
@@ -15,7 +16,7 @@ const CategoryLink = ({ id, name, cleanName, isDisabled }) => {
   if (isDisabled)
     return (
       <>
-        <img
+        <ImgCategories2
           src={require(`../assets/images/categoryLogos/${cleanName}.png`)}
           alt={cleanName}
         />
@@ -25,7 +26,7 @@ const CategoryLink = ({ id, name, cleanName, isDisabled }) => {
 
   return (
     <Link to={`/categories/${id}`}>
-      <img
+      <ImgCategories
         src={require(`../assets/images/categoryLogos/${cleanName}.png`)}
         alt={cleanName}
       />

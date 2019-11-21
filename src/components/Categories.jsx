@@ -5,6 +5,13 @@ import Instructions from './Instructions';
 import Footer from './Footer';
 import { formatString } from '../utils/stringUtils';
 import CategoryLink from './CategoryLink';
+import {
+  DivCont,
+  DivCategories,
+  StyledRoundButton,
+  DivButton,
+} from '../styles/indexStyles';
+import { DivStyle, StyledHeading } from '../styles/landingStyles';
 
 const propTypes = {
   categories: PropTypes.arrayOf(
@@ -33,41 +40,54 @@ const Categories = ({
   toggleInstructionsVisibility,
 }) => {
   return (
-    <>
-      <div>
-        {categories.map(({ id, name }) => {
-          const cleanName = formatString(name);
+    <DivCont className="root">
+      <DivStyle className="picture">
+        <StyledHeading>VALITSE KATEGORIA</StyledHeading>
+        <DivCategories>
+          {categories.map(({ id, name }) => {
+            const cleanName = formatString(name);
 
-          return (
-            <CategoryLink
-              key={id}
-              id={id}
-              name={name}
-              cleanName={cleanName}
-              isDisabled={completedCategories.includes(id)}
-            />
-          );
-        })}
-      </div>
+            return (
+              <CategoryLink
+                key={id}
+                id={id}
+                name={name}
+                cleanName={cleanName}
+                isDisabled={completedCategories.includes(id)}
+              />
+            );
+          })}
+        </DivCategories>
 
-      {isInstructionsVisible && (
-        <Instructions instructions={instructions}>
-          <button onClick={toggleInstructionsVisibility} type="button">
-            Sulje
-          </button>
-        </Instructions>
-      )}
+        {isInstructionsVisible && (
+          <Instructions instructions={instructions}>
+            <button onClick={toggleInstructionsVisibility} type="button">
+              Sulje
+            </button>
+          </Instructions>
+        )}
+        <DivButton>
+          <Link to="/">
+            <StyledRoundButton type="button">Palaa alkuun</StyledRoundButton>
+          </Link>
 
+          <StyledRoundButton
+            type="button"
+            onClick={toggleInstructionsVisibility}>
+            Info
+          </StyledRoundButton>
+        </DivButton>
+      </DivStyle>
       <Footer>
-        <Link to="/">
+        {/* <Link to="/">
           <button type="button">Palaa alkuun</button>
         </Link>
 
         <button type="button" onClick={toggleInstructionsVisibility}>
           info
-        </button>
+        </button> */}
       </Footer>
-    </>
+    </DivCont>
   );
 };
 
