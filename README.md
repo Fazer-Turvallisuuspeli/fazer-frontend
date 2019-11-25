@@ -1,5 +1,7 @@
 <h1 align="center">Fazer Työturvallisuuspeli - Frontend</h1>
 
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+
 Frontend for LAMK's Fazer Työturvallisuuspeli. Requires a backend API for running in production mode. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses Redux to maintain application state. DBjson is used to serve a mock API locally for development.
 
 ## Getting Started
@@ -138,3 +140,17 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/KatriH"><img src="https://avatars3.githubusercontent.com/u/55525154?v=4" width="100px;" alt="Katri H"/><br /><sub><b>Katri H</b></sub></a><br /><a href="#design-KatriH" title="Design">🎨</a></td>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
