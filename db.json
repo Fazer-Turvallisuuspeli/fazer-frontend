@@ -35,6 +35,40 @@
       }
     ]
   },
+  "welcomeMessage": [
+    {
+      "title": "Tervetuloa töihin Fazerille!",
+      "body": "Työ- ja elintarviketurvallisuus ovat toimintamme perusta, joista emme tingi missään vaiheessa.\nMeille on tärkeää, että jokainen työntekijämme ja yhteistyökumppanimme voi tulla ja lähteä töistä turvallisin mielin joka päivä.\n\nHyvä työ- ja elintarviketurvallisuus koostuu monesta tekijästä ja haluamme varmistaa, että tuotteemme ja palvelumme ovat aina korkealaatuisia. Turvallisuus tulee meillä aina ensin. Siksi olemme laatineet ohjeistukset, joita jokaisen tulee noudattaa, niin Fazerin työntekijän kuin yhteistyökumppanin.\n\nTurvallisuuspeli opastaa sinut Fazerin turvallisuuden perussääntöihin. Mikäli sinulla on kysymyksiä, ota yhteyttä yhteyshenkilöösi!"
+    }
+  ],
+  "units": [
+    {
+      "id": 1,
+      "name": "Lahti"
+    },
+    {
+      "id": 2,
+      "name": "Lappeenranta"
+    },
+    {
+      "id": 3,
+      "name": "Vantaa"
+    },
+    {
+      "id": 4,
+      "name": "Fazer makeiset"
+    },
+    {
+      "id": 5,
+      "name": "Myymäläleipomot"
+    }
+  ],
+  "instructions": [
+    {
+      "title": "Ohjeet",
+      "body": "Voit pelata kategoriat läpi haluamassasi järjestyksessä. Ennen kuin pääset suorittamaan tehtäviä, sinun tulee lukea tietopankki kyseisestä aiheesta. Jos haluat palata tietopankkiin tehtävien suorittamisen aikana, pääset sinne 'Tietopankki'-painikkeesta.\n\nValitse tehtävissä oikeat väittämät.\n\nSuoritettuasi yhden kategorian loppuun, voit siirtyä suoraan seuraavaan valitsemalla 'Seuraava'.\n\nVastattuasi kyseessä olen alueen vaihtoehtoihin, loppuun tulee aina yhteenveto, joka kattaa koko alueen oikean vastauksen.\n\nVaraa pelin suorittamiseen aikaa noin 30 minuuttia. Suoritettuasi pelin loppuun, tulokset lähetetään automaattisesti yksikkösi vastaavalle henkilölle.\n\nHuomio! Sivun päivittäminen tai sivulta poistuminen saattaa johtaa tietojen menettämiseen!"
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -222,7 +256,7 @@
       "question": "Henkilösuojainten tarve määritellään",
       "explanation": "",
       "isSingleChoice": false,
-      "correctChoiceId": [1,2,3],
+      "correctChoiceId": [1, 2, 3],
       "choices": [
         {
           "id": 1,
@@ -235,7 +269,7 @@
         {
           "id": 3,
           "option": "Työterveyshuollon toimesta."
-        }  
+        }
       ]
     },
     {
@@ -244,7 +278,7 @@
       "question": "Leipomotyössä on käytettävä mm. seuraavia henkilösuojaimia",
       "explanation": "Puuvillakäsineillä ei ole suojaluokitusta. Niitä käytetään hygienian varmistamiseksi.",
       "isSingleChoice": false,
-      "correctChoiceId": [1,2,3,5],
+      "correctChoiceId": [1, 2, 3, 5],
       "choices": [
         {
           "id": 1,
@@ -265,7 +299,7 @@
         {
           "id": 5,
           "option": "viiltosuojahanskat"
-        }  
+        }
       ]
     }
   ]
