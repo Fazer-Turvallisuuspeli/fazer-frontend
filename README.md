@@ -149,8 +149,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/KatriH"><img src="https://avatars3.githubusercontent.com/u/55525154?v=4" width="100px;" alt="Katri H"/><br /><sub><b>Katri H</b></sub></a><br /><a href="#design-KatriH" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/KatriH"><img src="https://avatars3.githubusercontent.com/u/55525154?v=4" width="100px;" alt="Katri H"/><br /><sub><b>Katri H</b></sub></a><br /><a href="#design-KatriH" title="Design">🎨</a><a href="https://github.com/Fazer-Turvallisuuspeli/fazer-frontend/commits?author=KatriH" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/JonnaJonna"><img src="https://avatars0.githubusercontent.com/u/55349355?v=4" width="100px;" alt="Jonna J."/><br /><sub><b>Jonna J.</b></sub></a><br /><a href="https://github.com/Fazer-Turvallisuuspeli/fazer-frontend/commits?author=JonnaJonna" title="Code">💻</a></td>
   </tr>
 </table>
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
