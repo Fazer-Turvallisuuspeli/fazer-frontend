@@ -1,9 +1,13 @@
 {
   "/api/v1/game/info": "/info",
+  "/api/v1/game/info/welcomeMessage": "/welcomeMessage",
+  "/api/v1/game/info/units": "/units",
+  "/api/v1/game/info/instructions": "/instructions",
   "/api/v1/game/users": "/users",
   "/api/v1/game/users/:id": "/users/:id",
   "/api/v1/game/categories": "/categories",
   "/api/v1/game/categories/:id": "/categories/:id",
   "/api/v1/game/categories/:id/questions": "/questions",
-  "/api/v1/game/categories/:id/questions/:id": "/questions/:id"
+  "/api/v1/game/categories/:id/questions/:id": "/questions/:id",
+  "/api/v1/game/questions": "/questions"
 }

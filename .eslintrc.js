@@ -33,6 +33,6 @@ module.exports = {
     'no-alert': 0,
     'no-shadow': 0,
     'react/require-default-props': 0,
-    'react/prop-types': 0, // enable when api is final
+    'react/prop-types': 1, // enable when api is final
   },
 };
