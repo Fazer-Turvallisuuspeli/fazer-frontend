@@ -1,4 +1,5 @@
 <h1 align="center">Fazer Työturvallisuuspeli - Frontend</h1>
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 <p align="center">
   <a href="https://fazer-frontend.veikko.dev">View live site</a>
 </p>
@@ -74,3 +75,19 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/KatriH"><img src="https://avatars3.githubusercontent.com/u/55525154?v=4" width="100px;" alt="Katri H"/><br /><sub><b>Katri H</b></sub></a><br /><a href="#design-KatriH" title="Design">🎨</a></td>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
