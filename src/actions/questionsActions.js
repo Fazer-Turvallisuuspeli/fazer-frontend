@@ -50,7 +50,6 @@ export const setCurrentQuestionId = () => async (dispatch, getState) => {
   const uncompletedQuestionIds = uncompletedQuestions.map(
     question => question[0]
   );
-  console.log('uncompletedQuestionIds', uncompletedQuestionIds);
 
   let questionId;
 
@@ -71,8 +70,6 @@ export const setCurrentQuestionId = () => async (dispatch, getState) => {
         Math.floor(Math.random() * uncompletedQuestionIds.length)
       ];
   }
-
-  console.log('questionId', questionId);
 
   dispatch({
     type: types.SET_CURRENT_QUESTION_ID,

@@ -109,8 +109,6 @@ export const setNextQuestion = () => async (dispatch, getState) => {
     question => question[0]
   );
 
-  console.log('uncompletedQuestionIds PROGRESS', uncompletedQuestionIds);
-
   let questionId;
   const categoryId = selectCurrentCategoryId(state);
 

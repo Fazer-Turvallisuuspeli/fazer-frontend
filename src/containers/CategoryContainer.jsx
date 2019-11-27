@@ -56,8 +56,6 @@ const CategoryContainer = ({
   nextCategoryId,
 }) => {
   const { categoryId } = useParams();
-  console.log('categoryId', categoryId);
-
   useEffect(() => {
     setCurrentCategoryId(categoryId);
     setCurrentQuestionId();
