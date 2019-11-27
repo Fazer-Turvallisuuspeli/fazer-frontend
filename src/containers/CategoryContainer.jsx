@@ -58,9 +58,9 @@ const CategoryContainer = ({
   const { categoryId } = useParams();
   useEffect(() => {
     setCurrentCategoryId(categoryId);
+    initProgress();
     setCurrentQuestionId();
     fetchQuestions();
-    initProgress();
   }, [
     setCurrentCategoryId,
     setCurrentQuestionId,
