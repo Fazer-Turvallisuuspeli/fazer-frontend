@@ -58,7 +58,7 @@ const Categories = ({
         </Instructions>
       )}
 
-      <Footer>
+      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility}>
         <Link to="/">
           <button type="button">Palaa alkuun</button>
         </Link>
