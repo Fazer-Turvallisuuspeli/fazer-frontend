@@ -15,10 +15,12 @@ const propTypes = {
 const Footer = ({ toggleInstructionsVisibility, children }) => {
   return (
     <StyledFooter>
-      <InfoImage
-        onClick={toggleInstructionsVisibility}
-        src={require('../assets/images/info.png')}
-      />
+      {toggleInstructionsVisibility && (
+        <InfoImage
+          onClick={toggleInstructionsVisibility}
+          src={require('../assets/images/info.png')}
+        />
+      )}
       {children}
       <StyledCopyright>
         Copyright © Fazer {new Date().getFullYear()}
