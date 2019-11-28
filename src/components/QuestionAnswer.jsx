@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyledRight, StyledWrong } from '../styles/answerStyle';
+import { StyledRoundButton } from '../styles/indexStyles';
 
 const propTypes = {
   question: PropTypes.shape({
@@ -34,15 +36,22 @@ const QuestionCompleted = ({ isCorrect, question, setNextQuestion }) => {
 
   return (
     <div>
-      {isCorrect ? <p>Oikein.</p> : <p>Väärin.</p>}
+      {isCorrect ? (
+        <StyledRight>Oikein.</StyledRight>
+      ) : (
+        <StyledWrong>Väärin.</StyledWrong>
+      )}
 
       {correctChoicesToShow()}
 
       {explanation && <p>{explanation}</p>}
 
-      <button onClick={() => setNextQuestion()} type="button">
+      <StyledRoundButton
+        className="fwdbutton"
+        onClick={() => setNextQuestion()}
+        type="button">
         Eteenpäin
-      </button>
+      </StyledRoundButton>
     </div>
   );
 };

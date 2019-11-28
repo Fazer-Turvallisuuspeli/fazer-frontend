@@ -11,14 +11,12 @@ export const StyledHeading = styled.h1`
 export const DivStyle = styled.div`
   background-color: #15256b;
   // eslint-disable-next-line no-undef
-  /* background-image: url(${fazerLogo}), url(${fazerLogin}); */
-  background-image: url(${fazerLogin});
+  background-image: url(${fazerLogo}), url(${fazerLogin});
   background-repeat: no-repeat;
-  /* background-size: 15%, 100% 90%; */
-  background-size: 100% 90%;
+  background-size: 15%, 100% 90%;
   background-attachment: fixed;
-  /* 
   background-position: 50px 50px, 0 0;
+  /* 
   display: block;
   */
   display: flex;
@@ -32,10 +30,4 @@ export const DivStyle = styled.div`
   align-items: center; */
   flex-direction: column;
   align-items: center;
-`;
-
-export const LogoImage = styled.img`
-  width: 3%;
-  float: right;
-  padding: 10px 20px;
 `;

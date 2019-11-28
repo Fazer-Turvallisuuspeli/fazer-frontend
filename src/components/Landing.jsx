@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Instructions from './Instructions';
 import Footer from './Footer';
 import { StyledRoundButton, DivCont } from '../styles/indexStyles';
-import { StyledHeading, DivStyle, LogoImage } from '../styles/landingStyles';
+import { StyledHeading, DivStyle } from '../styles/landingStyles';
 
 const propTypes = {
   lastName: PropTypes.string.isRequired,
@@ -49,9 +49,6 @@ const Landing = ({
   return (
     <DivCont className="root">
       <DivStyle className="picture">
-        <LogoImage>
-          src={require('../assets/images/logos/fazer-logo-border.png')}
-        </LogoImage>
         <StyledHeading>Tervetuloa, {lastName}</StyledHeading>
 
         <Instructions instructions={welcomeMessage}>

@@ -5,13 +5,9 @@ import Instructions from './Instructions';
 import Footer from './Footer';
 import { formatString } from '../utils/stringUtils';
 import CategoryLink from './CategoryLink';
-import {
-  DivCont,
-  DivCategories,
-  StyledRoundButton,
-  DivButton,
-} from '../styles/indexStyles';
+import { DivCont, StyledRoundButton, DivButton } from '../styles/indexStyles';
 import { DivStyle, StyledHeading } from '../styles/landingStyles';
+import { DivCategories } from '../styles/categoryStyle';
 
 const propTypes = {
   categories: PropTypes.arrayOf(
