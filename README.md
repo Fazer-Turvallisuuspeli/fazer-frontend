@@ -122,23 +122,23 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### `npm setup`
+### `npm run setup`
 
 An alias for `npm ci`, installs project dependencies without changing the dependecy version numbers.
 
-### `npm lint`
+### `npm run lint`
 
 Runs ESLint linting tool on project files to **check** for potential issues.
 
-### `npm lint:fix`
+### `npm run lint:fix`
 
 See above command. Fixes all fixable linting issues.
 
-### `npm format`
+### `npm run format`
 
 Runs Prettier code formatting tool to **check** for potential issues.
 
-### `npm format:fix`
+### `npm run format:fix`
 
 See above command. Fixes all fixable formatting issues.
 
