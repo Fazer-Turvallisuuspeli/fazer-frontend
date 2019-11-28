@@ -1,6 +1,24 @@
 <h1 align="center">Fazer Työturvallisuuspeli - Frontend</h1>
 
-Frontend for LAMK's Fazer Työturvallisuuspeli. Requires a backend API for running in production mode. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses Redux to maintain application state. DBjson is used to serve a mock API locally for development.
+Frontend for LAMK's Fazer Työturvallisuuspeli. Requires a backend (https://github.com/Fazer-Turvallisuuspeli/fazer-backend/) serving the API. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses Redux to maintain application state.
+
+## Redux
+**Redux store** holds the whole application state tree and it is divided into parts, also called slices, like categories, questions, progress, etc. Each state slice has its own **reducer** file to modify that part of the state slice. All these **reducers** are combined into a single **root reducer** which is passed to the **store**. 
+
+**Reducers** are essentially just big switch case functions which define the initial state for that particular slice and manage changes. To modify the state, you **dispatch** an **action**. Actions have a **type** and potentially a **payload**, containing some information like data or an error object. **Reducer** receives the **action** and checks the **type** of it inside the switch case function. The **payload** can then be accessed inside the reducer and be used to make state changes. All reducers should return the current state AND the changes. 
+
+**Types** are just arbitrary strings you've decided to use but in this project they are defined as constants, all the possible **types** are listed inside the `constants/actionTypes.js` file. 
+
+**Selectors** are used to access the state, e.g. inside components you can access categories by using the function `selectCategories` and by passing it the current **state** as the parameter. To create more complex **selectors** like to access nested objects, other **selectors** should be used inside the selector. 
+
+```js
+export const selectCategories = state => state.categories;
+
+export const selectCategoriesData = createSelector(
+  [selectCategories],
+  categories => categories.data
+);
+```
 
 ## Getting Started
 
@@ -21,7 +39,6 @@ npm ci
 Run in development mode
 
 ```
-npm run server    # Starts mock API server
 npm run build     # Starts hot reloading build
 ```
 
@@ -124,10 +141,6 @@ Runs Prettier code formatting tool to **check** for potential issues.
 ### `npm format:fix`
 
 See above command. Fixes all fixable formatting issues.
-
-### `npm server`
-
-Runs DBJson mock API server on port http://localhost:8080. Uses `db.json` for data and `routes.json` for routes. ":id" in the route URLs can be used as a parameter.
 
 ## Learn More
 
