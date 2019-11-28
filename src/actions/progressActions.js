@@ -105,8 +105,8 @@ export const setNextQuestion = () => async (dispatch, getState) => {
   const state = getState();
   const uncompletedQuestions = selectCurrectUncompletedQuestions(state);
 
-  const uncompletedQuestionIds = uncompletedQuestions.map(question =>
-    Number(question[0])
+  const uncompletedQuestionIds = uncompletedQuestions.map(
+    question => question[0]
   );
 
   let questionId;

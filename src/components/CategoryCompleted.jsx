@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Instructions from './Instructions';
-import Footer from './Footer';
 import {
   StyledHeadingH3,
   QuestionDiv,
@@ -16,7 +15,7 @@ import { DivButton, StyledRoundButton, DivCont } from '../styles/indexStyles';
 
 const propTypes = {
   category: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     instructions: PropTypes.arrayOf(
       PropTypes.shape({
@@ -27,7 +26,7 @@ const propTypes = {
   }).isRequired,
   isInstructionsVisible: PropTypes.bool.isRequired,
   toggleInstructionsVisibility: PropTypes.func.isRequired,
-  nextCategoryId: PropTypes.number.isRequired,
+  nextCategoryId: PropTypes.string.isRequired,
 };
 
 const CategoryCompleted = ({
@@ -77,8 +76,6 @@ const CategoryCompleted = ({
           </Instructions>
         )}
       </QuestionBackgroundDiv>
-
-      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility} />
     </DivCont>
   );
 };

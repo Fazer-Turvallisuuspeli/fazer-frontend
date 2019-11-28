@@ -9,13 +9,14 @@ export const selectProgress = state => state.progress;
 
 export const selectProgressPerCategory = createSelector(
   [selectProgress],
-  progress => progress.perCategory
+  progress => (progress.perCategory ? progress.perCategory : {})
 );
 
 export const selectCurrectUncompletedQuestions = createSelector(
   [selectProgressPerCategory, selectCurrentCategoryId],
   (perCategory, categoryId) =>
     perCategory &&
+    categoryId &&
     perCategory[categoryId] &&
     perCategory[categoryId].perQuestion
       ? Object.entries(perCategory[categoryId].perQuestion).filter(
@@ -129,23 +130,23 @@ export const selectNextCategoryId = createSelector(
             categories.find(category => category.id === categoryId)
           ) + 1
         ].id
-      : categories[0].id
+      : '0'
 );
 
 export const selectCompletedCategories = createSelector(
   [selectProgressPerCategory],
   perCategory =>
     perCategory &&
-    Object.keys(perCategory)
-      .filter(categoryId => perCategory[categoryId].isCompleted)
-      .map(id => Number(id))
+    Object.keys(perCategory).filter(
+      categoryId => perCategory[categoryId].isCompleted
+    )
 );
 
 export const selectUncompletedCategories = createSelector(
   [selectProgressPerCategory],
   perCategory =>
     perCategory &&
-    Object.keys(perCategory)
-      .filter(categoryId => perCategory[categoryId].isCompleted === false)
-      .map(id => Number(id))
+    Object.keys(perCategory).filter(
+      categoryId => perCategory[categoryId].isCompleted === false
+    )
 );

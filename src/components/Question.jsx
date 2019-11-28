@@ -1,28 +1,29 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
-import QuestionAnswer from './QuestionAnswer';
 import {
   StyledHeadingH2,
   StyledHeadingH3,
   QuestionDiv,
 } from '../styles/questionStyle';
+import QuestionCompleted from './QuestionCompleted';
 
 const propTypes = {
   question: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    categoryId: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    categoryId: PropTypes.string.isRequired,
     question: PropTypes.string.isRequired,
     explanation: PropTypes.string.isRequired,
     isSingleChoice: PropTypes.bool.isRequired,
-    correctChoiceId: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+    correctChoiceId: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     choices: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         option: PropTypes.string.isRequired,
       })
     ).isRequired,
   }).isRequired,
-  checkedChoices: PropTypes.arrayOf(PropTypes.number).isRequired,
+  checkedChoices: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleOnChange: PropTypes.func.isRequired,
   handleSubmitAnswer: PropTypes.func.isRequired,
   nthQuestion: PropTypes.number.isRequired,
@@ -87,7 +88,7 @@ const Question = ({
         )}
 
         {isQuestionCompleted && (
-          <QuestionAnswer
+          <QuestionCompleted
             isCorrect={isCorrect}
             question={question}
             setNextQuestion={setNextQuestion}

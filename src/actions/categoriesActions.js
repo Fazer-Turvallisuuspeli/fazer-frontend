@@ -39,7 +39,7 @@ export const fetchCategories = () => async (dispatch, getState) => {
   }
 };
 
-export const setCurrentCategoryId = categoryIdStr => async (
+export const setCurrentCategoryId = categoryId => async (
   dispatch,
   getState
 ) => {
@@ -48,8 +48,6 @@ export const setCurrentCategoryId = categoryIdStr => async (
 
   const state = getState();
   const categoryIdInState = selectCurrentCategoryId(state);
-
-  const categoryId = Number(categoryIdStr);
 
   // Abort early if same category
   if (categoryIdInState === categoryId) return;

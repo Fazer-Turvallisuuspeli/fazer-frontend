@@ -12,7 +12,7 @@ import {
 import { StyledP } from '../styles/indexStyles';
 
 const propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   cleanName: PropTypes.string.isRequired,
   isDisabled: PropTypes.bool.isRequired,

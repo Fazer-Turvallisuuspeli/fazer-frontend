@@ -41,7 +41,7 @@ const mapDispatch = {
 
 const propTypes = {
   question: PropTypes.shape({}),
-  checkedChoices: PropTypes.arrayOf(PropTypes.number),
+  checkedChoices: PropTypes.arrayOf(PropTypes.string),
   nthQuestion: PropTypes.number,
   amountOfQuestions: PropTypes.number,
   setQuestionChoice: PropTypes.func.isRequired,
@@ -49,7 +49,7 @@ const propTypes = {
   isSubmitting: PropTypes.bool,
   isCategoryCompleted: PropTypes.bool,
   isQuestionCompleted: PropTypes.bool,
-  currentQuestionId: PropTypes.number,
+  currentQuestionId: PropTypes.string,
   isCorrect: PropTypes.bool,
   setNextQuestion: PropTypes.func,
 };
