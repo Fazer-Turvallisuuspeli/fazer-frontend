@@ -3,6 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Instructions from './Instructions';
 import Footer from './Footer';
+import {
+  StyledHeadingH3,
+  QuestionDiv,
+  QuestionStyleDiv,
+} from '../styles/questionStyle';
+import {
+  StyledHeading1,
+  QuestionBackgroundDiv,
+} from '../styles/categoriesStyle';
+import { DivButton, StyledRoundButton, DivCont } from '../styles/indexStyles';
 
 const propTypes = {
   category: PropTypes.shape({
@@ -27,39 +37,49 @@ const CategoryCompleted = ({
   nextCategoryId,
 }) => {
   return (
-    <>
-      <h1>{category.name}</h1>
+    <DivCont className="root">
+      <QuestionBackgroundDiv className="background">
+        <QuestionStyleDiv className="questiondiv">
+          <StyledHeading1>{category.name}</StyledHeading1>
+          <QuestionDiv>
+            <StyledHeadingH3>Kategoria suoritettu</StyledHeadingH3>
 
-      <h3>Kategoria suoritettu</h3>
+            <p>
+              Jatka seuraavaan kategoriaan painamalla
+              &quot;Seuraava&quot;-painiketta tai palaa päävalikkoon
+              valitakseksi toisen kategorian.
+            </p>
+          </QuestionDiv>
+          <DivButton>
+            <Link className="button" to="/categories">
+              <StyledRoundButton type="button">Päävalikko</StyledRoundButton>
+            </Link>
 
-      <p>
-        Jatka seuraavaan kategoriaan painamalla &quot;Seuraava&quot;-painiketta
-        tai palaa päävalikkoon valitakseksi toisen kategorian.
-      </p>
+            <StyledRoundButton
+              className="button"
+              type="button"
+              onClick={toggleInstructionsVisibility}>
+              Tietopankki
+            </StyledRoundButton>
 
-      {isInstructionsVisible && (
-        <Instructions instructions={category.instructions}>
-          <button type="button" onClick={toggleInstructionsVisibility}>
-            Jatka peliin
-          </button>
-        </Instructions>
-      )}
+            {/* TODO : Link to next category, or category list if last category */}
+            <Link className="button" to={`/categories/${nextCategoryId}`}>
+              <StyledRoundButton type="button">Seuraava</StyledRoundButton>
+            </Link>
+          </DivButton>
+        </QuestionStyleDiv>
 
-      <Footer>
-        <Link to="/categories">
-          <button type="button">Päävalikko</button>
-        </Link>
+        {isInstructionsVisible && (
+          <Instructions instructions={category.instructions}>
+            <button type="button" onClick={toggleInstructionsVisibility}>
+              Jatka peliin
+            </button>
+          </Instructions>
+        )}
+      </QuestionBackgroundDiv>
 
-        <button type="button" onClick={toggleInstructionsVisibility}>
-          Tietopankki
-        </button>
-
-        {/* TODO : Link to next category, or category list if last category */}
-        <Link to={`/categories/${nextCategoryId}`}>
-          <button type="button">Seuraava</button>
-        </Link>
-      </Footer>
-    </>
+      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility} />
+    </DivCont>
   );
 };
 

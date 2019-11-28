@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import QuestionAnswer from './QuestionAnswer';
+import {
+  StyledHeadingH2,
+  StyledHeadingH3,
+  QuestionDiv,
+} from '../styles/questionStyle';
 
 const propTypes = {
   question: PropTypes.shape({
@@ -46,12 +51,12 @@ const Question = ({
     isSubmitting || isCategoryCompleted || isQuestionCompleted;
 
   return (
-    <div>
-      <h2>{question.question}</h2>
+    <QuestionDiv className="question">
+      <StyledHeadingH2>{question.question}</StyledHeadingH2>
 
-      <h3>
+      <StyledHeadingH3>
         (Kysymys {nthQuestion} / {amountOfQuestions})
-      </h3>
+      </StyledHeadingH3>
 
       <form onSubmit={event => handleSubmitAnswer(event, question.id)}>
         {question.choices.map((choice, index) => (
@@ -64,7 +69,9 @@ const Question = ({
               id={`question-${question.id}-choice-${choice.id}`}
               onChange={() => handleOnChange(question.id, choice.id)}
             />
-            <label htmlFor={`question-${question.id}-choice-${choice.id}`}>
+            <label
+              className="label"
+              htmlFor={`question-${question.id}-choice-${choice.id}`}>
               {choice.option}
             </label>
           </div>
@@ -72,6 +79,7 @@ const Question = ({
 
         {!isQuestionCompleted && (
           <input
+            className="input"
             disabled={isAnsweringDisabled}
             type="submit"
             value="Tarkista vastaukset"
@@ -86,7 +94,7 @@ const Question = ({
           />
         )}
       </form>
-    </div>
+    </QuestionDiv>
   );
 };
 

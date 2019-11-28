@@ -5,6 +5,12 @@ import CategoryCompleted from './CategoryCompleted';
 import QuestionContainer from '../containers/QuestionContainer';
 import Instructions from './Instructions';
 import Footer from './Footer';
+import {
+  StyledHeading1,
+  QuestionBackgroundDiv,
+} from '../styles/categoriesStyle';
+import { StyledRoundButton, DivCont, DivButton } from '../styles/indexStyles';
+import { QuestionStyleDiv } from '../styles/questionStyle';
 
 const propTypes = {
   isCategoryCompleted: PropTypes.bool.isRequired,
@@ -41,29 +47,39 @@ const Category = ({
     );
 
   return (
-    <>
-      <h1>{category.name}</h1>
+    <DivCont className="root">
+      <QuestionBackgroundDiv className="background">
+        <QuestionStyleDiv className="h1questionandbuttons">
+          <StyledHeading1>{category.name}</StyledHeading1>
 
-      <QuestionContainer />
+          <QuestionContainer />
+          <DivButton>
+            <Link className="button" to="/categories">
+              <StyledRoundButton type="button">Päävalikko</StyledRoundButton>
+            </Link>
 
-      {isInstructionsVisible && (
-        <Instructions instructions={category.instructions}>
-          <button type="button" onClick={toggleInstructionsVisibility}>
-            Jatka peliin
-          </button>
-        </Instructions>
-      )}
+            <StyledRoundButton
+              className="button"
+              type="button"
+              onClick={toggleInstructionsVisibility}>
+              Tietopankki
+            </StyledRoundButton>
+          </DivButton>
+        </QuestionStyleDiv>
 
-      <Footer>
-        <Link to="/categories">
-          <button type="button">Päävalikko</button>
-        </Link>
+        {isInstructionsVisible && (
+          <Instructions instructions={category.instructions}>
+            <StyledRoundButton
+              type="button"
+              onClick={toggleInstructionsVisibility}>
+              Jatka peliin
+            </StyledRoundButton>
+          </Instructions>
+        )}
+      </QuestionBackgroundDiv>
 
-        <button type="button" onClick={toggleInstructionsVisibility}>
-          Tietopankki
-        </button>
-      </Footer>
-    </>
+      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility} />
+    </DivCont>
   );
 };
 
