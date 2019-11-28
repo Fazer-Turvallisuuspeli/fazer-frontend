@@ -25,11 +25,27 @@ const QuestionCompleted = ({ isCorrect, question, setNextQuestion }) => {
 
   // Render a different element depending on the amount of correct choices
   const correctChoicesToShow = () => {
+    const { choices } = question;
+
+    // In case of only one correct choice
     if (correctChoiceId.length === 1) {
-      return <p>Oikea vastaus: ({correctChoiceId[0]})</p>;
+      const choiceIndex = choices.findIndex(
+        choice => choice.id === correctChoiceId[0]
+      );
+
+      return <p>Oikea vastaus: ({choiceIndex + 1})</p>;
     }
 
-    return <p>Oikeat vastaukset: ({correctChoiceId.join(', ')})</p>;
+    // In case of multiple correct choices
+    const choiceIndices = correctChoiceId.map(correctChoiceId =>
+      choices.findIndex(choice => choice.id === correctChoiceId)
+    );
+
+    return (
+      <p>
+        Oikeat vastaukset: ({choiceIndices.map(index => index + 1).join(', ')})
+      </p>
+    );
   };
 
   return (
