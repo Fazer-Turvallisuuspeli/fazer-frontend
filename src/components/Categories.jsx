@@ -7,7 +7,7 @@ import { formatString } from '../utils/stringUtils';
 import CategoryLink from './CategoryLink';
 import { DivCont, StyledRoundButton, DivButton } from '../styles/indexStyles';
 import { DivStyle, StyledHeading } from '../styles/landingStyles';
-import { DivCategories } from '../styles/categoryStyle';
+import { DivCategories } from '../styles/categoriesStyle';
 
 const propTypes = {
   categories: PropTypes.arrayOf(

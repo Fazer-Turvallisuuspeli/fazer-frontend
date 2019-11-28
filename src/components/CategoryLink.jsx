@@ -8,7 +8,7 @@ import {
   ImgCategoriesCompleted,
   CategoryP,
   CompletedDiv,
-} from '../styles/categoryStyle';
+} from '../styles/categoriesStyle';
 import { StyledP } from '../styles/indexStyles';
 
 const propTypes = {

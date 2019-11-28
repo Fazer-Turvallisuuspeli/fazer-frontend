@@ -5,10 +5,7 @@ import CategoryCompleted from './CategoryCompleted';
 import QuestionContainer from '../containers/QuestionContainer';
 import Instructions from './Instructions';
 import Footer from './Footer';
-import {
-  StyledHeading1,
-  QuestionBackgroundDiv,
-} from '../styles/categoriesStyle';
+import { StyledHeading1, QuestionBackgroundDiv } from '../styles/categoryStyle';
 import { StyledRoundButton, DivCont, DivButton } from '../styles/indexStyles';
 import { QuestionStyleDiv } from '../styles/questionStyle';
 

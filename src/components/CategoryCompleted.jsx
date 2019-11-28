@@ -7,10 +7,7 @@ import {
   QuestionDiv,
   QuestionStyleDiv,
 } from '../styles/questionStyle';
-import {
-  StyledHeading1,
-  QuestionBackgroundDiv,
-} from '../styles/categoriesStyle';
+import { StyledHeading1, QuestionBackgroundDiv } from '../styles/categoryStyle';
 import { DivButton, StyledRoundButton, DivCont } from '../styles/indexStyles';
 
 const propTypes = {
