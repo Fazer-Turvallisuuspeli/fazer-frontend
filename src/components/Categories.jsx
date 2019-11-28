@@ -79,13 +79,13 @@ const Categories = ({
         </DivButton>
       </DivStyle>
       <Footer>
-        {/* <Link to="/">
+        <Link to="/">
           <button type="button">Palaa alkuun</button>
         </Link>
 
         <button type="button" onClick={toggleInstructionsVisibility}>
           info
-        </button> */}
+        </button>
       </Footer>
     </DivCont>
   );
