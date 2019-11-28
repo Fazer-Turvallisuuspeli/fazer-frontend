@@ -62,7 +62,6 @@ const Question = ({
       <form onSubmit={event => handleSubmitAnswer(event, question.id)}>
         {question.choices.map((choice, index) => (
           <div key={choice.id}>
-            {index + 1})
             <input
               checked={checkedChoices.includes(choice.id)}
               disabled={isAnsweringDisabled}
@@ -70,6 +69,7 @@ const Question = ({
               id={`question-${question.id}-choice-${choice.id}`}
               onChange={() => handleOnChange(question.id, choice.id)}
             />
+            {index + 1}){' '}
             <label
               className="label"
               htmlFor={`question-${question.id}-choice-${choice.id}`}>

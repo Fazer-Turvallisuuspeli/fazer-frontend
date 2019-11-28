@@ -6,6 +6,7 @@ export const StyledHeading = styled.h1`
   text-transform: uppercase;
   text-align: center;
   text-shadow: 2px 2px 4px grey;
+  color: white;
 `;
 
 export const DivStyle = styled.div`
