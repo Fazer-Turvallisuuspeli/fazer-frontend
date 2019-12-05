@@ -74,7 +74,7 @@ const Categories = ({
           </StyledRoundButton>
         </DivButton>
       </DivStyle>
-      <Footer>
+      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility}>
         <Link to="/">
           <button type="button">Palaa alkuun</button>
         </Link>

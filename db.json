@@ -43,23 +43,23 @@
   ],
   "units": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Lahti"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Lappeenranta"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Vantaa"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Fazer makeiset"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Myymäläleipomot"
     }
   ],
@@ -71,26 +71,26 @@
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "John Doe",
       "email": "johndoe@test.dev",
       "unit": {
-        "id": 1,
+        "id": "1",
         "name": "Lahti"
       },
       "score": {
         "overall": 100,
         "perCategory": [
           {
-            "categoryId": 1,
+            "categoryId": "1",
             "points": 4
           },
           {
-            "categoryId": 2,
+            "categoryId": "2",
             "points": 4
           },
           {
-            "categoryId": 3,
+            "categoryId": "3",
             "points": 4
           }
         ]
@@ -100,7 +100,7 @@
   "categories": [
     {
       "name": "Liikkuminen",
-      "id": 1,
+      "id": "1",
       "instructions": [
         {
           "title": "Työmatkat ja piha-alueella kulkeminen",
@@ -126,7 +126,7 @@
     },
     {
       "name": "Suojavälineet",
-      "id": 2,
+      "id": "2",
       "instructions": [
         {
           "title": "Henkilösuojainten tarve",
@@ -152,7 +152,7 @@
     },
     {
       "name": "Ennakoiva turvallisuus",
-      "id": 3,
+      "id": "3",
       "instructions": [
         {
           "title": "Riskien ja vaarojen arviointi sekä turvallisen työn aloitus",
@@ -166,7 +166,7 @@
     },
     {
       "name": "Ohjeet",
-      "id": 4,
+      "id": "4",
       "instructions": [
         {
           "title": "Työhön opastaminen ja perehdyttäminen",
@@ -196,7 +196,7 @@
     },
     {
       "name": "Työympäristö",
-      "id": 5,
+      "id": "5",
       "instructions": [
         {
           "title": "Siisteydessä ja järjestyksessä huomioitavaa",
@@ -207,97 +207,97 @@
   ],
   "questions": [
     {
-      "id": 1,
-      "categoryId": 1,
+      "id": "1",
+      "categoryId": "1",
       "question": "Piha-alueilla kulkeminen",
       "explanation": "Kulkiessasi piha-alueella sinun pitää huomioida ympäristösi ja muu liikenne.",
       "isSingleChoice": true,
-      "correctChoiceId": [3],
+      "correctChoiceId": ["3"],
       "choices": [
         {
-          "id": 1,
+          "id": "1",
           "option": "Voin kävellä suojatiellä välittämättä muusta liikenteestä"
         },
         {
-          "id": 2,
+          "id": "2",
           "option": "Voin puhua tai tuijottaa kännykkään suojatiellä kävellessäni, koska autoilijat osaavat varoa"
         },
         {
-          "id": 3,
+          "id": "3",
           "option": "Minun tulee seurata liikennettä liikkuessani piha-alueella, koska vastaan itse liikkumisestani"
         }
       ]
     },
     {
-      "id": 2,
-      "categoryId": 1,
+      "id": "2",
+      "categoryId": "1",
       "question": "Portaissa kulkeminen",
       "explanation": "Portaissa tulee aina kulkea rauhallisesti ja pitää kaiteesta kiinni.",
       "isSingleChoice": true,
-      "correctChoiceId": [2],
+      "correctChoiceId": ["2"],
       "choices": [
         {
-          "id": 1,
+          "id": "1",
           "option": "Kaiteesta ei tarvitse pitää kiinni, jos puhuu puhelimeen."
         },
         {
-          "id": 2,
+          "id": "2",
           "option": "Pidän aina kiinni kaiteesta kulkiessani portaissa."
         },
         {
-          "id": 3,
+          "id": "3",
           "option": "Voin juosta portaissa, jos on kiire."
         }
       ]
     },
     {
-      "id": 3,
-      "categoryId": 2,
+      "id": "3",
+      "categoryId": "2",
       "question": "Henkilösuojainten tarve määritellään",
       "explanation": "",
       "isSingleChoice": false,
-      "correctChoiceId": [1, 2, 3],
+      "correctChoiceId": ["1", "2", "3"],
       "choices": [
         {
-          "id": 1,
+          "id": "1",
           "option": "Työturvallisuuslaissa."
         },
         {
-          "id": 2,
+          "id": "2",
           "option": "Vaarojen kartoitusten ja riskien arviointien pohjalta."
         },
         {
-          "id": 3,
+          "id": "3",
           "option": "Työterveyshuollon toimesta."
         }
       ]
     },
     {
-      "id": 4,
-      "categoryId": 2,
+      "id": "4",
+      "categoryId": "2",
       "question": "Leipomotyössä on käytettävä mm. seuraavia henkilösuojaimia",
       "explanation": "Puuvillakäsineillä ei ole suojaluokitusta. Niitä käytetään hygienian varmistamiseksi.",
       "isSingleChoice": false,
-      "correctChoiceId": [1, 2, 3, 5],
+      "correctChoiceId": ["1", "2", "3", "5"],
       "choices": [
         {
-          "id": 1,
+          "id": "1",
           "option": "hengityssuojain"
         },
         {
-          "id": 2,
+          "id": "2",
           "option": "kuulosuojaimet"
         },
         {
-          "id": 3,
+          "id": "3",
           "option": "turvakengät"
         },
         {
-          "id": 4,
+          "id": "4",
           "option": "puuvillakäsineet"
         },
         {
-          "id": 5,
+          "id": "5",
           "option": "viiltosuojahanskat"
         }
       ]

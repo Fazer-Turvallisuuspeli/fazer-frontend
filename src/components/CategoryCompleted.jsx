@@ -58,10 +58,11 @@ const CategoryCompleted = ({
               Tietopankki
             </StyledRoundButton>
 
-            {/* TODO : Link to next category, or category list if last category */}
-            <Link className="button" to={`/categories/${nextCategoryId}`}>
-              <StyledRoundButton type="button">Seuraava</StyledRoundButton>
-            </Link>
+            {nextCategoryId !== '0' && (
+              <Link className="button" to={`/categories/${nextCategoryId}`}>
+                <StyledRoundButton type="button">Seuraava</StyledRoundButton>
+              </Link>
+            )}
           </DivButton>
         </QuestionStyleDiv>
 
