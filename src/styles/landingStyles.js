@@ -22,7 +22,7 @@ export const DivStyle = styled.div`
   */
   display: flex;
   flex: 1;
-  height: 100%;
+  height: 90%;
   width: 100%;
   left: 0;
   top: 0;

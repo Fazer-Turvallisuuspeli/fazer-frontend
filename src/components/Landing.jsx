@@ -6,6 +6,7 @@ import Instructions from './Instructions';
 import Footer from './Footer';
 import { StyledRoundButton, DivCont } from '../styles/indexStyles';
 import { StyledHeading, DivStyle } from '../styles/landingStyles';
+import { DivButtonInstruction } from '../styles/instructionsStyles';
 
 const propTypes = {
   lastName: PropTypes.string.isRequired,
@@ -52,12 +53,14 @@ const Landing = ({
         <StyledHeading>Tervetuloa, {lastName}</StyledHeading>
 
         <Instructions instructions={welcomeMessage}>
-          <Link to="/categories">
-            <StyledRoundButton type="button">Siirry peliin</StyledRoundButton>
-          </Link>
-          <Link to="/logout">
-            <StyledRoundButton type="button">Kirjaudu ulos</StyledRoundButton>
-          </Link>
+          <DivButtonInstruction>
+            <Link to="/categories">
+              <StyledRoundButton type="button">Siirry peliin</StyledRoundButton>
+            </Link>
+            <Link to="/logout">
+              <StyledRoundButton type="button">Kirjaudu ulos</StyledRoundButton>
+            </Link>
+          </DivButtonInstruction>
         </Instructions>
 
         {isInstructionsVisible && (
