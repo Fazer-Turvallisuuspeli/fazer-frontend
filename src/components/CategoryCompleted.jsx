@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Instructions from './Instructions';
+import Footer from './Footer';
 import {
   StyledHeadingH3,
   QuestionDiv,
   QuestionStyleDiv,
 } from '../styles/questionStyle';
 import { StyledHeading1, QuestionBackgroundDiv } from '../styles/categoryStyle';
-import { DivButton, StyledRoundButton, DivCont } from '../styles/indexStyles';
+import { StyledRoundButton, DivCont } from '../styles/indexStyles';
 
 const propTypes = {
   category: PropTypes.shape({
@@ -35,9 +36,9 @@ const CategoryCompleted = ({
   return (
     <DivCont className="root">
       <QuestionBackgroundDiv className="background">
-        <QuestionStyleDiv className="questiondiv">
+        <QuestionStyleDiv className="questionstylediv">
           <StyledHeading1>{category.name}</StyledHeading1>
-          <QuestionDiv>
+          <QuestionDiv className="questiondiv">
             <StyledHeadingH3>Kategoria suoritettu</StyledHeadingH3>
 
             <p>
@@ -46,7 +47,7 @@ const CategoryCompleted = ({
               valitakseksi toisen kategorian.
             </p>
           </QuestionDiv>
-          <DivButton>
+          <div className="buttoncomplete">
             <Link className="button" to="/categories">
               <StyledRoundButton type="button">Päävalikko</StyledRoundButton>
             </Link>
@@ -63,7 +64,7 @@ const CategoryCompleted = ({
                 <StyledRoundButton type="button">Seuraava</StyledRoundButton>
               </Link>
             )}
-          </DivButton>
+          </div>
         </QuestionStyleDiv>
 
         {isInstructionsVisible && (
@@ -74,6 +75,7 @@ const CategoryCompleted = ({
           </Instructions>
         )}
       </QuestionBackgroundDiv>
+      <Footer toggleInstructionsVisibility={toggleInstructionsVisibility} />
     </DivCont>
   );
 };

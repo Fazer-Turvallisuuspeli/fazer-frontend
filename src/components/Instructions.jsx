@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {
   StyledHeading,
   StyledParagraph,
+  StyledParagraphDiv,
+  StyledFazerImage,
   StyledDiv,
 } from '../styles/instructionsStyles';
 
@@ -25,12 +27,16 @@ const defaultInstructions = [
 
 const Instructions = ({ instructions = defaultInstructions, children }) => {
   return (
-    <StyledDiv>
+    <StyledDiv className="instruction content">
       {instructions.map(({ title, body }) => (
-        <div key={body}>
+        <StyledParagraphDiv key={body}>
           {title && <StyledHeading>{title}</StyledHeading>}
+          <StyledFazerImage
+            // eslint-disable-next-line global-require
+            src={require('../assets/images/logos/fazer-logo-border.png')}
+          />
           <StyledParagraph>{body}</StyledParagraph>
-        </div>
+        </StyledParagraphDiv>
       ))}
 
       {children}

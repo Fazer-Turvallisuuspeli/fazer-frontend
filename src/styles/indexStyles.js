@@ -36,8 +36,33 @@ body {
   margin-left: 20px;
 }
 
-.button {
-  align-self: flex-end;
+.buttons {
+  margin-bottom: 20px;
+}
+
+.buttoncomplete {
+  display: flex;
+  justify-content: space-evenly; 
+  width: 100%;
+  margin-bottom: 20px;
+  @media (max-width: 400px) {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+  @media (min-width: 400px) {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+  @media (min-width: 750px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: flex-start;
+  }
 }
 
 .fwdbutton {
@@ -45,19 +70,18 @@ body {
 }
 
 `;
+
+/* Blue round buttons */
 export const StyledRoundButton = styled.button`
   background-color: #15256b;
   color: #fff;
   padding: 10px 35px;
   text-transform: uppercase;
-  font-size: 12px;
   margin-top: 10px;
   border: none;
   border-radius: 15px;
   outline: 0;
   cursor: pointer;
-  /* margin-right: 20px;
-  margin-left: 20px; */
 `;
 
 export const DivCont = styled.div`
@@ -82,5 +106,5 @@ export const DivButton = styled.div`
   justify-content: space-evenly;
   align-items: flex-start;
   align-content: space-between;
-  width: 90%;
+  width: 100%;
 `;

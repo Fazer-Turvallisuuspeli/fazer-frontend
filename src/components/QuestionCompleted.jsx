@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledRight, StyledWrong } from '../styles/answerStyle';
+import {
+  StyledRight,
+  StyledWrong,
+  QuestionAnswerDiv,
+  StyledAnswerP,
+} from '../styles/answerStyle';
 import { StyledRoundButton } from '../styles/indexStyles';
 
 const propTypes = {
@@ -35,7 +40,7 @@ const QuestionCompleted = ({ isCorrect, question, setNextQuestion }) => {
         choice => choice.id === correctChoiceId[0]
       );
 
-      return <p>Oikea vastaus: ({choiceIndex + 1})</p>;
+      return <StyledAnswerP>Oikea vastaus: ({choiceIndex + 1})</StyledAnswerP>;
     }
 
     // In case of multiple correct choices
@@ -44,14 +49,14 @@ const QuestionCompleted = ({ isCorrect, question, setNextQuestion }) => {
     );
 
     return (
-      <p>
+      <StyledAnswerP>
         Oikeat vastaukset: ({choiceIndices.map(index => index + 1).join(', ')})
-      </p>
+      </StyledAnswerP>
     );
   };
 
   return (
-    <div>
+    <QuestionAnswerDiv>
       {isCorrect ? (
         <StyledRight>Oikein.</StyledRight>
       ) : (
@@ -60,7 +65,7 @@ const QuestionCompleted = ({ isCorrect, question, setNextQuestion }) => {
 
       {correctChoicesToShow()}
 
-      {explanation && <p>{explanation}</p>}
+      {explanation && <StyledAnswerP>{explanation}</StyledAnswerP>}
 
       <StyledRoundButton
         className="fwdbutton"
@@ -68,7 +73,7 @@ const QuestionCompleted = ({ isCorrect, question, setNextQuestion }) => {
         type="button">
         Eteenpäin
       </StyledRoundButton>
-    </div>
+    </QuestionAnswerDiv>
   );
 };
 
